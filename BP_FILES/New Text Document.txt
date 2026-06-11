@@ -1,0 +1,13 @@
+
+create or alter proc spdeletedata 
+as 
+Delete from Trx Where td_Dt = '20260211'
+Delete from Bills  from Settlements Where se_stDt = '20260211' and bl_stlmnt = se_stlmnt 
+delete from Money_sheet from Settlements Where se_stDt = '20260211' and mn_stlmnt = se_stlmnt 
+Delete from FileImports  where  FI_FileDate = '20260211'
+Delete from Demat  from Settlements Where se_stDt = '20260211' and dm_stlmnt = se_stlmnt 
+delete from DematProcess_LOG where dl_date = '20260211'
+delete Process_log where pr_dt = '20260211'
+Update company_settlement set cs_billflag = 'N' 
+from Settlements Where se_stDt = '20260211'
+and cs_stlmnt = se_stlmnt 

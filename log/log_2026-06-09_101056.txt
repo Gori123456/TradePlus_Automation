@@ -1,0 +1,39 @@
+========================================================
+Log Session Started At: 2026-06-09 10:10:56
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_101056.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=919684
+Setting Control Center date to: '19/01/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified fully loaded (Stabilized on attempt 6) ✓
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox [Row: NSE, Col: Cash] -> State: True
+  ✓ Located exact NSE-Cash checkbox control handle: 329744 at rect: (613, 193, 628, 207)
+  Matrix Checkbox toggled successfully ✓
+
+Initializing Excel-Style Grid Data Verification Routine...
+
+Evaluating row index target location profile 1/6...
+  -> Cell 1: STATUS VERIFIED -> Missing/Pending. Initiating file import processing sequence...
+  [FALLBACK] Import button rectangle out of bounds. Applying hotkey stream...
+
+Evaluating row index target location profile 2/6...
+  -> Cell 2: STATUS VERIFIED -> Missing/Pending. Initiating file import processing sequence...
+  [FALLBACK] Import button rectangle out of bounds. Applying hotkey stream...
+
+Closing log file handle session. Goodbye.

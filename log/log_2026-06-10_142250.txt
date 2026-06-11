@@ -1,0 +1,36 @@
+========================================================
+Log Session Started At: 2026-06-10 14:22:50
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_142250.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=1836894
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+ControlCenterPage processing completed.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Pass_1_20260610_142413.png
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1836894
+  Control Center window closed successfully ✓
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

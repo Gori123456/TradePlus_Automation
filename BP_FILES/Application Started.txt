@@ -1,0 +1,956 @@
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Actions
+Running Action: {'type': 'submenu_by_index', 'parent_menu': 'Utilities', 'submenu_name': 'Demat Processes', 'index': 7}
+Opening Menu: Utilities
+Clicked item 7 under Utilities
+Running Action: {'type': 'share_payout_process', 'date': '19/01/2026', 'settlement_name': 'NM2026013', 'process_row': 21}
+Settlement 'NM2026013' maps to index 1
+
+--- CONTROL IDENTIFIERS (for debugging) ---
+Control Identifiers:
+
+Dialog - 'TradePlusX'    (L-8, T-8, R1374, B728)
+['TradePlusX', 'TradePlusXDialog', 'Dialog', 'TradePlusX0', 'TradePlusX1', 'Dialog0', 'Dialog1']
+child_window(title="TradePlusX", auto_id="frmMainMenu", control_type="Window")
+   |
+   | Toolbar - 'ToolStrip'    (L2, T49, R1364, B76)
+   | ['Toolbar', 'ToolStrip', 'ToolStripToolbar']
+   | child_window(title="ToolStrip", auto_id="ToolStrip", control_type="ToolBar")
+   |    |
+   |    | ComboBox - ''    (L186, T51, R281, B74)
+   |    | ['ComboBox2023-2024', 'ComboBox2003-2004', 'ComboBox2014-2015', 'ComboBox2008-2009', 'ComboBox', 'ComboBox2010-2011', 'ComboBox2022-2023', 'ComboBox2020-2021', 'ComboBox2009-2010', 'ComboBox2012-2013', 'ComboBox2019-2020', 'ComboBox2005-2006', 'ComboBox2004-2005', 'ComboBox2016-2017', 'ComboBox2033-2034', 'Accounting Year : ComboBox', 'ComboBox2018-2019', 'ComboBox2001-2002', 'ComboBox2025-2026', 'ComboBox2026-2027', 'ComboBox2015-2016', 'ComboBox2017-2018', 'ComboBox2006-2007', 'ComboBox2021-2022', 'ComboBox2024-2025', 'ComboBox2011-2012', 'ComboBox2002-2003', 'ComboBox2013-2014', 'ComboBox2007-2008', 'ComboBox0', 'ComboBox1']
+   |    | child_window(auto_id="2296010", control_type="ComboBox")
+   |    |    |
+   |    |    | Static - ''    (L3, T3, R75, B20)
+   |    |    | ['Static', 'Static0', 'Static1']
+   |    |    |
+   |    |    | Button - 'Open'    (L265, T52, R280, B73)
+   |    |    | ['OpenButton', 'Button', 'Open', 'OpenButton0', 'OpenButton1', 'Button0', 'Button1', 'Open0', 'Open1']
+   |    |    | child_window(title="Open", control_type="Button")
+   |    |
+   |    | ComboBox - ''    (L354, T51, R704, B74)
+   |    | ['ComboBox2', 'Company :ComboBox', 'Company :ComboBox0', 'Company :ComboBox1']
+   |    | child_window(auto_id="3868896", control_type="ComboBox")
+   |    |    |
+   |    |    | Static - ''    (L3, T3, R330, B20)
+   |    |    | ['Static2']
+   |    |    |
+   |    |    | Button - 'Open'    (L688, T52, R703, B73)
+   |    |    | ['OpenButton2', 'Button2', 'Open2']
+   |    |    | child_window(title="Open", control_type="Button")
+   |    |
+   |    | ComboBox - ''    (L712, T51, R812, B74)
+   |    | ['ComboBoxNSE (F&O)', 'ComboBox3', 'ComboBoxNSE (FX)', 'ComboBoxNSE (Cash)', 'ComboBoxMutual Fund', 'Company :ComboBox2']
+   |    | child_window(auto_id="2885860", control_type="ComboBox")
+   |    |    |
+   |    |    | Static - ''    (L3, T3, R80, B20)
+   |    |    | ['Static3']
+   |    |    |
+   |    |    | Button - 'Open'    (L796, T52, R811, B73)
+   |    |    | ['OpenButton3', 'Button3', 'Open3']
+   |    |    | child_window(title="Open", control_type="Button")
+   |    |
+   |    | Thumb - 'Grip'    (L4, T49, R9, B76)
+   |    | ['Grip', 'GripThumb', 'Thumb']
+   |    | child_window(title="Grip", control_type="Thumb")
+   |    |
+   |    | Button - 'Calculator'    (L11, T50, R76, B74)
+   |    | ['Button4', 'Calculator', 'CalculatorButton', 'Calculator0', 'Calculator1']
+   |    | child_window(title="Calculator", control_type="Button")
+   |    |
+   |    | Separator - ''    (L76, T49, R82, B76)
+   |    | ['Separator', 'Separator0', 'Separator1']
+   |    |
+   |    | Static - 'Accounting Year : '    (L82, T50, R185, B74)
+   |    | ['Static4', 'Accounting Year : Static', 'Accounting Year : ']
+   |    | child_window(title="Accounting Year : ", control_type="Text")
+   |    |
+   |    | Separator - ''    (L282, T49, R288, B76)
+   |    | ['Separator2', 'Accounting Year : Separator']
+   |    |
+   |    | Static - 'Company :'    (L288, T50, R353, B74)
+   |    | ['Static5', 'Company :', 'Company :Static']
+   |    | child_window(title="Company :", control_type="Text")
+   |    |
+   |    | Separator - ''    (L705, T49, R711, B76)
+   |    | ['Separator3', 'Company :Separator']
+   |    |
+   |    | Button - 'ToolStripButton1'    (L813, T50, R837, B74)
+   |    | ['Button5', 'ToolStripButton1', 'ToolStripButton1Button']
+   |    | child_window(title="ToolStripButton1", control_type="Button")
+   |    |
+   |    | Button - 'ToolStripButton2'    (L837, T50, R861, B74)
+   |    | ['ToolStripButton2', 'Button6', 'ToolStripButton2Button']
+   |    | child_window(title="ToolStripButton2", control_type="Button")
+   |    |
+   |    | Button - 'My Tasks'    (L861, T50, R920, B74)
+   |    | ['Button7', 'My Tasks', 'My TasksButton']
+   |    | child_window(title="My Tasks", control_type="Button")
+   |
+   | Menu - 'MenuStrip'    (L2, T25, R1364, B49)
+   | ['Menu', 'MenuStripMenu', 'MenuStrip', 'Menu0', 'Menu1']
+   | child_window(title="MenuStrip", auto_id="MenuStrip", control_type="MenuBar")
+   |    |
+   |    | MenuItem - 'Masters'    (L6, T27, R66, B47)
+   |    | ['MenuItem', 'Masters', 'MastersMenuItem', 'MenuItem0', 'MenuItem1']
+   |    | child_window(title="Masters", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Client Master'    (L0, T0, R0, B0)
+   |    |    | ['Client Master', 'Client MasterMenuItem', 'MenuItem2']
+   |    |    | child_window(title="Client Master", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'General Accounts'    (L0, T0, R0, B0)
+   |    |    | ['MenuItem3', 'General AccountsMenuItem', 'General Accounts']
+   |    |    | child_window(title="General Accounts", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Brokerages'    (L0, T0, R0, B0)
+   |    |    | ['Brokerages', 'BrokeragesMenuItem', 'MenuItem4']
+   |    |    | child_window(title="Brokerages", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Cash Segment'    (L0, T0, R0, B0)
+   |    |    |    | ['Cash SegmentMenuItem', 'Cash Segment', 'MenuItem5', 'Cash SegmentMenuItem0', 'Cash SegmentMenuItem1', 'Cash Segment0', 'Cash Segment1']
+   |    |    |    | child_window(title="Cash Segment", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Derivatives'    (L0, T0, R0, B0)
+   |    |    |    | ['DerivativesMenuItem', 'Derivatives', 'MenuItem6']
+   |    |    |    | child_window(title="Derivatives", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Sharing Schemes'    (L0, T0, R0, B0)
+   |    |    |    | ['Sharing Schemes', 'Sharing SchemesMenuItem', 'MenuItem7']
+   |    |    |    | child_window(title="Sharing Schemes", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Special Brokerages'    (L0, T0, R0, B0)
+   |    |    |    | ['Special Brokerages', 'Special BrokeragesMenuItem', 'MenuItem8']
+   |    |    |    | child_window(title="Special Brokerages", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Charge Setting (Cash) '    (L0, T0, R0, B0)
+   |    |    | ['Charge Setting (Cash) ', 'Charge Setting (Cash) MenuItem', 'MenuItem9']
+   |    |    | child_window(title="Charge Setting (Cash) ", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Charge Setting (F&O) '    (L0, T0, R0, B0)
+   |    |    | ['Charge Setting (F&O) ', 'Charge Setting (F&O) MenuItem', 'MenuItem10']
+   |    |    | child_window(title="Charge Setting (F&O) ", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Our Dps'    (L0, T0, R0, B0)
+   |    |    | ['Our Dps', 'Our DpsMenuItem', 'MenuItem11']
+   |    |    | child_window(title="Our Dps", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Securities '    (L0, T0, R0, B0)
+   |    |    | ['MenuItem12', 'Securities ', 'Securities MenuItem']
+   |    |    | child_window(title="Securities ", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Scrips'    (L0, T0, R0, B0)
+   |    |    |    | ['ScripsMenuItem', 'Scrips', 'MenuItem13']
+   |    |    |    | child_window(title="Scrips", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Products & Series'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem14', 'Products & SeriesMenuItem', 'Products & Series']
+   |    |    |    | child_window(title="Products & Series", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Utilities'    (L0, T0, R0, B0)
+   |    |    | ['Utilities', 'UtilitiesMenuItem', 'MenuItem15', 'Utilities0', 'Utilities1', 'UtilitiesMenuItem0', 'UtilitiesMenuItem1']
+   |    |    | child_window(title="Utilities", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bulk Update'    (L0, T0, R0, B0)
+   |    |    |    | ['Bulk UpdateMenuItem', 'Bulk Update', 'MenuItem16']
+   |    |    |    | child_window(title="Bulk Update", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Client Export'    (L0, T0, R0, B0)
+   |    |    |    | ['Client Export', 'Client ExportMenuItem', 'MenuItem17']
+   |    |    |    | child_window(title="Client Export", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Contact ID'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem18', 'Contact ID', 'Contact IDMenuItem']
+   |    |    |    | child_window(title="Contact ID", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Settlements'    (L0, T0, R0, B0)
+   |    |    | ['SettlementsMenuItem', 'Settlements', 'MenuItem19']
+   |    |    | child_window(title="Settlements", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Authorised Persons & RMs'    (L0, T0, R0, B0)
+   |    |    | ['Authorised Persons & RMsMenuItem', 'Authorised Persons & RMs', 'MenuItem20']
+   |    |    | child_window(title="Authorised Persons & RMs", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Branches'    (L0, T0, R0, B0)
+   |    |    | ['Branches', 'BranchesMenuItem', 'MenuItem21']
+   |    |    | child_window(title="Branches", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Sub Masters'    (L0, T0, R0, B0)
+   |    |    | ['Sub MastersMenuItem', 'MenuItem22', 'Sub Masters']
+   |    |    | child_window(title="Sub Masters", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'DP Master'    (L0, T0, R0, B0)
+   |    |    |    | ['DP Master', 'DP MasterMenuItem', 'MenuItem23']
+   |    |    |    | child_window(title="DP Master", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Groups, Family . . . +10'    (L0, T0, R0, B0)
+   |    |    |    | ['Groups, Family . . . +10MenuItem', 'MenuItem24', 'Groups, Family . . . +10']
+   |    |    |    | child_window(title="Groups, Family . . . +10", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Collateral Type Definition'    (L0, T0, R0, B0)
+   |    |    |    | ['Collateral Type DefinitionMenuItem', 'Collateral Type Definition', 'MenuItem25']
+   |    |    |    | child_window(title="Collateral Type Definition", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Holidays'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem26', 'HolidaysMenuItem', 'Holidays']
+   |    |    |    | child_window(title="Holidays", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'CTCL Master'    (L0, T0, R0, B0)
+   |    |    |    | ['CTCL Master', 'CTCL MasterMenuItem', 'MenuItem27']
+   |    |    |    | child_window(title="CTCL Master", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Terminals'    (L0, T0, R0, B0)
+   |    |    |    | ['TerminalsMenuItem', 'MenuItem28', 'Terminals']
+   |    |    |    | child_window(title="Terminals", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Transactions'    (L66, T27, R151, B47)
+   |    | ['TransactionsMenuItem', 'Transactions', 'MenuItem29']
+   |    | child_window(title="Transactions", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Special Charges'    (L0, T0, R0, B0)
+   |    |    | ['Special ChargesMenuItem', 'MenuItem30', 'Special Charges']
+   |    |    | child_window(title="Special Charges", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Market Summary'    (L0, T0, R0, B0)
+   |    |    | ['Market Summary', 'Market SummaryMenuItem', 'MenuItem31']
+   |    |    | child_window(title="Market Summary", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Trades'    (L0, T0, R0, B0)
+   |    |    | ['Trades', 'TradesMenuItem', 'MenuItem32', 'Trades0', 'Trades1', 'TradesMenuItem0', 'TradesMenuItem1']
+   |    |    | child_window(title="Trades", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Cash Segment'    (L0, T0, R0, B0)
+   |    |    |    | ['Cash SegmentMenuItem', 'Cash Segment', 'MenuItem5', 'Cash SegmentMenuItem0', 'Cash SegmentMenuItem1', 'Cash Segment0', 'Cash Segment1']
+   |    |    |    | child_window(title="Cash Segment", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Derivatives (FO & FX)'    (L0, T0, R0, B0)
+   |    |    |    | ['Derivatives (FO & FX)', 'Derivatives (FO & FX)MenuItem', 'MenuItem34', 'Derivatives (FO & FX)0', 'Derivatives (FO & FX)1', 'Derivatives (FO & FX)MenuItem0', 'Derivatives (FO & FX)MenuItem1']
+   |    |    |    | child_window(title="Derivatives (FO & FX)", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Reports'    (L151, T27, R210, B47)
+   |    | ['ReportsMenuItem', 'Reports', 'MenuItem35']
+   |    | child_window(title="Reports", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Investor Report'    (L0, T0, R0, B0)
+   |    |    | ['Investor Report', 'MenuItem36', 'Investor ReportMenuItem']
+   |    |    | child_window(title="Investor Report", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Taxes'    (L0, T0, R0, B0)
+   |    |    | ['Taxes', 'TaxesMenuItem', 'MenuItem37']
+   |    |    | child_window(title="Taxes", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Trades'    (L0, T0, R0, B0)
+   |    |    | ['Trades', 'TradesMenuItem', 'MenuItem32', 'Trades0', 'Trades1', 'TradesMenuItem0', 'TradesMenuItem1']
+   |    |    | child_window(title="Trades", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Trade Listing'    (L0, T0, R0, B0)
+   |    |    |    | ['Trade Listing', 'Trade ListingMenuItem', 'MenuItem39']
+   |    |    |    | child_window(title="Trade Listing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Daily Confirmation'    (L0, T0, R0, B0)
+   |    |    |    | ['Daily ConfirmationMenuItem', 'MenuItem40', 'Daily Confirmation']
+   |    |    |    | child_window(title="Daily Confirmation", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bill Summary'    (L0, T0, R0, B0)
+   |    |    |    | ['Bill SummaryMenuItem', 'Bill Summary', 'MenuItem41']
+   |    |    |    | child_window(title="Bill Summary", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bill Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Bill Printing', 'Bill PrintingMenuItem', 'MenuItem42']
+   |    |    |    | child_window(title="Bill Printing", control_type="MenuItem")
+   |    |    |    |    |
+   |    |    |    |    | MenuItem - 'Cash Segment'    (L0, T0, R0, B0)
+   |    |    |    |    | ['Cash SegmentMenuItem', 'Cash Segment', 'MenuItem5', 'Cash SegmentMenuItem0', 'Cash SegmentMenuItem1', 'Cash Segment0', 'Cash Segment1']
+   |    |    |    |    | child_window(title="Cash Segment", control_type="MenuItem")
+   |    |    |    |    |
+   |    |    |    |    | MenuItem - 'Derivatives (FO & FX)'    (L0, T0, R0, B0)
+   |    |    |    |    | ['Derivatives (FO & FX)', 'Derivatives (FO & FX)MenuItem', 'MenuItem34', 'Derivatives (FO & FX)0', 'Derivatives (FO & FX)1', 'Derivatives (FO & FX)MenuItem0', 'Derivatives (FO & FX)MenuItem1']
+   |    |    |    |    | child_window(title="Derivatives (FO & FX)", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Outstanding Position'    (L0, T0, R0, B0)
+   |    |    |    | ['Outstanding Position', 'Outstanding PositionMenuItem', 'MenuItem45']
+   |    |    |    | child_window(title="Outstanding Position", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Charges'    (L0, T0, R0, B0)
+   |    |    |    | ['ChargesMenuItem', 'Charges', 'MenuItem46']
+   |    |    |    | child_window(title="Charges", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Commision Report'    (L0, T0, R0, B0)
+   |    |    |    | ['Commision ReportMenuItem', 'Commision Report', 'MenuItem47']
+   |    |    |    | child_window(title="Commision Report", control_type="MenuItem")
+   |    |    |    |    |
+   |    |    |    |    | MenuItem - 'Exchange Segment wise'    (L0, T0, R0, B0)
+   |    |    |    |    | ['Exchange Segment wise', 'Exchange Segment wiseMenuItem', 'MenuItem48']
+   |    |    |    |    | child_window(title="Exchange Segment wise", control_type="MenuItem")
+   |    |    |    |    |
+   |    |    |    |    | MenuItem - 'Combined Report'    (L0, T0, R0, B0)
+   |    |    |    |    | ['Combined Report', 'Combined ReportMenuItem', 'MenuItem49']
+   |    |    |    |    | child_window(title="Combined Report", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'AGTS'    (L0, T0, R0, B0)
+   |    |    |    | ['AGTS', 'AGTSMenuItem', 'MenuItem50']
+   |    |    |    | child_window(title="AGTS", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'STT Listing'    (L0, T0, R0, B0)
+   |    |    |    | ['STT Listing', 'STT ListingMenuItem', 'MenuItem51']
+   |    |    |    | child_window(title="STT Listing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Acknowledgements'    (L0, T0, R0, B0)
+   |    |    |    | ['AcknowledgementsMenuItem', 'Acknowledgements', 'MenuItem52']
+   |    |    |    | child_window(title="Acknowledgements", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Multiple Settlement Position'    (L0, T0, R0, B0)
+   |    |    |    | ['Multiple Settlement Position', 'Multiple Settlement PositionMenuItem', 'MenuItem53']
+   |    |    |    | child_window(title="Multiple Settlement Position", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Contract Annexture'    (L0, T0, R0, B0)
+   |    |    |    | ['Contract Annexture', 'Contract AnnextureMenuItem', 'MenuItem54']
+   |    |    |    | child_window(title="Contract Annexture", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Assist'    (L0, T0, R0, B0)
+   |    |    |    | ['Assist', 'MenuItem55', 'AssistMenuItem']
+   |    |    |    | child_window(title="Assist", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Internal Exercise/Assignment Allocation'    (L0, T0, R0, B0)
+   |    |    |    | ['Internal Exercise/Assignment Allocation', 'MenuItem56', 'Internal Exercise/Assignment AllocationMenuItem']
+   |    |    |    | child_window(title="Internal Exercise/Assignment Allocation", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Exercise/Assignment Listing'    (L0, T0, R0, B0)
+   |    |    |    | ['Exercise/Assignment Listing', 'Exercise/Assignment ListingMenuItem', 'MenuItem57']
+   |    |    |    | child_window(title="Exercise/Assignment Listing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Trade Confirmation (SLBM)'    (L0, T0, R0, B0)
+   |    |    |    | ['Trade Confirmation (SLBM)', 'Trade Confirmation (SLBM)MenuItem', 'MenuItem58']
+   |    |    |    | child_window(title="Trade Confirmation (SLBM)", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'MIS'    (L0, T0, R0, B0)
+   |    |    | ['MISMenuItem', 'MenuItem59', 'MIS', 'MISMenuItem0', 'MISMenuItem1', 'MIS0', 'MIS1']
+   |    |    | child_window(title="MIS", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Performance Report'    (L0, T0, R0, B0)
+   |    |    |    | ['Performance Report', 'Performance ReportMenuItem', 'MenuItem60']
+   |    |    |    | child_window(title="Performance Report", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Outstanding Report'    (L0, T0, R0, B0)
+   |    |    |    | ['Outstanding Report', 'MenuItem61', 'Outstanding ReportMenuItem', 'Outstanding Report0', 'Outstanding Report1', 'Outstanding ReportMenuItem0', 'Outstanding ReportMenuItem1']
+   |    |    |    | child_window(title="Outstanding Report", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Clients'    (L0, T0, R0, B0)
+   |    |    | ['ClientsMenuItem', 'Clients', 'MenuItem62']
+   |    |    | child_window(title="Clients", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Margin'    (L0, T0, R0, B0)
+   |    |    |    | ['Margin', 'MarginMenuItem', 'MenuItem63']
+   |    |    |    | child_window(title="Margin", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'SMS'    (L0, T0, R0, B0)
+   |    |    |    | ['SMSMenuItem', 'SMS', 'MenuItem64']
+   |    |    |    | child_window(title="SMS", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Client Listing'    (L0, T0, R0, B0)
+   |    |    |    | ['Client ListingMenuItem', 'Client Listing', 'MenuItem65']
+   |    |    |    | child_window(title="Client Listing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Account Opening Letter'    (L0, T0, R0, B0)
+   |    |    |    | ['Account Opening Letter', 'Account Opening LetterMenuItem', 'MenuItem66']
+   |    |    |    | child_window(title="Account Opening Letter", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Outstanding Report'    (L0, T0, R0, B0)
+   |    |    |    | ['Outstanding Report', 'MenuItem61', 'Outstanding ReportMenuItem', 'Outstanding Report0', 'Outstanding Report1', 'Outstanding ReportMenuItem0', 'Outstanding ReportMenuItem1']
+   |    |    |    | child_window(title="Outstanding Report", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'General Letter'    (L0, T0, R0, B0)
+   |    |    |    | ['General Letter', 'General LetterMenuItem', 'MenuItem68']
+   |    |    |    | child_window(title="General Letter", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Margin Funding'    (L0, T0, R0, B0)
+   |    |    |    | ['Margin FundingMenuItem', 'MenuItem69', 'Margin Funding']
+   |    |    |    | child_window(title="Margin Funding", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Request By Clients'    (L0, T0, R0, B0)
+   |    |    |    | ['Request By ClientsMenuItem', 'Request By Clients', 'MenuItem70']
+   |    |    |    | child_window(title="Request By Clients", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Early Pay-in of Funds'    (L0, T0, R0, B0)
+   |    |    |    | ['Early Pay-in of\xa0Funds', 'Early Pay-in of\xa0FundsMenuItem', 'MenuItem71']
+   |    |    |    | child_window(title="Early Pay-in of Funds", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Short Allocation'    (L0, T0, R0, B0)
+   |    |    |    | ['Short\xa0AllocationMenuItem', 'MenuItem72', 'Short\xa0Allocation']
+   |    |    |    | child_window(title="Short Allocation", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Holding Statement'    (L0, T0, R0, B0)
+   |    |    | ['MenuItem73', 'Holding Statement', 'Holding StatementMenuItem']
+   |    |    | child_window(title="Holding Statement", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Accounts'    (L0, T0, R0, B0)
+   |    |    | ['Accounts', 'AccountsMenuItem', 'MenuItem74', 'Accounts0', 'Accounts1', 'AccountsMenuItem0', 'AccountsMenuItem1']
+   |    |    | child_window(title="Accounts", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Ledger'    (L0, T0, R0, B0)
+   |    |    |    | ['Ledger', 'LedgerMenuItem', 'MenuItem75']
+   |    |    |    | child_window(title="Ledger", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'MIS'    (L0, T0, R0, B0)
+   |    |    |    | ['MISMenuItem', 'MenuItem59', 'MIS', 'MISMenuItem0', 'MISMenuItem1', 'MIS0', 'MIS1']
+   |    |    |    | child_window(title="MIS", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Account Audit'    (L0, T0, R0, B0)
+   |    |    |    | ['Account Audit', 'Account AuditMenuItem', 'MenuItem77']
+   |    |    |    | child_window(title="Account Audit", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Entry Analysis'    (L0, T0, R0, B0)
+   |    |    |    | ['Entry Analysis', 'Entry AnalysisMenuItem', 'MenuItem78']
+   |    |    |    | child_window(title="Entry Analysis", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Compliance'    (L0, T0, R0, B0)
+   |    |    | ['ComplianceMenuItem', 'Compliance', 'MenuItem79']
+   |    |    | child_window(title="Compliance", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'STT Yearly Certificate'    (L0, T0, R0, B0)
+   |    |    |    | ['STT Yearly Certificate', 'STT Yearly CertificateMenuItem', 'MenuItem80']
+   |    |    |    | child_window(title="STT Yearly Certificate", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Inspection Report'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem81', 'Inspection ReportMenuItem', 'Inspection Report']
+   |    |    |    | child_window(title="Inspection Report", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Collateral at Client Level'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem82', 'Collateral at Client Level', 'Collateral at Client LevelMenuItem']
+   |    |    |    | child_window(title="Collateral at Client Level", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bulk Trade Reporting'    (L0, T0, R0, B0)
+   |    |    |    | ['Bulk Trade Reporting', 'MenuItem83', 'Bulk Trade ReportingMenuItem']
+   |    |    |    | child_window(title="Bulk Trade Reporting", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Collateral Allocation'    (L0, T0, R0, B0)
+   |    |    |    | ['Collateral Allocation', 'Collateral AllocationMenuItem', 'MenuItem84']
+   |    |    |    | child_window(title="Collateral Allocation", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Collateral Release'    (L0, T0, R0, B0)
+   |    |    |    | ['Collateral Release', 'Collateral ReleaseMenuItem', 'MenuItem85']
+   |    |    |    | child_window(title="Collateral Release", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'RMS Merge Report'    (L0, T0, R0, B0)
+   |    |    | ['RMS Merge Report', 'MenuItem86', 'RMS Merge ReportMenuItem']
+   |    |    | child_window(title="RMS Merge Report", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Demat'    (L0, T0, R0, B0)
+   |    |    | ['DematMenuItem', 'Demat', 'MenuItem87']
+   |    |    | child_window(title="Demat", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Demat Audit'    (L0, T0, R0, B0)
+   |    |    |    | ['Demat AuditMenuItem', 'Demat Audit', 'MenuItem88']
+   |    |    |    | child_window(title="Demat Audit", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Delivery Pending'    (L0, T0, R0, B0)
+   |    |    |    | ['Delivery PendingMenuItem', 'Delivery Pending', 'MenuItem89']
+   |    |    |    | child_window(title="Delivery Pending", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bulk Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Bulk PrintingMenuItem', 'Bulk Printing', 'MenuItem90']
+   |    |    |    | child_window(title="Bulk Printing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Sell Beneficiary Holdings'    (L0, T0, R0, B0)
+   |    |    |    | ['Sell Beneficiary HoldingsMenuItem', 'Sell Beneficiary Holdings', 'MenuItem91']
+   |    |    |    | child_window(title="Sell Beneficiary Holdings", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Demat Confirmation Letter'    (L0, T0, R0, B0)
+   |    |    |    | ['Demat Confirmation Letter', 'Demat Confirmation LetterMenuItem', 'MenuItem92']
+   |    |    |    | child_window(title="Demat Confirmation Letter", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Utilities'    (L210, T27, R268, B47)
+   |    | ['Utilities2', 'UtilitiesMenuItem2', 'MenuItem93']
+   |    | child_window(title="Utilities", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Entries'    (L0, T0, R0, B0)
+   |    |    | ['EntriesMenuItem', 'MenuItem94', 'Entries', 'EntriesMenuItem0', 'EntriesMenuItem1', 'Entries0', 'Entries1']
+   |    |    | child_window(title="Entries", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Corporate Action (F&O)'    (L0, T0, R0, B0)
+   |    |    |    | ['Corporate Action (F&O)', 'MenuItem95', 'Corporate Action (F&O)MenuItem']
+   |    |    |    | child_window(title="Corporate Action (F&O)", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'BuyBack'    (L0, T0, R0, B0)
+   |    |    |    | ['BuyBackMenuItem', 'BuyBack', 'MenuItem96']
+   |    |    |    | child_window(title="BuyBack", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Symbol / CM Change (F&O)'    (L0, T0, R0, B0)
+   |    |    |    | ['Symbol / CM Change (F&O)', 'Symbol / CM Change (F&O)MenuItem', 'MenuItem97']
+   |    |    |    | child_window(title="Symbol / CM Change (F&O)", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Dividend Receipt Entry'    (L0, T0, R0, B0)
+   |    |    | ['Dividend Receipt EntryMenuItem', 'Dividend Receipt Entry', 'MenuItem98']
+   |    |    | child_window(title="Dividend Receipt Entry", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Combine Contract Note'    (L0, T0, R0, B0)
+   |    |    | ['Combine Contract Note', 'Combine Contract NoteMenuItem', 'MenuItem99']
+   |    |    | child_window(title="Combine Contract Note", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Control Center'    (L0, T0, R0, B0)
+   |    |    | ['Control Center', 'Control CenterMenuItem', 'MenuItem100']
+   |    |    | child_window(title="Control Center", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Demat Charges'    (L0, T0, R0, B0)
+   |    |    | ['Demat ChargesMenuItem', 'Demat Charges', 'MenuItem101']
+   |    |    | child_window(title="Demat Charges", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Demat Processes'    (L0, T0, R0, B0)
+   |    |    | ['Demat ProcessesMenuItem', 'Demat Processes', 'MenuItem102']
+   |    |    | child_window(title="Demat Processes", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Demat Share Management'    (L0, T0, R0, B0)
+   |    |    | ['Demat Share ManagementMenuItem', 'Demat Share Management', 'MenuItem103']
+   |    |    | child_window(title="Demat Share Management", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'RMS'    (L0, T0, R0, B0)
+   |    |    | ['RMS', 'RMSMenuItem', 'MenuItem104']
+   |    |    | child_window(title="RMS", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Front Office Export'    (L0, T0, R0, B0)
+   |    |    | ['Front Office Export', 'Front Office ExportMenuItem', 'MenuItem105']
+   |    |    | child_window(title="Front Office Export", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Remissier sharing'    (L0, T0, R0, B0)
+   |    |    | ['Remissier sharingMenuItem', 'Remissier sharing', 'MenuItem106']
+   |    |    | child_window(title="Remissier sharing", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Stamp Duty Reconciliation'    (L0, T0, R0, B0)
+   |    |    | ['MenuItem107', 'Stamp Duty Reconciliation', 'Stamp Duty ReconciliationMenuItem']
+   |    |    | child_window(title="Stamp Duty Reconciliation", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Pledge Management'    (L0, T0, R0, B0)
+   |    |    | ['Pledge Management', 'Pledge ManagementMenuItem', 'MenuItem108']
+   |    |    | child_window(title="Pledge Management", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Trade File Export'    (L0, T0, R0, B0)
+   |    |    | ['Trade File ExportMenuItem', 'Trade File Export', 'MenuItem109']
+   |    |    | child_window(title="Trade File Export", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Institutional'    (L0, T0, R0, B0)
+   |    |    | ['Institutional', 'InstitutionalMenuItem', 'MenuItem110']
+   |    |    | child_window(title="Institutional", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'STP Files'    (L0, T0, R0, B0)
+   |    |    |    | ['STP FilesMenuItem', 'STP Files', 'MenuItem111']
+   |    |    |    | child_window(title="STP Files", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'CP & OTR File'    (L0, T0, R0, B0)
+   |    |    |    | ['CP & OTR FileMenuItem', 'CP & OTR File', 'MenuItem112']
+   |    |    |    | child_window(title="CP & OTR File", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Corporate Action (Cash)'    (L0, T0, R0, B0)
+   |    |    | ['Corporate Action (Cash)', 'Corporate Action (Cash)MenuItem', 'MenuItem113']
+   |    |    | child_window(title="Corporate Action (Cash)", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Span Interface'    (L0, T0, R0, B0)
+   |    |    | ['Span Interface', 'Span InterfaceMenuItem', 'MenuItem114']
+   |    |    | child_window(title="Span Interface", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Query Management'    (L0, T0, R0, B0)
+   |    |    | ['Query Management', 'Query ManagementMenuItem', 'MenuItem115']
+   |    |    | child_window(title="Query Management", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Payout Release Status'    (L0, T0, R0, B0)
+   |    |    | ['Payout Release Status', 'Payout Release StatusMenuItem', 'MenuItem116']
+   |    |    | child_window(title="Payout Release Status", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'CUPSPA Management'    (L0, T0, R0, B0)
+   |    |    | ['CUPSPA Management', 'CUPSPA ManagementMenuItem', 'MenuItem117']
+   |    |    | child_window(title="CUPSPA Management", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Scheduler'    (L0, T0, R0, B0)
+   |    |    | ['SchedulerMenuItem', 'Scheduler', 'MenuItem118']
+   |    |    | child_window(title="Scheduler", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Accounts'    (L268, T27, R337, B47)
+   |    | ['Accounts2', 'AccountsMenuItem2', 'MenuItem119']
+   |    | child_window(title="Accounts", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Entries'    (L0, T0, R0, B0)
+   |    |    | ['EntriesMenuItem', 'MenuItem94', 'Entries', 'EntriesMenuItem0', 'EntriesMenuItem1', 'Entries0', 'Entries1']
+   |    |    | child_window(title="Entries", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Receipts'    (L0, T0, R0, B0)
+   |    |    |    | ['Receipts', 'MenuItem121', 'ReceiptsMenuItem']
+   |    |    |    | child_window(title="Receipts", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Payment'    (L0, T0, R0, B0)
+   |    |    |    | ['Payment', 'MenuItem122', 'PaymentMenuItem']
+   |    |    |    | child_window(title="Payment", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Journals'    (L0, T0, R0, B0)
+   |    |    |    | ['Journals', 'JournalsMenuItem', 'MenuItem123']
+   |    |    |    | child_window(title="Journals", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Contra'    (L0, T0, R0, B0)
+   |    |    |    | ['ContraMenuItem', 'Contra', 'MenuItem124']
+   |    |    |    | child_window(title="Contra", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'GST'    (L0, T0, R0, B0)
+   |    |    |    | ['GST', 'GSTMenuItem', 'MenuItem125']
+   |    |    |    | child_window(title="GST", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Vouchers'    (L0, T0, R0, B0)
+   |    |    | ['MenuItem126', 'VouchersMenuItem', 'Vouchers']
+   |    |    | child_window(title="Vouchers", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Receipt/Payment Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Receipt/Payment PrintingMenuItem', 'Receipt/Payment Printing', 'MenuItem127']
+   |    |    |    | child_window(title="Receipt/Payment Printing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Expense Voucher Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Expense Voucher Printing', 'Expense Voucher PrintingMenuItem', 'MenuItem128']
+   |    |    |    | child_window(title="Expense Voucher Printing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Note Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Note Printing', 'MenuItem129', 'Note PrintingMenuItem']
+   |    |    |    | child_window(title="Note Printing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Journal'    (L0, T0, R0, B0)
+   |    |    |    | ['JournalMenuItem', 'Journal', 'MenuItem130']
+   |    |    |    | child_window(title="Journal", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bank Pay Slip'    (L0, T0, R0, B0)
+   |    |    |    | ['Bank Pay Slip', 'Bank Pay SlipMenuItem', 'MenuItem131']
+   |    |    |    | child_window(title="Bank Pay Slip", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Utility'    (L0, T0, R0, B0)
+   |    |    | ['Utility', 'UtilityMenuItem', 'MenuItem132']
+   |    |    | child_window(title="Utility", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Payout Analysis'    (L0, T0, R0, B0)
+   |    |    |    | ['Payout AnalysisMenuItem', 'MenuItem133', 'Payout Analysis']
+   |    |    |    | child_window(title="Payout Analysis", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Interest Calculator'    (L0, T0, R0, B0)
+   |    |    |    | ['Interest CalculatorMenuItem', 'Interest Calculator', 'MenuItem134']
+   |    |    |    | child_window(title="Interest Calculator", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bank Reconcilation'    (L0, T0, R0, B0)
+   |    |    |    | ['Bank Reconcilation', 'MenuItem135', 'Bank ReconcilationMenuItem']
+   |    |    |    | child_window(title="Bank Reconcilation", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bulk Accounting Entries'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem136', 'Bulk Accounting Entries', 'Bulk Accounting EntriesMenuItem']
+   |    |    |    | child_window(title="Bulk Accounting Entries", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Cheque Printing'    (L0, T0, R0, B0)
+   |    |    |    | ['Cheque Printing', 'Cheque PrintingMenuItem', 'MenuItem137']
+   |    |    |    | child_window(title="Cheque Printing", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'DP Balance Transfer'    (L0, T0, R0, B0)
+   |    |    |    | ['DP Balance TransferMenuItem', 'DP Balance Transfer', 'MenuItem138']
+   |    |    |    | child_window(title="DP Balance Transfer", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Intersegment Balance Transfer'    (L0, T0, R0, B0)
+   |    |    |    | ['Intersegment Balance TransferMenuItem', 'Intersegment Balance Transfer', 'MenuItem139']
+   |    |    |    | child_window(title="Intersegment Balance Transfer", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Writeoff Balance'    (L0, T0, R0, B0)
+   |    |    |    | ['MenuItem140', 'Writeoff BalanceMenuItem', 'Writeoff Balance']
+   |    |    |    | child_window(title="Writeoff Balance", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Monthly Debit/Credits'    (L0, T0, R0, B0)
+   |    |    |    | ['Monthly Debit/Credits', 'Monthly Debit/CreditsMenuItem', 'MenuItem141']
+   |    |    |    | child_window(title="Monthly Debit/Credits", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Registers'    (L0, T0, R0, B0)
+   |    |    | ['RegistersMenuItem', 'Registers', 'MenuItem142']
+   |    |    | child_window(title="Registers", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Final Accounts'    (L0, T0, R0, B0)
+   |    |    | ['Final Accounts', 'Final AccountsMenuItem', 'MenuItem143']
+   |    |    | child_window(title="Final Accounts", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Combined'    (L0, T0, R0, B0)
+   |    |    |    | ['Combined', 'CombinedMenuItem', 'MenuItem144']
+   |    |    |    | child_window(title="Combined", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Balance sheet'    (L0, T0, R0, B0)
+   |    |    |    | ['Balance sheet', 'Balance sheetMenuItem', 'MenuItem145']
+   |    |    |    | child_window(title="Balance sheet", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Year End Proccess'    (L0, T0, R0, B0)
+   |    |    | ['Year End ProccessMenuItem', 'Year End Proccess', 'MenuItem146']
+   |    |    | child_window(title="Year End Proccess", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Repost Accounts'    (L0, T0, R0, B0)
+   |    |    | ['Repost AccountsMenuItem', 'Repost Accounts', 'MenuItem147']
+   |    |    | child_window(title="Repost Accounts", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Authorise Accounts'    (L0, T0, R0, B0)
+   |    |    | ['Authorise AccountsMenuItem', 'Authorise Accounts', 'MenuItem148']
+   |    |    | child_window(title="Authorise Accounts", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Administration'    (L337, T27, R435, B47)
+   |    | ['MenuItem149', 'AdministrationMenuItem', 'Administration']
+   |    | child_window(title="Administration", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Query Reporting'    (L0, T0, R0, B0)
+   |    |    | ['Query Reporting', 'Query ReportingMenuItem', 'MenuItem150']
+   |    |    | child_window(title="Query Reporting", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Setup'    (L0, T0, R0, B0)
+   |    |    | ['SetupMenuItem', 'Setup', 'MenuItem151', 'Setup0', 'Setup1']
+   |    |    | child_window(title="Setup", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'System'    (L0, T0, R0, B0)
+   |    |    |    | ['System', 'SystemMenuItem', 'MenuItem152', 'System0', 'System1', 'SystemMenuItem0', 'SystemMenuItem1']
+   |    |    |    | child_window(title="System", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Bank Reco / Cheque Print'    (L0, T0, R0, B0)
+   |    |    |    | ['Bank Reco / Cheque PrintMenuItem', 'Bank Reco / Cheque Print', 'MenuItem153']
+   |    |    |    | child_window(title="Bank Reco / Cheque Print", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'TradeNet'    (L0, T0, R0, B0)
+   |    |    |    | ['TradeNetMenuItem', 'TradeNet', 'MenuItem154']
+   |    |    |    | child_window(title="TradeNet", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | MenuItem - 'Default Selection'    (L0, T0, R0, B0)
+   |    |    |    | ['Default SelectionMenuItem', 'MenuItem155', 'Default Selection']
+   |    |    |    | child_window(title="Default Selection", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Users'    (L0, T0, R0, B0)
+   |    |    | ['Users', 'UsersMenuItem', 'MenuItem156']
+   |    |    | child_window(title="Users", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Rights Definition'    (L0, T0, R0, B0)
+   |    |    | ['Rights DefinitionMenuItem', 'Rights Definition', 'MenuItem157']
+   |    |    | child_window(title="Rights Definition", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Authority to Verify Accounts'    (L0, T0, R0, B0)
+   |    |    | ['Authority to Verify AccountsMenuItem', 'Authority to Verify Accounts', 'MenuItem158']
+   |    |    | child_window(title="Authority to Verify Accounts", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'TradeNet Users Right Settings'    (L0, T0, R0, B0)
+   |    |    | ['TradeNet Users Right Settings', 'MenuItem159', 'TradeNet Users Right SettingsMenuItem']
+   |    |    | child_window(title="TradeNet Users Right Settings", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Help'    (L435, T27, R479, B47)
+   |    | ['HelpMenuItem', 'Help', 'MenuItem160']
+   |    | child_window(title="Help", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'About ...'    (L0, T0, R0, B0)
+   |    |    | ['About ...', 'About ...MenuItem', 'MenuItem161']
+   |    |    | child_window(title="About ...", control_type="MenuItem")
+   |    |    |
+   |    |    | MenuItem - 'Calculator'    (L0, T0, R0, B0)
+   |    |    | ['CalculatorMenuItem', 'Calculator2', 'MenuItem162']
+   |    |    | child_window(title="Calculator", control_type="MenuItem")
+   |    |
+   |    | MenuItem - 'Exit'    (L479, T27, R516, B47)
+   |    | ['Exit', 'MenuItem163', 'ExitMenuItem']
+   |    | child_window(title="Exit", control_type="MenuItem")
+   |
+   | StatusBar - 'StatusStrip'    (L2, T692, R1364, B718)
+   | ['StatusBar', 'StatusStrip', 'StatusStripStatusBar']
+   | child_window(title="StatusStrip", auto_id="StatusStrip", control_type="StatusBar")
+   |    |
+   |    | Static - 'TradePlusX'    (L3, T695, R133, B716)
+   |    | ['Static6', 'TradePlusXStatic', 'TradePlusX2']
+   |    | child_window(title="TradePlusX", control_type="Text")
+   |    |
+   |    | Static - 'Released On : 03/06/2026 '    (L133, T695, R283, B716)
+   |    | ['Static7', 'Released On : 03/06/2026 Static', 'Released On : 03/06/2026 ']
+   |    | child_window(title="Released On : 03/06/2026 ", control_type="Text")
+   |    |
+   |    | Static - ' 12:38 PM'    (L283, T695, R333, B716)
+   |    | ['Static8', ' 12:38 PMStatic', ' 12:38 PM']
+   |    | child_window(title=" 12:38 PM", control_type="Text")
+   |    |
+   |    | Static - 'Version : 1.1.16.52'    (L333, T695, R433, B716)
+   |    | ['Static9', 'Version : 1.1.16.52Static', 'Version : 1.1.16.52']
+   |    | child_window(title="Version : 1.1.16.52", control_type="Text")
+   |    |
+   |    | Static - 'JATING'    (L433, T695, R513, B716)
+   |    | ['Static10', 'JATINGStatic', 'JATING']
+   |    | child_window(title="JATING", control_type="Text")
+   |    |
+   |    | Static - '06/06/2026'    (L513, T695, R593, B716)
+   |    | ['Static11', '06/06/2026', '06/06/2026Static']
+   |    | child_window(title="06/06/2026", control_type="Text")
+   |    |
+   |    | Static - 'TPLUSNARIMAN2 on 160.30.125.196,10111'    (L593, T695, R823, B716)
+   |    | ['Static12', 'TPLUSNARIMAN2 on 160.30.125.196,10111', 'TPLUSNARIMAN2 on 160.30.125.196,10111Static']
+   |    | child_window(title="TPLUSNARIMAN2 on 160.30.125.196,10111", control_type="Text")
+   |
+   | Pane - ''    (L2, T76, R1364, B692)
+   | ['Accounting Year : Pane', 'Pane', 'Pane0', 'Pane1']
+   | child_window(auto_id="2099446", control_type="Pane")
+   |    |
+   |    | Dialog - 'Share Pay-in / Pay-Out Processes'    (L163, T135, R1203, B633)
+   |    | ['Share Pay-in / Pay-Out Processes', 'Share Pay-in / Pay-Out ProcessesDialog', 'Dialog2']
+   |    | child_window(title="Share Pay-in / Pay-Out Processes", auto_id="frmDematProcess", control_type="Window")
+   |    |    |
+   |    |    | Button - '...'    (L473, T175, R498, B196)
+   |    |    | ['...Button', '...', 'Button8', '...Button0', '...Button1', '...0', '...1']
+   |    |    | child_window(title="...", auto_id="btnHelp", control_type="Button")
+   |    |    |
+   |    |    | Edit - ''    (L373, T176, R472, B196)
+   |    |    | ['Settlement : Edit', 'Edit', 'Edit0', 'Edit1', 'Settlement : Edit0', 'Settlement : Edit1']
+   |    |    | child_window(auto_id="txtStlmnt", control_type="Edit")
+   |    |    |
+   |    |    | CheckBox - 'Show Detail Before Process'    (L633, T180, R791, B197)
+   |    |    | ['Show Detail Before Process', 'CheckBox', 'Show Detail Before ProcessCheckBox', 'CheckBox0', 'CheckBox1']
+   |    |    | child_window(title="Show Detail Before Process", auto_id="chkShowDetail", control_type="CheckBox")
+   |    |    |
+   |    |    | Button - '...'    (L615, T593, R638, B616)
+   |    |    | ['...Button2', '...2', 'Button9']
+   |    |    | child_window(title="...", auto_id="btnBrowseFiles", control_type="Button")
+   |    |    |
+   |    |    | Edit - 'Import Path :'    (L327, T594, R613, B614)
+   |    |    | ['Edit2', 'Import Path :Edit']
+   |    |    | child_window(title="Import Path :", auto_id="txtImportFilesPath", control_type="Edit")
+   |    |    |
+   |    |    | Static - 'Import Path :'    (L259, T598, R326, B611)
+   |    |    | ['Static13', 'Import Path :', 'Import Path :Static']
+   |    |    | child_window(title="Import Path :", auto_id="Label35", control_type="Text")
+   |    |    |
+   |    |    | Table - 'DataGridView'    (L966, T202, R1192, B583)
+   |    |    | ['DataGridView', 'DataGridViewTable', 'Table', 'DataGridView0', 'DataGridView1', 'DataGridViewTable0', 'DataGridViewTable1', 'Table0', 'Table1']
+   |    |    | child_window(title="DataGridView", auto_id="dgvDematStatus", control_type="Table")
+   |    |    |
+   |    |    | Button - 'Setup'    (L177, T590, R247, B619)
+   |    |    | ['Button10', 'SetupButton', 'Setup2']
+   |    |    | child_window(title="Setup", auto_id="btnSetup", control_type="Button")
+   |    |    |
+   |    |    | Static - 'Date : '    (L178, T178, R217, B191)
+   |    |    | ['Static14', 'Date : Static', 'Date : ']
+   |    |    | child_window(title="Date : ", auto_id="Label1", control_type="Text")
+   |    |    |
+   |    |    | Static - 'Settlement : '    (L313, T179, R379, B192)
+   |    |    | ['Static15', 'Settlement : Static', 'Settlement : ']
+   |    |    | child_window(title="Settlement : ", auto_id="Label9", control_type="Text")
+   |    |    |
+   |    |    | Button - 'Fetch'    (L526, T175, R601, B196)
+   |    |    | ['Button11', 'Fetch', 'FetchButton']
+   |    |    | child_window(title="Fetch", auto_id="cmdFetech", control_type="Button")
+   |    |    |
+   |    |    | Pane - '19/01/2026'    (L223, T175, R306, B195)
+   |    |    | ['19/01/2026Pane', '19/01/2026', 'Pane2']
+   |    |    | child_window(title="19/01/2026", auto_id="dtMain", control_type="Pane")
+   |    |    |
+   |    |    | Edit - ''    (L970, T202, R1184, B583)
+   |    |    | ['Settlement : Edit2', 'Edit3']
+   |    |    | child_window(auto_id="RichTextBox1", control_type="Edit")
+   |    |    |
+   |    |    | Button - 'Go'    (L894, T590, R964, B619)
+   |    |    | ['Button12', 'Go', 'GoButton']
+   |    |    | child_window(title="Go", auto_id="btnGo", control_type="Button")
+   |    |    |
+   |    |    | CheckBox - 'One by One Processing'    (L826, T180, R964, B197)
+   |    |    | ['One by One ProcessingCheckBox', 'One by One Processing', 'CheckBox2']
+   |    |    | child_window(title="One by One Processing", auto_id="chk1By1", control_type="CheckBox")
+   |    |    |
+   |    |    | CheckBox - 'Pay-Out'    (L1120, T180, R1184, B197)
+   |    |    | ['Pay-Out', 'Pay-OutCheckBox', 'CheckBox3']
+   |    |    | child_window(title="Pay-Out", auto_id="chkPayOut", control_type="CheckBox")
+   |    |    |
+   |    |    | CheckBox - 'Pay-In'    (L1058, T180, R1114, B197)
+   |    |    | ['Pay-In', 'CheckBox4', 'Pay-InCheckBox']
+   |    |    | child_window(title="Pay-In", auto_id="chkPayIn", control_type="CheckBox")
+   |    |    |
+   |    |    | Table - 'DataGridView'    (L177, T202, R964, B583)
+   |    |    | ['DataGridView2', 'DataGridViewTable2', 'Table2']
+   |    |    | child_window(title="DataGridView", auto_id="dgvDemat", control_type="Table")
+   |    |    |    |
+   |    |    |    | Custom - 'Top Row'    (L177, T202, R963, B224)
+   |    |    |    | ['Top Row', 'Custom', 'Top RowCustom']
+   |    |    |    | child_window(title="Top Row", control_type="Custom")
+   |    |    |    |    |
+   |    |    |    |    | Header - ''    (L179, T202, R239, B224)
+   |    |    |    |    | ['Date : Header', 'Header', 'Header0', 'Header1']
+   |    |    |    |    |
+   |    |    |    |    | Header - 'Process'    (L239, T202, R489, B224)
+   |    |    |    |    | ['Process', 'Header2', 'ProcessHeader']
+   |    |    |    |    | child_window(title="Process", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'Status'    (L489, T202, R549, B224)
+   |    |    |    |    | ['Status', 'Header3', 'StatusHeader']
+   |    |    |    |    | child_window(title="Status", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'Due'    (L549, T202, R624, B224)
+   |    |    |    |    | ['Header4', 'DueHeader', 'Due']
+   |    |    |    |    | child_window(title="Due", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'By'    (L624, T202, R694, B224)
+   |    |    |    |    | ['Header5', 'By', 'ByHeader']
+   |    |    |    |    | child_window(title="By", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'On'    (L694, T202, R764, B224)
+   |    |    |    |    | ['On', 'Header6', 'OnHeader']
+   |    |    |    |    | child_window(title="On", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'at'    (L764, T202, R824, B224)
+   |    |    |    |    | ['Header7', 'at', 'atHeader']
+   |    |    |    |    | child_window(title="at", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'Remark'    (L824, T202, R894, B224)
+   |    |    |    |    | ['Header8', 'Remark', 'RemarkHeader']
+   |    |    |    |    | child_window(title="Remark", control_type="Header")
+   |    |    |    |    |
+   |    |    |    |    | Header - 'Setting'    (L894, T202, R939, B224)
+   |    |    |    |    | ['SettingHeader', 'Header9', 'Setting']
+   |    |    |    |    | child_window(title="Setting", control_type="Header")
+   |    |    |
+   |    |    | TitleBar - ''    (L187, T143, R1195, B165)
+   |    |    | ['Accounting Year : TitleBar', 'TitleBar', 'TitleBar0', 'TitleBar1']
+   |    |    |    |
+   |    |    |    | Menu - 'System'    (L171, T143, R193, B165)
+   |    |    |    | ['Menu2', 'System2', 'SystemMenu', 'SystemMenu0', 'SystemMenu1']
+   |    |    |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    |    |    |
+   |    |    |    |    | MenuItem - 'Document Window'    (L171, T143, R193, B165)
+   |    |    |    |    | ['Document WindowMenuItem', 'MenuItem164', 'Document Window']
+   |    |    |    |    | child_window(title="Document Window", control_type="MenuItem")
+   |    |    |    |
+   |    |    |    | Button - 'Close'    (L1161, T145, R1193, B163)
+   |    |    |    | ['Button13', 'Close', 'CloseButton', 'Close0', 'Close1', 'CloseButton0', 'CloseButton1']
+   |    |    |    | child_window(title="Close", control_type="Button")
+   |
+   | TitleBar - ''    (L18, T-5, R1364, B25)
+   | ['TitleBar2']
+   |    |
+   |    | Menu - 'System'    (L0, T0, R22, B22)
+   |    | ['Menu3', 'System3', 'SystemMenu2']
+   |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    |
+   |    |    | MenuItem - 'System'    (L0, T0, R22, B22)
+   |    |    | ['System4', 'SystemMenuItem2', 'MenuItem165']
+   |    |    | child_window(title="System", control_type="MenuItem")
+   |    |
+   |    | Button - 'Minimize'    (L1225, T0, R1272, B24)
+   |    | ['Button14', 'Minimize', 'MinimizeButton']
+   |    | child_window(title="Minimize", control_type="Button")
+   |    |
+   |    | Button - 'Restore'    (L1272, T0, R1318, B24)
+   |    | ['Restore', 'RestoreButton', 'Button15']
+   |    | child_window(title="Restore", control_type="Button")
+   |    |
+   |    | Button - 'Close'    (L1318, T0, R1366, B24)
+   |    | ['Button16', 'Close2', 'CloseButton2']
+   |    | child_window(title="Close", control_type="Button")
+--- END CONTROL IDENTIFIERS ---
+
+Looking for three-dot (...) button...
+Named button not found — using coordinate fallback (200, 55). ADJUST IF WRONG.
+Open windows after three-dot click: ['TradePlusX']
+No popup found — trying inline keyboard selection...
+Settlement 'NM2026013' selection complete.
+Setting Date value to: 19/01/2026
+Date selected: 19/01/2026
+Fetch clicked.
+Grid found as control_type='Table'
+Grid rect: (L177, T202, R964, B583)
+Total grid children: 1
+Row tops found: [202]
+Using fallback row_height=21, header_height=28
+Grid height=381, visible_rows=16
+Navigating DOWN 21 rows...
+Keyboard navigation complete — at row 21
+Clicking Process button — visible_pos=15, coords=(197, 555)

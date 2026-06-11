@@ -1,0 +1,17 @@
+========================================================
+Log Session Started At: 2026-06-09 23:15:38
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_231538.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Demat Auto Entries...
+Opening Menu: Utilities → Demat Auto Entries (index 7)
+Opened: Utilities → Demat Auto Entries
+Setting Date value to: 11/02/2026
+Date Selected: 11/02/2026

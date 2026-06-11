@@ -1,0 +1,53 @@
+========================================================
+Log Session Started At: 2026-06-11 10:39:21
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_103921.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 75: handle=786454
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'BSE'
+Selecting Settlement option: 'BQ2026013'
+  [WIN32 CB] Forcing dropdown selection index focus directly to match index: 4294967295
+
+ERROR OCCURRED DURING WORKFLOW RUN: Unknown code: ESCAPE
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 258, in <module>
+    status = page.process(
+        date               = step_cfg.get("date"),
+    ...<18 lines>...
+        raw_workflow_config = step_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1080, in process
+    self.set_others_settlement(cc_hwnd, settlement)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 776, in set_others_settlement
+    send_keys("{ESCAPE}")
+    ~~~~~~~~~^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\keyboard.py", line 708, in send_keys
+    keys = parse_keys(
+            keys, with_spaces, with_tabs, with_newlines,
+            vk_packet=vk_packet)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\keyboard.py", line 630, in parse_keys
+    current_keys = handle_code(code, vk_packet)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\keyboard.py", line 572, in handle_code
+    raise RuntimeError("Unknown code: {}".format(code))
+RuntimeError: Unknown code: ESCAPE
+
+Press Enter to Exit...

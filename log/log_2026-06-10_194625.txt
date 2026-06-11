@@ -1,0 +1,42 @@
+========================================================
+Log Session Started At: 2026-06-10 19:46:25
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_194625.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 27: handle=395098
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/01/2026'
+Clicking workspace 'Fetch' button...
+
+ERROR OCCURRED DURING WORKFLOW RUN: name 'process_w' is not defined
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 324, in <module>
+    status = page.process(
+        date               = cc_cfg.get("date"),
+    ...<21 lines>...
+        raw_workflow_config = cc_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1075, in process
+    target_settlement_name = process_w.get("target_settlement") if 'process_w' in locals() else process_w.get("target_settlement")
+                                                                                                ^^^^^^^^^
+NameError: name 'process_w' is not defined
+
+Press Enter to Exit...

@@ -1,0 +1,15 @@
+========================================================
+Log Session Started At: 2026-06-11 14:13:12
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_141312.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 0 edit controls
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 228, in <module>
+    login_page.login(config_data["username"], config_data["password"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\login_page.py", line 18, in login
+    edits[0].click_input()
+    ~~~~~^^^
+IndexError: list index out of range

@@ -1,0 +1,24 @@
+Saving to: D:\TradePlus_Automation\BP_FILES\tradeplus_close_output.txt
+Waiting 3 seconds — keep the Control Center window open and on top...
+✓ TradePlusX main window handle: 461230
+✓ Total child controls found: 7
+
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+====================================================================================================
+853672       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            ToolStrip                                (2, 49, 1364, 76)
+983504       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (186, 51, 281, 74)
+2033608      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (354, 51, 704, 74)
+1836756      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (712, 51, 812, 74)
+1181218      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            MenuStrip                                (2, 25, 1364, 49)
+853958       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            StatusStrip                              (2, 692, 1364, 718)
+919540       YES      WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1                                                    (2, 76, 1364, 692)
+
+====================================================================================================
+SEARCHING FOR CONTROL CENTER WINDOW
+====================================================================================================
+Control Center window not found in nested children. Trying all desktop windows...
+
+CRITICAL: Could not find any window matching 'Control Center' title criteria.
+
+✓ Done. Saved to: D:\TradePlus_Automation\BP_FILES\tradeplus_close_output.txt

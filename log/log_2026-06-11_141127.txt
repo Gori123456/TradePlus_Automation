@@ -1,0 +1,5 @@
+========================================================
+Log Session Started At: 2026-06-11 14:11:27
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_141127.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================

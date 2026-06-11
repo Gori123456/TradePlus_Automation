@@ -1,0 +1,66 @@
+========================================================
+Log Session Started At: 2026-06-09 12:42:42
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_124242.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 11: handle=263926
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified fully loaded (Stabilized on attempt 8) ✓
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located exact BSE Cash control handle: 67660 at bounds: (613, 169, 628, 183)
+  BSE Checkbox toggled successfully ✓
+
+Starting Dynamic Clipboard Scan Row-by-Row Processing Matrix...
+Clicking column 4 of row 1 to anchor cell focus matrix: (520, 297)
+  Row 1 Selected Content: 'Broker Query'
+  Row 2 Selected Content: 'Obligation File (Provisional)'
+  Row 3 Selected Content: 'Obligation File (Final)'
+  Row 4 Selected Content: 'STT Details File'
+  Row 5 Selected Content: 'Stamp Duty File'
+  Row 6 Selected Content: 'Bhavcopy'
+  Row 7 Selected Content: 'Offer For Sale Trade File'
+  Row 8 Selected Content: 'Offer For Sale Trade File'
+  Row 9 Selected Content: 'Offer For Sale Trade File'
+  Row 10 Selected Content: 'Offer For Sale Trade File'
+  Row 11 Selected Content: 'Offer For Sale Trade File'
+  Row 12: [BLANK ENTRY] reached. Finalizing grid workspace processing.
+
+Dynamic clipboard-scan filename verification routine finished processing successfully.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+
+ERROR OCCURRED DURING WORKFLOW RUN: Failed to isolate matrix intersection control matching BSE boundaries!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 184, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        date               = cc_cfg.get("date"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<19 lines>...
+        unprocess_bills    = others_w.get("unprocess_bills", False) if others_w.get("enabled") else False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 621, in process
+    self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 569, in check_matrix_checkbox
+    raise Exception(f"Failed to isolate matrix intersection control matching {segment_key} boundaries!")
+Exception: Failed to isolate matrix intersection control matching BSE boundaries!
+
+Press Enter to Exit...

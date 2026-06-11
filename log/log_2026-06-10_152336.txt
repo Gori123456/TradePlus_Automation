@@ -1,0 +1,94 @@
+========================================================
+Log Session Started At: 2026-06-10 15:23:36
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_152336.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 9: handle=2558094
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 5)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located BSE Cash control: 2099672 at (613, 169, 628, 183)
+  BSE Checkbox toggled ✓
+
+Starting Human Paced Dynamic Clipboard Scan Processing Matrix...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)
+  Row 1 Target: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  Row 2 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 3 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 4 Extracted Name: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 5 Extracted Name: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 6 Extracted Name: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' -> File text missing from JSON configuration parameters. Skipping.
+  Row 7 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 8 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 9 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 10 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 11 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 12 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+  ✓ Located BSE Cash control: 2099672 at (613, 169, 628, 183)
+  BSE Checkbox already in target state, skipped.
+BSE Cash unchecked. Waiting for grid to clear before NSE...
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  ✓ Located NSE Cash control: 3082714 at (613, 193, 628, 207)
+  NSE Checkbox toggled ✓
+
+Starting Human Paced Dynamic Clipboard Scan Processing Matrix...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)
+  Row 1 Extracted Name: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' -> File text missing from JSON configuration parameters. Skipping.
+  Row 2 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 3 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 4 Extracted Name: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 5 Extracted Name: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 6 Extracted Name: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' -> File text missing from JSON configuration parameters. Skipping.
+  Row 7 Extracted Name: 'AN110226.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 8 Target: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+  Row 9: [BLANK ENTRY / END OF MATRIX] reached. Finalizing grid segment.
+Configuring Matrix Checkbox intersection for [NSE] -> State: False
+  ✓ Located NSE Cash control: 3082714 at (613, 193, 628, 207)
+  NSE Checkbox already in target state, skipped.
+NSE Cash unchecked. File Imports section complete.
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+ControlCenterPage processing completed.
+  [REPORT INTERCEPT] Detected active Obligation Comparison Report window (handle=985826).
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Obligation_Report_Viewer_Screen_20260610_152823.png
+  [REPORT INTERCEPT] Dispatching native WM_CLOSE window dismissal command signal...
+
+ERROR OCCURRED DURING WORKFLOW RUN: (1400, 'PostMessage', 'Invalid window handle.')
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 216, in <module>
+    close_any_open_obligation_reports()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\TradePlus_Automation\app.py", line 124, in close_any_open_obligation_reports
+    win32gui.PostMessage(found_hwnd, win32con.WM_CLOSE, 0, 0)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pywintypes.error: (1400, 'PostMessage', 'Invalid window handle.')
+
+Press Enter to Exit...

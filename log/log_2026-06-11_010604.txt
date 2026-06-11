@@ -1,0 +1,67 @@
+========================================================
+Log Session Started At: 2026-06-11 01:06:04
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_010604.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 74: handle=1116400
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=1313016
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+  [REPORT POPUP] Found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=1313016
+  [REPORT POPUP]   Close btn: handle=1050760 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=1050760
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Clicking workspace 'Fetch' button...
+
+Scanning Processes grid Settlement column for target: 'nq2026029'...
+  [PROCESSES GRID] Anchoring focus → col2 row1 at (415, 229)
+  [PROCESSES GRID] Row 0: 'na2026028'
+  [PROCESSES GRID] Row 1: 'nm2026029'
+  [PROCESSES GRID] Row 2: 'nq2026029'
+  ✓ Settlement 'nq2026029' matched at visual row 2!
+  [PROCESSES GRID] Computed checkbox click → col1_x=358, y=273 (row_idx=2)
+  [PROCESSES GRID] Checkbox click delivered successfully ✓
+  [PROCESSES GRID] Locating tab execution button element layout wrapper...
+  [PROCESSES GRID] Clicking active sub-tab process loop Proceed button at position: (1119, 671, 1182, 694)
+  [SETTLEMENT ALERT] 'Create Settlement' dialog discovered. Sending ENTER token...
+  [SETTLEMENT ALERT] Found Cancel button dynamically at rect: (187, 632, 322, 665). Clicking...
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing Control Center view context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1116400
+  Control Center window closed successfully ✓
+  [POST-STEP Pass 1] No report viewer windows detected. Continuing ✓
+  ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Control_Center_Pass_1'.
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

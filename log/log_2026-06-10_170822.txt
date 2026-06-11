@@ -1,0 +1,10 @@
+========================================================
+Log Session Started At: 2026-06-10 17:08:22
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_170822.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed

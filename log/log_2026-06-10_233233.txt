@@ -1,0 +1,42 @@
+========================================================
+Log Session Started At: 2026-06-10 23:32:33
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_233233.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=524974
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Clicking workspace 'Fetch' button...
+
+Starting Processes Tab Grid Targeted Click Sequence for target: 'nq2026013'...
+  [PROCESSES GRID] Anchoring selection focus at Column 2, Row 1 center: (415, 229)
+  [PROCESSES GRID] Row 1 layout text: ''
+  [PROCESSES GRID] Encountered blank terminal cell. Ending scanning step.
+  ⚠ CRITICAL SELECTION FAILURE: 'nq2026013' not found within active grid data rows.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing Control Center view context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=524974
+  Control Center window closed successfully ✓
+  [POST-STEP Pass 1] No report viewer windows detected. Continuing ✓
+
+Closing log file handle session. Goodbye.

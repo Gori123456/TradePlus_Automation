@@ -1,0 +1,73 @@
+========================================================
+Log Session Started At: 2026-06-09 12:51:16
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_125116.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=262822
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified fully loaded (Stabilized on attempt 6) ✓
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located exact BSE Cash control handle: 264282 at bounds: (613, 169, 628, 183)
+  BSE Checkbox toggled successfully ✓
+
+Starting Dynamic Clipboard Scan Row-by-Row Processing Matrix...
+Directly clicking File Name cell of row 1 to anchor focus: (520, 297)
+  Row 1 Selected File Name: 'Broker Query'
+  Row 2 Selected File Name: 'Obligation File (Provisional)'
+  Row 3 Selected File Name: 'Obligation File (Final)'
+  Row 4 Selected File Name: 'STT Details File'
+  Row 5 Selected File Name: 'Stamp Duty File'
+  Row 6 Selected File Name: 'Bhavcopy'
+  Row 7 Selected File Name: 'Offer For Sale Trade File'
+  Row 8 Selected File Name: 'Offer For Sale Trade File'
+  Row 9 Selected File Name: 'Offer For Sale Trade File'
+  Row 10 Selected File Name: 'Offer For Sale Trade File'
+  Row 11 Selected File Name: 'Offer For Sale Trade File'
+  Row 12 Selected File Name: 'Offer For Sale Trade File'
+
+Dynamic clipboard-scan filename verification routine finished processing successfully.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+  ✓ Located exact BSE Cash control handle: 264282 at bounds: (613, 169, 628, 183)
+  BSE Checkbox already in target state, skipped.
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  ✓ Located exact NSE Cash control handle: 721082 at bounds: (613, 193, 628, 207)
+  NSE Checkbox toggled successfully ✓
+
+Starting Dynamic Clipboard Scan Row-by-Row Processing Matrix...
+Directly clicking File Name cell of row 1 to anchor focus: (520, 297)
+  Row 1 Selected File Name: 'Broker Query'
+  Row 2 Selected File Name: 'Obligation File (Provisional)'
+  Row 3 Selected File Name: 'Obligation File (Final)'
+  Row 4 Selected File Name: 'STT Details File'
+  Row 5 Selected File Name: 'Stamp Duty File'
+  Row 6: [BLANK ENTRY] reached or grid table end. Finalizing grid workspace.
+
+Dynamic clipboard-scan filename verification routine finished processing successfully.
+ControlCenterPage processing completed.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_20260609_125230.png
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=262822
+  Control Center window closed successfully ✓
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

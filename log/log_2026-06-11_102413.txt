@@ -1,0 +1,90 @@
+========================================================
+Log Session Started At: 2026-06-11 10:24:13
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_102413.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 79: handle=199340
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'BSE'
+Selecting Settlement option: 'BQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'TradePlusX' handle=395752
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=199340
+  Control Center window closed successfully ✓
+  [POST-STEP CC] 6 report window(s) found — closing now...
+  [POST-STEP CC] Closing: 'Display Obligation / Money Sheet'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102510.png
+  [POST-STEP CC] Closing: 'Bill Reconcillation With Ledger'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102516.png
+  [POST-STEP CC] Closing: 'Accumulation Difference'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102521.png
+  [POST-STEP CC] Closing: 'Bill Reconciliation'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102526.png
+  [POST-STEP CC] Closing: 'STT Mismatch'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102531.png
+  [POST-STEP CC] Closing: 'Exchange Obligation Reconciliation'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260611_102536.png
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Step_1_20260611_102542.png
+
+[PIPELINE STEP 2] Processing Module: DEMAT_AUTO_ENTRIES
+Executing Demat Auto Entries -> Target: 'Demat Auto Entries'...
+Opening Menu: Utilities → Demat Auto Entries (index 7)
+
+ERROR OCCURRED DURING WORKFLOW RUN: 
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 302, in <module>
+    main_page.click_submenu_by_index("Utilities", step_cfg["index"], target_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\main_page.py", line 17, in click_submenu_by_index
+    self.window.menu_select(parent_menu)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\controls\uiawrapper.py", line 715, in menu_select
+    self.verify_actionable()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\base_wrapper.py", line 681, in verify_actionable
+    self.verify_enabled()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\base_wrapper.py", line 692, in verify_enabled
+    raise ElementNotEnabled()
+pywinauto.base_wrapper.ElementNotEnabled
+
+Press Enter to Exit...

@@ -1,0 +1,105 @@
+========================================================
+Log Session Started At: 2026-06-10 18:27:06
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_182706.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 9: handle=331140
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 5)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  NSE Checkbox state changed successfully ✓
+
+Starting Human Paced Dynamic Clipboard Scan Processing Matrix...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)
+  Row 1 Target: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  Row 2 Target: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  Row 3 Extracted Name: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 4 Extracted Name: 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 5 Extracted Name: 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 6 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 7 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 8 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 9 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 10 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 11 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+  Row 12 Extracted Name: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' -> Set to [FALSE] inside JSON configuration. Skipping.
+Configuring Matrix Checkbox intersection for [NSE] -> State: False
+  NSE Checkbox baseline reset forced successfully ✓
+NSE Cash unchecked. File Imports section complete.
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/01/2026'
+Clicking workspace 'Fetch' button...
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=659206
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+  [REPORT POPUP] Found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=659206
+  [REPORT POPUP]   Close btn: handle=2034698 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=2034698
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+ControlCenterPage processing completed.
+  [POST-STEP Pass 1] 6 report window(s) found — closing now...
+  [POST-STEP Pass 1] Closing: 'Display Obligation / Money Sheet'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_183110.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=200382...
+  [POST-STEP Pass 1] Closing: 'Bill Reconcillation With Ledger'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_183115.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=265408...
+  [POST-STEP Pass 1] Closing: 'Accumulation Difference'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_183120.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=199934...
+  [POST-STEP Pass 1] Closing: 'Bill Reconciliation'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_183125.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=265590...
+  [POST-STEP Pass 1] Closing: 'STT Mismatch'
+  ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Report_AutoClose'.
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=200396...
+  [POST-STEP Pass 1]   ⚠ WM_CLOSE failed: (1400, 'PostMessage', 'Invalid window handle.')
+  [POST-STEP Pass 1]   → Fallback: clicking title-bar X at (443, 373)...
+
+ERROR OCCURRED DURING WORKFLOW RUN: (1400, 'SetForegroundWindow', 'Invalid window handle.')
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 343, in <module>
+    close_any_open_report_tabs(context_label=f"POST-STEP Pass {run_idx + 1}", wait_for_render=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\app.py", line 224, in close_any_open_report_tabs
+    win32gui.SetForegroundWindow(main_hwnd)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+pywintypes.error: (1400, 'SetForegroundWindow', 'Invalid window handle.')
+
+Press Enter to Exit...

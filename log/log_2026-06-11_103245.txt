@@ -1,0 +1,79 @@
+========================================================
+Log Session Started At: 2026-06-11 10:32:45
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_103245.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 77: handle=396142
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'BSE'
+Selecting Settlement option via Win32 API: 'BQ2026013'
+  [WIN32 CB] Selecting item exact match prefix context string: 'BQ2026013'
+  ✓ Selection index 4294967295 matched and committed via CB_SELECTSTRING.
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Information' handle=131382
+  [OTHERS PROCEED] Clicking OK/Yes button handle=788986
+  [OTHERS PROCEED] Dialog dismissed via BM_CLICK ✓
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=396142
+  Control Center window closed successfully ✓
+  [POST-STEP CC] No report viewer windows detected. Continuing ✓
+  ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Control_Center_Step_1'.
+
+[PIPELINE STEP 2] Processing Module: DEMAT_AUTO_ENTRIES
+Executing Demat Auto Entries -> Target: 'Demat Auto Entries'...
+Opening Menu: Utilities → Demat Auto Entries (index 7)
+
+ERROR OCCURRED DURING WORKFLOW RUN: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 302, in <module>
+    main_page.click_submenu_by_index("Utilities", step_cfg["index"], target_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\main_page.py", line 17, in click_submenu_by_index
+    self.window.menu_select(parent_menu)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 396, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+        timeout,
+    ...<5 lines>...
+         controls.InvalidElement),
+        criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 203, in __get_ctrl
+    dialog = self.backend.generic_wrapper_class(findwindows.find_element(**criteria[0]))
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 84, in find_element
+    elements = find_elements(**kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 181, in find_elements
+    return [backend_obj.element_info_class(handle), ]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 71, in __init__
+    self._element = IUIA().iuia.ElementFromHandle(handle_or_elem)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+_ctypes.COMError: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+
+Press Enter to Exit...

@@ -1,0 +1,248 @@
+    SETTLEMENTS = {
+        "BM2025201": 0,
+        "NM2026013": 1,
+        "NQ2026013": 2,
+        "NU2026013": 3,
+        "NA2026012": 4
+    }
+
+New json data workflow
+{
+    "auto_close": false,
+    "workflows": {
+        "demat_auto_entries": {
+            "enabled": false,
+            "date": "19/01/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Demat Auto Entries",
+            "index": 7
+        },
+        "pledge_management": {
+            "enabled": false,
+            "tab_name": "Manage",
+            "manage_action": "Un Re-Pledge",
+            "manage_date": "19/01/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true,
+            "index": 13
+        },
+        "control_center": {
+            "enabled": true,
+            "index": 5,
+            "date": "19/01/2026",
+            "file_imports": {
+                "enabled": true,
+                "product": "Equity",
+                "type": "UDIFF",
+                "check_nse_cash": true
+            },
+            "processes": {
+                "enabled": false,
+                "product": "Equity",
+                "for_date": "19/01/2026",
+                "click_fetch": true
+            },
+            "others": {
+                "enabled": false,
+                "exchange": "NSE",
+                "settlement": "NQ2026013",
+                "unprocess_bills": true
+            }
+        }
+    }
+}{
+    "auto_close": false,
+    "workflows": {
+        "demat_auto_entries": {
+            "enabled": false,
+            "date": "19/01/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Demat Auto Entries",
+            "index": 7
+        },
+        "pledge_management": {
+            "enabled": false,
+            "tab_name": "Manage",
+            "manage_action": "Un Re-Pledge",
+            "manage_date": "19/01/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true,
+            "index": 13
+        },
+        "control_center": {
+            "enabled": true,
+            "index": 5,
+            "date": "19/01/2026",
+            "file_imports": {
+                "enabled": true,
+                "product": "Equity",
+                "type": "UDIFF",
+                "check_nse_cash": true
+            },
+            "processes": {
+                "enabled": false,
+                "product": "Equity",
+                "for_date": "19/01/2026",
+                "click_fetch": true
+            },
+            "others": {
+                "enabled": false,
+                "exchange": "NSE",
+                "settlement": "NQ2026013",
+                "unprocess_bills": true
+            }
+        }
+    }
+}
+
+
+
+
+
+
+{
+    "application_path": "D:\\TradePlus\\TradePlusX.exe",
+    "username": "JATING",
+    "password": "123456",
+    "actions": [
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Demat Processes",
+            "index": 7
+        },
+        {
+            "type": "share_payout_process",
+            "date": "19/01/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Demat Auto Entries"
+        },
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Pledge Management",
+            "index": 13
+        },
+        {
+            "type": "pledge_tab",
+            "tab_name": "Manage",
+            "manage_action": "Un Re-Pledge",
+            "manage_date": "19/01/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true
+        },
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Control Center",
+            "index": 5
+        },
+        {
+            "type": "control_center_process",
+            "date": "19/01/2026",
+            "click_file_imports": true,
+            "imports_product": "Equity",
+            "imports_type": "UDIFF",
+            "check_nse_cash": true,
+            "click_processes": true,
+            "product": "Equity",
+            "for_date": "19/01/2026",
+            "click_fetch": true,
+            "click_others": true,
+            "exchange": "NSE",
+            "settlement": "NQ2026013",
+            "unprocess_bills": true
+        }
+    ]
+}
+
+Only Applied for Demat Processes : (Demat Auto Entries , Pay-In(POA))
+
+{
+    "application_path": "D:\\TradePlus\\TradePlusX.exe",
+    "username": "JATING",
+    "password": "123456",
+    "actions": [
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Demat Processes",
+            "index": 7
+        },
+        {
+            "type": "share_payout_process",
+            "date": "19/01/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Pay-In(POA)"
+        }
+    ]
+}
+
+Only Pledge Management Json Code :
+{
+    "application_path": "D:\\TradePlus\\TradePlusX.exe",
+    "username": "JATING",
+    "password": "123456",
+    "actions": [
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Pledge Management",
+            "index": 13
+        },
+        {
+            "type": "pledge_tab",
+            "tab_name": "Manage",
+            "manage_action": "Un Re-Pledge",
+            "manage_date": "19/01/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true
+        }
+    ]
+}
+
+Only for Control center : 
+
+{
+    "application_path": "D:\\TradePlus\\TradePlusX.exe",
+    "username": "JATING",
+    "password": "123456",
+    "actions": [
+        {
+            "type": "submenu_by_index",
+            "parent_menu": "Utilities",
+            "submenu_name": "Control Center",
+            "index": 5
+        },
+        {
+            "type": "control_center_process",
+            "date": "19/01/2026",
+            "click_file_imports": true,
+            "imports_product": "Equity",
+            "imports_type": "UDIFF",
+            "check_nse_cash": true,
+            "click_processes": true,
+            "product": "Equity",
+            "for_date": "19/01/2026",
+            "click_fetch": true,
+            "click_others": true,
+            "exchange": "NSE",
+            "settlement": "NQ2026013",
+            "unprocess_bills": true
+        }
+    ]
+}
+
+
+BSE file_imports
+Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv
+Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV
+Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV
+STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV
+StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV
+BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv
+AN110226.6351

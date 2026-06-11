@@ -1,0 +1,40 @@
+========================================================
+Log Session Started At: 2026-06-09 14:32:30
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_143230.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 12: handle=133180
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 9)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located BSE Cash control: 67718 at (613, 169, 628, 183)
+  BSE Checkbox toggled ✓
+
+Starting Control-Handle Based Row-by-Row Grid Processing...
+Anchoring focus on File Name cell row 1 at (700, 305)...
+  Row 1: 'Trade_BSE_CM_0_TM_6351_20260609_F_0000.csv'
+    Match: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' is TRUE. Reading Status cell...
+      Status cell value: ''
+      Scanning for active Status combobox control handle...
+      Found Status combobox: handle=133294 rect=(857, 284, 926, 305)
+      WARNING: ListBox not found. Falling back to keyboard navigation...
+      Waiting for Are You Sure confirmation dialog...
+      Import submitted. Waiting for database engine to process...
+
+Closing log file handle session. Goodbye.

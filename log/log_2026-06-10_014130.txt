@@ -1,0 +1,62 @@
+========================================================
+Log Session Started At: 2026-06-10 01:41:30
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_014130.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 36: handle=2689440
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 17)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located BSE Cash control: 3344274 at (613, 169, 628, 183)
+  BSE Checkbox toggled ✓
+
+Starting Human Paced Dynamic Clipboard Scan Processing Matrix...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)
+  Row 1 Target: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+  Row 2 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260610_P_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 3 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260610_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 4 Extracted Name: 'STT_ICCL_CM_0_CM_6351_20260610_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 5 Extracted Name: 'StampDuty_ICCL_CM_0_CM_6351_20260610_F_0000.CSV' -> File text missing from JSON configuration parameters. Skipping.
+  Row 6 Extracted Name: 'BhavCopy_BSE_CM_0_0_0_20260610_F_0000.csv' -> File text missing from JSON configuration parameters. Skipping.
+  Row 7 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 8 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 9 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 10 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 11 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+  Row 12 Extracted Name: 'AN100626.6351' -> File text missing from JSON configuration parameters. Skipping.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+  ✓ Located BSE Cash control: 3344274 at (613, 169, 628, 183)
+  BSE Checkbox already in target state, skipped.
+BSE Cash unchecked. Waiting for grid to clear before NSE...
+ControlCenterPage processing completed.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Pass_1_20260610_014446.png
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2689440
+  Control Center window closed successfully ✓
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

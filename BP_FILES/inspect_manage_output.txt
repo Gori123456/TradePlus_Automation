@@ -1,0 +1,156 @@
+Saving to: D:\TradePlus_Automation\BP_FILES\inspect_manage_output.txt
+Waiting 3 seconds — keep Manage tab open inside Pledge window...
+✓ TradePlusX main window handle: 657440
+✓ Total child controls found: 102
+
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+====================================================================================================
+722978       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            ToolStrip                                (2, 49, 1364, 76)
+591912       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (186, 51, 281, 74)
+591918       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (354, 51, 704, 74)
+591924       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (712, 51, 812, 74)
+591928       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            MenuStrip                                (2, 25, 1364, 49)
+591930       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            StatusStrip                              (2, 692, 1364, 718)
+1312830      YES      WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1                                                    (2, 76, 1364, 692)
+2099350      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Margin - Pledge/Unpledge                 (234, 150, 1132, 618)
+1509542      YES      WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1                                              (243, 184, 1126, 611)
+985402       no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Pledge                                   (247, 206, 1122, 607)
+919868       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (940, 577, 964, 600)
+788798       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Send Email to Branches                   (611, 579, 750, 596)
+854336       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Value After Hair-Cut Above Rs.           (897, 218, 1050, 231)
+788804       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1                                                       (510, 217, 525, 231)
+592200       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Reject Pending Requests                  (792, 550, 939, 567)
+723274       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              By Client && Branch Request              (811, 270, 967, 287)
+1378636      no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (821, 214, 888, 235)
+2361682      no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (660, 214, 815, 235)
+657774       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              CC Approved Securities Only              (642, 270, 804, 287)
+592268       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              To the Extent of Available Holding       (524, 218, 692, 231)
+526760       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (610, 214, 658, 235)
+919500       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (669, 548, 775, 569)
+1116426      no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Segment :                                (608, 552, 663, 565)
+1771792      no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Exchange :                               (460, 272, 521, 285)
+395166       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (523, 268, 610, 289)
+461198       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (299, 548, 603, 569)
+723128       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              DP :                                     (269, 552, 297, 565)
+723300       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Select All                               (1042, 550, 1112, 567)
+1706326      no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Generate                                 (963, 577, 1038, 600)
+526594       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (1037, 577, 1112, 600)
+526196       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Format :                                 (252, 581, 297, 594)
+657694       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (299, 577, 418, 598)
+591698       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Execution Date :                         (424, 581, 510, 594)
+1378126      no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (250, 297, 1116, 540)
+655992       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Fetch                                    (1037, 267, 1112, 290)
+395634       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              No Selection Made                        (732, 240, 851, 261)
+395672       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Filter                           (852, 238, 928, 263)
+1378240      no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Clients :                                (274, 272, 318, 285)
+1771412      no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Selection  :                             (258, 244, 318, 257)
+1247230      no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (320, 268, 455, 289)
+592294       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (701, 241, 725, 261)
+1050784      no       WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (497, 240, 699, 260)
+722982       no       WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (406, 240, 494, 260)
+1509126      no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (320, 240, 403, 261)
+592220       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (320, 214, 493, 235)
+592310       no       WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (515, 577, 603, 597)
+592312       no       WindowsForms10.EDIT.app.0.141b42a_r7_ad1                1000                                     (1048, 215, 1111, 235)
+1378542      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Manage                                   (247, 206, 1122, 607)
+985382       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (690, 207, 1117, 287)
+788724       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Save                                     (975, 257, 1043, 282)
+722824       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1               CDSL :                                  (739, 245, 783, 258)
+919300       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1               NSDL :                                  (738, 266, 783, 279)
+1114460      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (787, 262, 875, 283)
+919486       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (1043, 257, 1111, 282)
+1050500      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Reject Pending Requests                  (881, 222, 1028, 239)
+592306       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Execution Date :                         (696, 223, 782, 236)
+1050570      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Format :                                 (696, 253, 741, 266)
+985288       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (787, 219, 875, 239)
+853972       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (787, 241, 875, 262)
+853988       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (559, 214, 595, 227)
+788454       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Fetch                                    (1047, 394, 1115, 419)
+788502       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (252, 284, 1118, 422)
+592148       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              With EPN-BLK                             (669, 297, 765, 314)
+592150       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Unapproved Securities                    (889, 393, 1023, 410)
+592146       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Client with Position                     (414, 369, 528, 386)
+1181514      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              By Client && Branch Request              (889, 293, 1045, 310)
+592154       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Deduct DP Holding                        (766, 297, 884, 314)
+592152       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                200                                      (639, 367, 676, 387)
+854448       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                10000                                    (720, 344, 796, 364)
+592088       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                30                                       (807, 319, 844, 339)
+1378556      YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                999                                      (360, 392, 409, 412)
+2164144      YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                10000                                    (425, 295, 535, 315)
+592156       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (350, 343, 534, 364)
+2558298      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Re-Pledged to                            (260, 345, 354, 362)
+1050850      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Days                                     (412, 396, 443, 409)
+657798       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Days                                     (846, 323, 877, 336)
+854350       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Items Not Re-Pledged Only                (554, 393, 708, 410)
+1247576      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              % of Margin                              (681, 371, 743, 384)
+657792       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Excess Over                              (554, 369, 640, 386)
+526762       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (985, 330, 1075, 351)
+1181792      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Re-Pledged for                           (889, 332, 986, 349)
+2754348      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Exclude Re-Pledged                       (889, 312, 1012, 329)
+853840       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Value After Hair-Cut Below Rs.           (553, 346, 723, 363)
+461192       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              By Client Not Having Margin Requirement in Past  (553, 321, 813, 338)
+461150       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Items Sold By Client                     (553, 297, 672, 314)
+984994       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (326, 367, 408, 388)
+461220       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Segment                                  (260, 369, 328, 386)
+592282       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (344, 318, 535, 339)
+526598       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Pledgee A/c                              (260, 321, 346, 338)
+395172       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Pledged in Past                          (260, 394, 363, 411)
+985316       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Value After Hair-Cut Above Rs.           (260, 297, 432, 314)
+657374       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (251, 426, 1117, 584)
+1050872      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Security :                               (309, 265, 360, 278)
+1967996      YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (363, 261, 438, 281)
+983978       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (635, 261, 657, 282)
+854270       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (441, 261, 635, 281)
+461194       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (441, 237, 634, 257)
+657210       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (363, 237, 438, 257)
+461174       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (633, 236, 657, 256)
+592226       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (251, 237, 361, 258)
+985296       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (362, 211, 553, 232)
+526208       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (596, 211, 684, 231)
+
+====================================================================================================
+SEARCHING FOR PLEDGE/MARGIN WINDOW
+====================================================================================================
+
+*** FOUND: handle=2099350 | class='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' | title='Margin - Pledge/Unpledge' | rect=(234, 150, 1132, 618)
+
+*** FOUND: handle=985402 | class='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' | title='Pledge' | rect=(247, 206, 1122, 607)
+
+*** FOUND: handle=2558298 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Re-Pledged to' | rect=(260, 345, 354, 362)
+
+*** FOUND: handle=854350 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Items Not Re-Pledged Only' | rect=(554, 393, 708, 410)
+
+*** FOUND: handle=1247576 | class='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' | title='% of Margin' | rect=(681, 371, 743, 384)
+
+*** FOUND: handle=1181792 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Re-Pledged for' | rect=(889, 332, 986, 349)
+
+*** FOUND: handle=2754348 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Exclude Re-Pledged' | rect=(889, 312, 1012, 329)
+
+*** FOUND: handle=461192 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='By Client Not Having Margin Requirement in Past ' | rect=(553, 321, 813, 338)
+
+*** FOUND: handle=526598 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Pledgee A/c' | rect=(260, 321, 346, 338)
+
+*** FOUND: handle=395172 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Pledged in Past ' | rect=(260, 394, 363, 411)
+
+====================================================================================================
+ALL CHILDREN of Pledge window (handle=395172)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+KEY CONTROLS SUMMARY
+====================================================================================================
+
+--- BUTTONS ---
+
+--- COMBOBOXES ---
+
+--- EDIT / DATE FIELDS ---
+
+--- TAB CONTROLS ---
+
+--- CHECKBOXES (Button with BS_CHECKBOX style) ---
+
+✓ Done. Saved to: D:\TradePlus_Automation\BP_FILES\inspect_manage_output.txt

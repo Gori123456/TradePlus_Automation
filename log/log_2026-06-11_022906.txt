@@ -1,0 +1,41 @@
+========================================================
+Log Session Started At: 2026-06-11 02:29:06
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_022906.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Pledge Management (Pass 1)...
+Opening Menu: Utilities → Pledge Management (index 13)
+Opened: Utilities → Pledge Management
+Clicking tab: 'Manage' (index 1)
+  Tab 'Manage' activated.
+Setting action dropdown selection to: 'Un Pledge'
+  ✓ Found target Action ComboBox via precise match: handle=68502, rect=(362, 211, 553, 232)
+  [WIN32 CB] Searching internal memory structure for string layout exact match: 'Un Pledge'
+  Dropdown action successfully configured to selection index 0 ✓
+Setting date to: '11/02/2026'
+  Date set to '11/02/2026' via cross-process DTM_SETSYSTEMTIME ✓
+  Processing checkbox: 'With EPN-BLK' -> Target: True
+    Checkbox 'With EPN-BLK': CHANGED TO True
+  Processing checkbox: 'Items Sold By Client' -> Target: True
+    Checkbox 'Items Sold By Client': CHANGED TO True
+[THREAD WATCHER] Scanning for 'No Records' dialog box context...Clicking the 'Fetch' button...
+
+[THREAD WATCHER] Pop-up window identified: handle=723390. Dismissing via ENTER...
+[THREAD WATCHER] ✓ Pressed ENTER to dismiss the popup ✓
+  Fetch button clicked successfully ✓
+PledgePage.process() completed.
+Stabilizing workspace context for background window handlers...
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Pledge_Management_Pass_1_20260611_022953.png
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

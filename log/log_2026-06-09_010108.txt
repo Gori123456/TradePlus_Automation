@@ -1,0 +1,45 @@
+========================================================
+Log Session Started At: 2026-06-09 01:01:08
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_010108.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Pledge Management...
+Opening Menu: Utilities → Pledge Management (index 13)
+Opened: Utilities → Pledge Management
+Clicking tab: 'Manage' (index 1)
+  Tab 'Manage' activated.
+Setting action dropdown selection to: 'Un Re-Pledge'
+  ✓ Found target Action ComboBox via precise match: handle=68510, rect=(362, 211, 553, 232)
+  Stepping down 2 times to select 'Un Re-Pledge'...
+  Dropdown action updated to 'Un Re-Pledge' successfully ✓
+Setting date to: '19/01/2026'
+  Date set to '19/01/2026' via cross-process DTM_SETSYSTEMTIME ✓
+  Processing checkbox: 'With EPN-BLK' -> Target: True
+    Checkbox 'With EPN-BLK': CHANGED TO True
+  Processing checkbox: 'Items Sold By Client' -> Target: True
+    Checkbox 'Items Sold By Client': CHANGED TO True
+[THREAD WATCHER] Active control scanner searching child window trees...Clicking the 'Fetch' button...
+
+[THREAD WATCHER] Pop-up discovered inside thread child context: handle=1771684
+  Fetch button clicked successfully ✓
+PledgePage.process() completed.
+Stabilizing workspace context for background window handlers...
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Pledge_Management_20260609_010153.png
+
+ERROR OCCURRED DURING WORKFLOW RUN: 'PledgePage' object has no attribute 'close_window'
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 169, in <module>
+    page.close_window()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'PledgePage' object has no attribute 'close_window'
+
+Press Enter to Exit...

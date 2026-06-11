@@ -1,0 +1,33 @@
+====================================================================================================
+STEP 1: SCANNING ALL TOP-LEVEL WINDOWS
+====================================================================================================
+  HWND=67528        VIS=1  CLS=Chrome_WidgetWin_1                                      TITLE='inspect_share_payout.py - TradePlus_Automation - Visual Studio Code' RECT=(1, 12, 1383, 740)
+  HWND=1116544      VIS=1  CLS=Chrome_WidgetWin_1                                      TITLE='Auto-close new tabs in JSON workflow - Claude - Google Chrome' RECT=(-32000, -32000, -31840, -31972)
+  HWND=68176        VIS=1  CLS=HwndWrapper[SelfService;main;0cc1f09c-aae3-46b0-91a3-e4061a1feb4d] TITLE='Citrix Workspace'                                 RECT=(-32768, -32768, -31683, -31980)
+  HWND=264348       VIS=1  CLS=HwndWrapper[DefaultDomain;;7d38e179-6caf-4a2e-b86b-59e7c20e1555] TITLE='SQLQuery1.sql - (local).TplusNariman (sa (88))* - SQLQuery1.sql - (local).TplusNariman (sa (88))* - Microsoft SQL Server Management Studio' RECT=(-32000, -32000, -31840, -31972)
+  HWND=5572434      VIS=1  CLS=CabinetWClass                                           TITLE='TradePlus_Automation - File Explorer'             RECT=(-32000, -32000, -31840, -31972)
+  HWND=67830        VIS=1  CLS=Windows.UI.Core.CoreWindow                              TITLE='Settings'                                         RECT=(0, 8, 1366, 728)
+  HWND=67802        VIS=1  CLS=ApplicationFrameWindow                                  TITLE='Settings'                                         RECT=(-8, -8, 1374, 728)
+  HWND=66710        VIS=1  CLS=Windows.UI.Core.CoreWindow                              TITLE='Windows Input Experience'                         RECT=(0, 0, 1366, 768)
+  HWND=591916       VIS=1  CLS=XamlWindow                                              TITLE='Snipping Tool'                                    RECT=(-32000, -32000, -31840, -31972)
+  HWND=461464       VIS=1  CLS=XamlWindow                                              TITLE='Snipping Tool'                                    RECT=(-32000, -32000, -31840, -31972)
+  HWND=329938       VIS=1  CLS=Chrome_WidgetWin_1                                      TITLE='(51) WhatsApp - Google Chrome'                    RECT=(-32000, -32000, -31840, -31972)
+  HWND=66158        VIS=1  CLS=Progman                                                 TITLE='Program Manager'                                  RECT=(0, 0, 1366, 768)
+
+====================================================================================================
+STEP 2: KEYWORD-MATCHED TOP-LEVEL WINDOWS (0 found)
+====================================================================================================
+
+====================================================================================================
+STEP 3: ALL CHILD CONTROLS INSIDE EACH MATCHED WINDOW
+====================================================================================================
+
+====================================================================================================
+STEP 4: ALSO SCAN TRADEPLUS MDI CHILDREN FOR THE REPORT
+====================================================================================================
+  TradePlusX main hwnd = 0
+  No MDI children matched report keywords.
+
+====================================================================================================
+DIAGNOSTIC COMPLETE
+====================================================================================================

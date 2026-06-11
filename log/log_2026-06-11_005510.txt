@@ -1,0 +1,64 @@
+========================================================
+Log Session Started At: 2026-06-11 00:55:10
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_005510.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 74: handle=1377966
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=788380
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+  [REPORT POPUP] Found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=788380
+  [REPORT POPUP]   Close btn: handle=526602 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=526602
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Clicking workspace 'Fetch' button...
+
+Scanning column 2 row-by-row for target: 'nq2026013'...
+  [PROCESSES GRID] Clicking col2 of row 1 to anchor focus: (415, 229)
+  Row 0: 'na2026028'
+  Row 1: 'nm2026029'
+  Row 2: 'nq2026029'
+  Row 3: 'nu2026029'
+  Row 4: 'na2026028'
+  Row 5: 'nm2026029'
+  Row 6: 'nq2026029'
+  Row 7: 'nu2026029'
+CRITICAL ERROR: 'nq2026013' not found after scanning 8 rows.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing Control Center view context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1377966
+  Control Center window closed successfully ✓
+  [POST-STEP Pass 1] No report viewer windows detected. Continuing ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Pass_1_20260611_005623.png

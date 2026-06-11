@@ -1,0 +1,62 @@
+========================================================
+Log Session Started At: 2026-06-11 01:36:12
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_013612.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 78: handle=525320
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 32)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  NSE Checkbox state changed successfully ✓
+
+Starting Fast Paced Dynamic Clipboard Scan Processing Matrix...
+  [ANCHOR] Re-clicking filename col at (590, 297) for row 0
+  Row 1 Target: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' matches [TRUE] inside JSON config. Checking status cell...
+      -> Status Verified: [PENDING] -> Initializing database import...
+      [ACTION] Processing import — waiting for pipeline...
+  [SETTLEMENT ALERT] 'Create Settlement' dialog discovered. Dismissing with ENTER...
+
+[LOOP OVERRIDE] Create Settlement exception registered. Running entire file import from date filling again...
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=525320
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 1)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  NSE Checkbox state changed successfully ✓
+
+Starting Fast Paced Dynamic Clipboard Scan Processing Matrix...
+
+Closing log file handle session. Goodbye.

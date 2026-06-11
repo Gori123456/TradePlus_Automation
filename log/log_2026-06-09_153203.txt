@@ -1,0 +1,59 @@
+========================================================
+Log Session Started At: 2026-06-09 15:32:03
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_153203.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=1575412
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 6)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Enabling BSE Cash Filter Interface Intersection Matrix Element...
+  Row 1: TARGET DETECTED -> 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv'. Validating status...
+      -> Triggering dropdown menu option panel...
+      -> Dispatching absolute hardware click to 'Import' line at: (895, 331)
+      Import engaged. Stalling for file validation loops...
+  Row 2: TARGET DETECTED -> 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv'. Validating status...
+      -> Triggering dropdown menu option panel...
+      -> Dispatching absolute hardware click to 'Import' line at: (895, 353)
+      Import engaged. Stalling for file validation loops...
+
+ERROR OCCURRED DURING WORKFLOW RUN: (1400, 'PostMessage', 'Invalid window handle.')
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 183, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        date               = cc_cfg.get("date"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<19 lines>...
+        unprocess_bills    = others_w.get("unprocess_bills", False) if others_w.get("enabled") else False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 719, in process
+    self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, nse_files_workflow)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 272, in scan_and_process_data_grid
+    click_grid_client_passive(700 - 340, row_client_y)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 242, in click_grid_client_passive
+    win32gui.PostMessage(grid_hwnd, WM_LBUTTONDOWN, MK_LBUTTON, lp)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pywintypes.error: (1400, 'PostMessage', 'Invalid window handle.')
+
+Press Enter to Exit...
+Closing log file handle session. Goodbye.

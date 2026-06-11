@@ -1,0 +1,78 @@
+========================================================
+Log Session Started At: 2026-06-10 17:37:02
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_173702.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+  [PRE-FLIGHT Pass 1] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=3214000
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=4000078
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+  [REPORT POPUP] Found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=4000078
+  [REPORT POPUP]   Close btn: handle=2753974 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=2753974
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+ControlCenterPage processing completed.
+  [POST-STEP Pass 1] 6 report window(s) found — closing now...
+  [POST-STEP Pass 1] Closing: 'Display Obligation / Money Sheet'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173836.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=5769404...
+  [POST-STEP Pass 1] Closing: 'Bill Reconcillation With Ledger'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173841.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=2427386...
+  [POST-STEP Pass 1] Closing: 'Accumulation Difference'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173846.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=1442074...
+  [POST-STEP Pass 1] Closing: 'Bill Reconciliation'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173851.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=5179682...
+  [POST-STEP Pass 1] Closing: 'STT Mismatch'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173856.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=1312894...
+  [POST-STEP Pass 1] Closing: 'Exchange Obligation Reconciliation'
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Report_AutoClose_20260610_173902.png
+  [POST-STEP Pass 1]   → Sending WM_CLOSE to report window handle=2230948...
+  [POST-STEP Pass 1] Re-focusing Control Center (handle=3214000)...
+  [POST-STEP Pass 1] All report windows cleared. Resuming automation ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Pass_1_20260610_173910.png
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3214000
+  Control Center window closed successfully ✓
+
+All enabled automation profiles completed successfully.
+
+Closing log file handle session. Goodbye.

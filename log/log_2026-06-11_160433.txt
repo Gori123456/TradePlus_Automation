@@ -1,0 +1,264 @@
+========================================================
+Log Session Started At: 2026-06-11 16:04:33
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_160433.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 50: handle=1051904
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 38)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 1] Activating BSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: True
+  Clicking BSE checkbox to set state=True...
+  BSE Checkbox clicked ✓
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv'
+    -> 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+    -> Import complete for row 0. Continuing to next file...
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: 'AN110226.6351'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: 'AN110226.6351'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 8 at (590, 457)
+  Row 8: 'AN110226.6351'
+  [GRID BREAK] Detected duplicate values ('AN110226.6351') out of active view rows. Breaking loop.
+  [SEQUENCER PASS 1] Clearing BSE selection state...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: False
+  Clicking BSE checkbox to set state=False...
+  BSE Checkbox clicked ✓
+  [SEQUENCER PASS 1] Holding thread for interface refresh synchronization...
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv'
+    -> 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  ✓ Clicking validation button node element directly at: (715, 704, 772, 727)
+  [REPORT POPUP] Found: 'File Import Report for 11/02/2026' handle=2690138
+  [REPORT POPUP]   Close btn: handle=1445062 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=1445062
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+    -> Import complete for row 0. Continuing to next file...
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv'
+    -> 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 1...
+    -> Waiting for import pipeline...
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+    -> Import complete for row 1. Continuing to next file...
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv'
+    -> 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv'
+    -> 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv'
+    -> 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv'
+    -> 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv'
+    -> 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv'
+  [GRID BREAK] Detected duplicate values ('BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv') out of active view rows. Breaking loop.
+  [SEQUENCER PASS 2] Clearing NSE selection state...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: False
+  Clicking NSE checkbox to set state=False...
+  NSE Checkbox clicked ✓
+  [SEQUENCER PASS 2] Holding thread for interface refresh synchronization...
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option using prefix tracking: 'NQ' (from 'NQ2026013')
+  [WIN32 CB] Prefix match successfully found at selection index: 2
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Information' handle=1313636
+  [OTHERS PROCEED] Clicking OK/Yes button handle=1183238
+  [OTHERS PROCEED] Dialog dismissed via BM_CLICK ✓
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement prefix: 'nq' (from 'NQ2026029')...
+  [PROCESSES GRID] Anchoring focus at Settlement (447, 235)
+  [PROCESSES GRID] Row 0: 'br2025817'
+  [PROCESSES GRID] Row 1: 'bu2025818'
+  [PROCESSES GRID] Row 2: 'bm2025218'
+  [PROCESSES GRID] Row 3: 'bq2025818'
+  [PROCESSES GRID] Row 4: 'bm2025218'
+  [PROCESSES GRID] Row 5: 'na2026028'
+  [PROCESSES GRID] Row 6: 'nm2026029'
+  [PROCESSES GRID] Row 7: 'nq2026029'
+  ✓ Match at row 7
+  [PROCESSES GRID] Row 8: 'nu2026029'
+  [PROCESSES GRID] Row 9: 'na2026028'
+  [PROCESSES GRID] Row 10: 'nm2026029'
+  [PROCESSES GRID] Row 11: 'nq2026029'
+  ✓ Match at row 11
+  [PROCESSES GRID] Matched rows: [7, 11]
+  [PROCESSES GRID] Clicking checkbox row 7: (370, chk_y)
+  [PROCESSES GRID] ✓ Checkbox clicked for row 7
+  [PROCESSES GRID] Clicking checkbox row 11: (370, chk_y)
+  [PROCESSES GRID] ✓ Checkbox clicked for row 11
+  [PROCESSES GRID] All 2 checkbox(es) clicked ✓
+  [PROCESSES GRID] Locating Proceed button...
+  [PROCESSES GRID] Clicking Proceed at (1119, 671, 1182, 694)
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  ✓ Clicking validation button node element directly at: (715, 704, 772, 727)
+  [REPORT POPUP] Found: 'File Import Report for 11/02/2026' handle=2428676
+  [REPORT POPUP]   Close btn: handle=462626 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=462626
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1051904
+  Control Center window closed successfully ✓
+  [POST-STEP CC] No report viewer windows detected. Continuing ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_Step_1_20260611_160805.png
+
+[PIPELINE STEP 2] Processing Module: DEMAT_AUTO_ENTRIES
+Executing Demat Auto Entries -> Target: 'Demat Auto Entries'...
+Opening Menu: Utilities → Demat Auto Entries (index 7)
+Opened: Utilities → Demat Auto Entries
+Setting Date value to: 11/02/2026
+Date Selected: 11/02/2026
+Targeting Settlement Name: NQ2026013
+Direct selection failed: No cell starting with 'NQ' found in grid.. Using coordinate fallback...
+Settlement prefix 'NQ' confirmed via coordinate fallback.
+  [DIALOG WAIT] Waiting up to 6s for 'Are You Sure?' dialog...
+  [DIALOG WAIT] No Yes/No dialog appeared within 6s. Continuing to Fetch.
+  [DEMAT CHECK] Grid already has data ('DP Holding Early Pay-in'). Skipping Fetch.
+Scanning for target: 'Demat Auto Entries'...
+  Row 0: 'DP Holding Early Pay-in'
+  Row 1: 'Demat Reco (Speede)'
+  Row 2: 'Demat Reco (NSDL SOT)'
+  Row 3: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 4: 'DP Holding Early Pay-in(DDPI)'
+  Row 5: 'Demat Reco (DP57)'
+  Row 6: 'Demat Reco (COD - UDIFF)'
+  Row 7: 'Demat Reco (DP89)'
+  Row 8: 'Demat Reco (Speede)'
+  Row 9: 'Demat Reco (NSDL SOT)'
+  Row 10: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 11: 'Demat Reco (eDIS/BlockMechanism)'
+  Row 12: 'Demat Reco (DP57)'
+  Row 13: 'Demat Reco (DP89)'
+  Row 14: 'Generate Direct Payout (DPC/CPD) file'
+  Row 15: 'Early Pay-In during Market hours'
+  Row 16: 'Early Pay-In during Market hours(DDPI)'
+  Row 17: 'Demat Reco (Speede)'
+  Row 18: 'Demat Reco (NSDL SOT)'
+  Row 19: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 20: 'Demat Reco (DP57)'
+  Row 21: 'Demat Reco (DP89)'
+  Row 22: 'Demat Auto Entries'
+  ✓ Found 'Demat Auto Entries' at row 22
+  Process button clicked at (212, 548)
+Checking for intermediate Demat confirmation views...
+  [ALERT INTERCEPT] Report generation popup captured: handle=65994. Clearing via direct Win32 message loop...
+    ⚠ Dialog still present. Dispatching hardware virtual key message hooks...
+    ✓ Confirmation modal dismissed successfully.
+Finishing workflow...
+Closing Demat Processes window...
+  Closed ✓
+Cleaning up any generated report preview window contexts to release main window frame hook locks...
+  [POST-STEP DEMAT] No report viewer windows detected. Continuing ✓
+  [REST buffer] Allowing main window frame controls to unlock and re-enable active focus...
+  ⚠ Failed to capture entire window screenshot for 'Demat_Auto_Entries_Step_2': (1400, 'BringWindowToTop', 'Invalid window handle.')
+
+[PIPELINE STEP 3] Processing Module: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+Opening Menu: Utilities → Pledge Management (index 13)
+
+ERROR OCCURRED DURING WORKFLOW RUN: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 328, in <module>
+    main_page.click_submenu_by_index("Utilities", step_cfg["index"], "Pledge Management")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\main_page.py", line 17, in click_submenu_by_index
+    self.window.menu_select(parent_menu)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 396, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+        timeout,
+    ...<5 lines>...
+         controls.InvalidElement),
+        criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 203, in __get_ctrl
+    dialog = self.backend.generic_wrapper_class(findwindows.find_element(**criteria[0]))
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 84, in find_element
+    elements = find_elements(**kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 181, in find_elements
+    return [backend_obj.element_info_class(handle), ]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 71, in __init__
+    self._element = IUIA().iuia.ElementFromHandle(handle_or_elem)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+_ctypes.COMError: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+
+Press Enter to Exit...

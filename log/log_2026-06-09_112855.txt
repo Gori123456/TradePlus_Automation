@@ -1,0 +1,47 @@
+========================================================
+Log Session Started At: 2026-06-09 11:28:55
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_112855.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 12: handle=3343504
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified fully loaded (Stabilized on attempt 6) ✓
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+
+ERROR OCCURRED DURING WORKFLOW RUN: name 'cite' is not defined
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 184, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        date               = cc_cfg.get("date"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<19 lines>...
+        unprocess_bills    = others_w.get("unprocess_bills", False) if others_w.get("enabled") else False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 565, in process
+    self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 512, in check_matrix_checkbox
+    x_min, x_max, y_min, y_max = 610, 630, 165, 185 [cite: 209]
+                                                     ^^^^
+NameError: name 'cite' is not defined. Did you mean: 'aiter'?
+
+Press Enter to Exit...

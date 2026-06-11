@@ -1,0 +1,41 @@
+========================================================
+Log Session Started At: 2026-06-10 14:30:18
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_143018.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 10: handle=199448
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option: 'NQ2026013'
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+
+ERROR OCCURRED DURING WORKFLOW RUN: Could not find bottom-right workspace Proceed button!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 146, in <module>
+    status = page.process(
+        date               = cc_cfg.get("date"),
+    ...<21 lines>...
+        unprocess_bills    = others_w.get("unprocess_bills", False) if others_w.get("enabled") else False
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 813, in process
+    self.click_others_workspace_proceed(cc_hwnd)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 613, in click_others_workspace_proceed
+    raise Exception("Could not find bottom-right workspace Proceed button!")
+Exception: Could not find bottom-right workspace Proceed button!
+
+Press Enter to Exit...

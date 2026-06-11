@@ -1,0 +1,29 @@
+========================================================
+Log Session Started At: 2026-06-11 11:40:08
+Console output path: D:\TradePlus_Automation\log\log_2026-06-11_114008.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+
+ERROR OCCURRED DURING WORKFLOW RUN: 
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 250, in <module>
+    main_page.click_submenu_by_index("Utilities", step_cfg["index"], "Control Center")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\main_page.py", line 17, in click_submenu_by_index
+    self.window.menu_select(parent_menu)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\controls\uiawrapper.py", line 721, in menu_select
+    raise AttributeError
+AttributeError
+
+Press Enter to Exit...

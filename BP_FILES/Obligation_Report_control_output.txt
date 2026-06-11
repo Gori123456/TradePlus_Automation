@@ -1,0 +1,92 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\Obligation_Report_control_output.txt
+Waiting 3 seconds — keep the Obligation Comparison Report window open and on top...
+✓ TradePlusX main window handle: 1051346
+✓ Total child controls found inside application frame: 58
+
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+====================================================================================================
+1968314      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            ToolStrip                                (2, 49, 1364, 76)
+1771524      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (186, 51, 281, 74)
+1705096      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (354, 51, 704, 74)
+1968584      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (712, 51, 812, 74)
+1640306      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            MenuStrip                                (2, 25, 1364, 49)
+396268       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            StatusStrip                              (2, 692, 1364, 718)
+1706454      YES      WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1                                                    (2, 76, 1364, 692)
+2099654      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Control Center                           (170, 78, 1196, 710)
+2034124      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Masters                                  (187, 524, 322, 557)
+2034022      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Rights                                   (187, 561, 322, 594)
+1050662      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (187, 632, 322, 665)
+2229730      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Parameters                               (187, 596, 322, 629)
+1312814      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (267, 147, 330, 170)
+2556154      YES      WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1                                              (333, 117, 1191, 704)
+1705980      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Others                                   (337, 139, 1187, 700)
+1640466      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (548, 312, 649, 333)
+3015024      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (357, 165, 550, 264)
+1640470      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (424, 217, 543, 238)
+1706158      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (424, 193, 543, 214)
+2752978      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (424, 168, 544, 189)
+1378302      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Settlement :                             (360, 221, 426, 234)
+1705120      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Segment :                                (368, 197, 426, 210)
+2425160      no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (430, 221, 430, 234)
+2295784      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Not Billed                               (430, 243, 482, 256)
+2099026      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Exchange :                               (362, 170, 426, 183)
+2295682      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Preserve Bill No                         (381, 493, 482, 510)
+1771866      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (1111, 665, 1174, 688)
+592554       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Charges                          (363, 381, 465, 398)
+1182160      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Recalculate Brokerage for Specific Client / Scrip (363, 403, 617, 420)
+1378746      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Un Process Bills                         (363, 471, 464, 488)
+1509738      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (592, 357, 779, 378)
+983976       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (462, 357, 586, 378)
+1116610      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Display Obligation / Money Sheet         (363, 313, 546, 330)
+1575402      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Bill Reconcillation With Ledger          (363, 448, 532, 465)
+919588       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Accumulation Difference                  (363, 336, 504, 353)
+2296006      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Bill Reconciliation                      (363, 425, 471, 442)
+527010       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (804, 156, 1185, 419)
+592558       YES      WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (805, 401, 1184, 418)
+1181994      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              STT Mismatch                             (363, 359, 457, 376)
+1836172      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Exchange Obligation Reconciliation       (363, 291, 556, 308)
+985786       no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1              Settings                               (337, 139, 1187, 700)
+985792       no       WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (1327, 423, 1450, 444)
+461538       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Future && Options Segment                (586, 429, 716, 442)
+461536       no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (589, 445, 1186, 683)
+461534       no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (1168, 446, 1185, 682)
+985794       no       WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Cash Segment                             (585, 144, 661, 157)
+920254       no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (588, 160, 1185, 397)
+1116860      no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (1167, 161, 1184, 396)
+1247232      YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (227, 119, 330, 145)
+2622458      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (179, 121, 235, 141)
+1771536      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (183, 234, 324, 518)
+1968138      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              File Imports                             (186, 237, 321, 270)
+723548       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Trades                                   (186, 276, 321, 309)
+1837540      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Processes                                (186, 315, 321, 348)
+1182364      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Others                                   (186, 354, 321, 387)
+919758       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Charges                          (186, 393, 321, 426)
+1837542      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Contracts                                (186, 432, 321, 465)
+2034100      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Confirmations                            (186, 471, 321, 504)
+
+====================================================================================================
+SEARCHING FOR OBLIGATION COMPARISON REPORT WINDOW
+====================================================================================================
+
+*** FOUND OBLIGATION REPORT INTERFACE: handle=1116610 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Display Obligation / Money Sheet' | rect=(363, 313, 546, 330)
+
+====================================================================================================
+ALL CHILDREN of Obligation Report window (handle=1116610)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+KEY CONTROLS SUMMARY (OBLIGATION COMPARISON REPORT)
+====================================================================================================
+
+--- ACTION BUTTONS (Print, EMail, Save, Close, Find, Find Next, etc.) ---
+
+--- TEXT INPUT BOXES & EDIT FIELDS (Find Text, Page Selection Inputs) ---
+
+--- LABELS, STATIC CONTROL TEXT FIELDS & SYSTEM VALUES ---
+
+--- DATA CANVAS VIEWS, PANELS & GRAPHICS ---
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\Obligation_Report_control_output.txt

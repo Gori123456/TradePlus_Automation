@@ -1,0 +1,70 @@
+{
+    "auto_close": false,
+    "execution_pipeline": [
+        {
+            "module": "control_center",
+            "enabled": true,
+            "index": 5,
+            "date": "11/02/2026",
+            "file_imports": {
+                "enabled": true,
+                "product": "Equity",
+                "type": "UDIFF",
+                "check_bse_cash": true,
+                "check_nse_cash": true,
+                "bse_files_workflow": {
+                    "Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv": true
+                },
+                "nse_files_workflow": {
+                    "Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv": true,
+                    "Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv": true,
+                    "Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv": false,
+                    "STT_NCL_CM_0_CM_08854_20260211_F_0000.csv": false,
+                    "StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv": false,
+                    "BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv": false
+                }
+            },
+            "others": {
+                "enabled": true,
+                "exchange": "NSE",
+                "settlement": "NQ2026013",
+                "exchange_obligation_reconciliation": true,
+                "unprocess_bills": false
+            },
+            "processes": {
+                "enabled": true,
+                "product": "Equity",
+                "for_date": "11/02/2026",
+                "click_fetch": true,
+                "target_settlement": "NQ2026029"
+            }
+        },
+        {
+            "module": "demat_auto_entries",
+            "enabled": true,
+            "index": 7,
+            "date": "11/02/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Demat Auto Entries"
+        },
+        {
+            "module": "pledge_management",
+            "enabled": true,
+            "index": 13,
+            "tab_name": "Manage",
+            "manage_action": "Un Pledge",
+            "manage_date": "11/02/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true
+        },
+        {
+            "module": "demat_auto_entries",
+            "enabled": true,
+            "index": 7,
+            "date": "11/02/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Pay-In(POA)"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+========================================================
+Log Session Started At: 2026-06-10 16:26:58
+Console output path: D:\TradePlus_Automation\log\log_2026-06-10_162658.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite (Pass 1)...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 9: handle=3868958
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 4)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  NSE Checkbox state changed successfully ✓
+
+Starting Human Paced Dynamic Clipboard Scan Processing Matrix...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)

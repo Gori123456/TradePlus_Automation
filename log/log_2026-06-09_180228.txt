@@ -1,0 +1,87 @@
+========================================================
+Log Session Started At: 2026-06-09 18:02:28
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_180228.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 29: handle=2361700
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 15)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located BSE Cash control: 527352 at (613, 169, 628, 183)
+  BSE Checkbox toggled ✓
+
+Initializing SharePayout-Style Grid Live Clipboard Scan Routine...
+Anchoring selection focus: Clicking row 1 File Name field center: (590, 297)
+  Row 1 Extracted Name: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' -> Set to [TRUE]. Inspecting Status...
+      -> Status Verified: [PENDING] -> Row is missing. Initializing database import...
+      [ACTION] Processing import routine — waiting for workspace pipeline calculations...
+  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+  Row 2 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' -> Marked [FALSE] inside JSON config. Skipping cell execution path.
+  Row 3 Extracted Name: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' -> Marked [FALSE] inside JSON config. Skipping cell execution path.
+  Row 4 Extracted Name: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> Marked [FALSE] inside JSON config. Skipping cell execution path.
+  Row 5 Extracted Name: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' -> Marked [FALSE] inside JSON config. Skipping cell execution path.
+  Row 6 Extracted Name: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' -> Marked [FALSE] inside JSON config. Skipping cell execution path.
+  Row 7 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 8 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 9 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 10 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 11 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 12 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 13 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 14 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 15 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 16 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 17 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 18 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 19 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 20 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 21 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 22 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 23 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 24 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 25 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 26 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 27 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 28 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 29 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 30 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 31 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 32 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 33 Extracted Name: 'AN090626.6351' -> Not specified in active JSON config ruleset. Skipping cell execution path.
+  Row 34: [BLANK ENTRY / END OF MATRIX] reached. Terminating scan loop.
+
+Dynamic grid verification workflow completed.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+  ✓ Located BSE Cash control: 527352 at (613, 169, 628, 183)
+  BSE Checkbox already in target state, skipped.
+BSE Cash unchecked. Waiting for grid to clear before NSE...
+ControlCenterPage processing completed.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_20260609_180424.png
+
+ERROR OCCURRED DURING WORKFLOW RUN: 'ControlCenterPage' object has no attribute 'close_window'
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 209, in <module>
+    page.close_window()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'ControlCenterPage' object has no attribute 'close_window'
+
+Press Enter to Exit...

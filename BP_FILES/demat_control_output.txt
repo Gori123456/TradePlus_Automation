@@ -1,0 +1,44 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\demat_control_output.txt
+Waiting 3 seconds — keep the Control Center window open and on top...
+✓ TradePlusX main window handle: 4524020
+✓ Total child controls found inside application frame: 7
+
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+====================================================================================================
+2426876      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            ToolStrip                                (2, 49, 1364, 76)
+3737320      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (186, 51, 281, 74)
+2228896      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (354, 51, 704, 74)
+2099856      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (712, 51, 812, 74)
+1641114      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            MenuStrip                                (2, 25, 1364, 49)
+920050       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            StatusStrip                              (2, 692, 1364, 718)
+3147564      YES      WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1                                                    (2, 76, 1364, 692)
+
+====================================================================================================
+SEARCHING FOR CONTROL CENTER WINDOW FRAME
+====================================================================================================
+Control Center window not found in nested application children. Trying desktop window tree lookup...
+  Found via desktop-wide surface scan: handle=67006 | class='Chrome_WidgetWin_1' | title='Fixing Control Center Workflow Sequencing - Google Gemini - Google Chrome' | rect=(-32000, -32000, -31840, -31972)
+
+====================================================================================================
+ALL CHILDREN of Control Center window (handle=67006)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+67008        YES      Chrome_RenderWidgetHostHWND                             Chrome Legacy Window                     (-63311, -63915, -63310, -63914)
+132574       YES      Intermediate D3D Window                                                                          (-31992, -32000, -30626, -31280)
+
+====================================================================================================
+KEY CONTROLS SUMMARY (CONTROL CENTER)
+====================================================================================================
+
+--- ACTION BUTTONS & CHECKBOXES (BSE, NSE, Cash, F&O, Go, etc.) ---
+
+--- COMBOBOXES / SELECTION DROPDOWNS (Product, Type) ---
+
+--- DATE SELECTION, INPUT PATHS & EDIT FIELDS ---
+
+--- DATA VIEW GRIDS & TABLES (File Import Success Matrix) ---
+  [TARGET DATA TABLE FOUND] handle=132574 | class='Intermediate D3D Window' | title='' | visible=1 | rect=(-31992, -32000, -30626, -31280)
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\demat_control_output.txt

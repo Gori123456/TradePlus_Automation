@@ -1,0 +1,139 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\Control_Center_Process_output.txt
+Waiting 3 seconds — keep the Control Center window open and on top...
+✓ TradePlusX main window handle: 1902596
+✓ Total child controls found inside application frame: 44
+
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+====================================================================================================
+1837062      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            ToolStrip                                (2, 49, 1364, 76)
+1443848      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (186, 51, 281, 74)
+1181734      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (354, 51, 704, 74)
+3213360      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (712, 51, 812, 74)
+1771582      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            MenuStrip                                (2, 25, 1364, 49)
+1837084      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            StatusStrip                              (2, 692, 1364, 718)
+1640474      YES      WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1                                                    (2, 76, 1364, 692)
+2558094      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Control Center                           (170, 78, 1196, 710)
+2885748      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Masters                                  (187, 524, 322, 557)
+396070       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Rights                                   (187, 561, 322, 594)
+658142       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (187, 632, 322, 665)
+263566       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Parameters                               (187, 596, 322, 629)
+329120       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (267, 147, 330, 170)
+1182374      YES      WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1                                              (333, 117, 1191, 704)
+2296262      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Processes                                (337, 139, 1187, 700)
+2230708      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Advanced Options                         (665, 669, 770, 692)
+1968144      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              AGTS                                     (344, 674, 399, 691)
+1116366      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (602, 671, 635, 692)
+2819066      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Lock Bill prior to            Days       (507, 674, 668, 691)
+2034148      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Revenue Sharing                          (399, 674, 508, 691)
+920156       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Product :                                (341, 152, 391, 165)
+2164746      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (391, 148, 487, 169)
+1443840      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (601, 170, 620, 183)
+2427300      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (601, 150, 620, 163)
+2752762      YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (671, 151, 774, 177)
+1182394      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              For :                                    (642, 158, 670, 171)
+1116862      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Bill Generation                          (509, 148, 603, 165)
+1313468      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Accumulation                             (509, 168, 599, 185)
+1182402      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Fetch                                    (782, 153, 845, 176)
+2032780      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (340, 194, 852, 665)
+1182400      no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (341, 647, 851, 664)
+2296156      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (342, 195, 412, 216)
+4523100      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (854, 194, 1182, 665)
+2884388      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (1119, 671, 1182, 694)
+198040       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (227, 119, 330, 145)
+198036       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (179, 121, 235, 141)
+198034       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (183, 234, 324, 518)
+1901572      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              File Imports                             (186, 237, 321, 270)
+1967240      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Trades                                   (186, 276, 321, 309)
+394646       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Processes                                (186, 315, 321, 348)
+263580       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Others                                   (186, 354, 321, 387)
+263582       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Charges                          (186, 393, 321, 426)
+526224       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Contracts                                (186, 432, 321, 465)
+655780       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Confirmations                            (186, 471, 321, 504)
+
+====================================================================================================
+SEARCHING FOR CONTROL CENTER WINDOW FRAME
+====================================================================================================
+
+*** FOUND CONTROL CENTER INTERFACE: handle=2558094 | class='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' | title='Control Center' | rect=(170, 78, 1196, 710)
+
+====================================================================================================
+ALL CHILDREN of Control Center window (handle=2558094)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+2885748      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Masters                                  (187, 524, 322, 557)
+396070       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Rights                                   (187, 561, 322, 594)
+658142       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (187, 632, 322, 665)
+263566       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Parameters                               (187, 596, 322, 629)
+329120       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (267, 147, 330, 170)
+1182374      YES      WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1                                              (333, 117, 1191, 704)
+2296262      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Processes                                (337, 139, 1187, 700)
+2230708      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Advanced Options                         (665, 669, 770, 692)
+1968144      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              AGTS                                     (344, 674, 399, 691)
+1116366      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (602, 671, 635, 692)
+2819066      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Lock Bill prior to            Days       (507, 674, 668, 691)
+2034148      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Revenue Sharing                          (399, 674, 508, 691)
+920156       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Product :                                (341, 152, 391, 165)
+2164746      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (391, 148, 487, 169)
+1443840      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (601, 170, 620, 183)
+2427300      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (601, 150, 620, 163)
+2752762      YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (671, 151, 774, 177)
+1182394      YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              For :                                    (642, 158, 670, 171)
+1116862      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Bill Generation                          (509, 148, 603, 165)
+1313468      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Accumulation                             (509, 168, 599, 185)
+1182402      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Fetch                                    (782, 153, 845, 176)
+2032780      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (340, 194, 852, 665)
+1182400      no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (341, 647, 851, 664)
+2296156      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (342, 195, 412, 216)
+4523100      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (854, 194, 1182, 665)
+2884388      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (1119, 671, 1182, 694)
+198040       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (227, 119, 330, 145)
+198036       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (179, 121, 235, 141)
+198034       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (183, 234, 324, 518)
+1901572      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              File Imports                             (186, 237, 321, 270)
+1967240      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Trades                                   (186, 276, 321, 309)
+394646       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Processes                                (186, 315, 321, 348)
+263580       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Others                                   (186, 354, 321, 387)
+263582       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Charges                          (186, 393, 321, 426)
+526224       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Contracts                                (186, 432, 321, 465)
+655780       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Confirmations                            (186, 471, 321, 504)
+
+====================================================================================================
+KEY CONTROLS SUMMARY (CONTROL CENTER)
+====================================================================================================
+
+--- ACTION BUTTONS & CHECKBOXES (BSE, NSE, Cash, F&O, Go, etc.) ---
+  handle=2885748 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Masters' | visible=1 | rect=(187, 524, 322, 557)
+  handle=396070 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Rights' | visible=1 | rect=(187, 561, 322, 594)
+  handle=658142 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Cancel' | visible=1 | rect=(187, 632, 322, 665)
+  handle=263566 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Parameters' | visible=1 | rect=(187, 596, 322, 629)
+  handle=329120 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Proceed' | visible=1 | rect=(267, 147, 330, 170)
+  handle=2230708 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Advanced Options' | visible=1 | rect=(665, 669, 770, 692)
+  handle=1968144 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='AGTS' | visible=1 | rect=(344, 674, 399, 691)
+  handle=2819066 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Lock Bill prior to            Days' | visible=1 | rect=(507, 674, 668, 691)
+  handle=2034148 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Revenue Sharing' | visible=1 | rect=(399, 674, 508, 691)
+  handle=1116862 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Bill Generation' | visible=1 | rect=(509, 148, 603, 165)
+  handle=1313468 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Accumulation' | visible=1 | rect=(509, 168, 599, 185)
+  handle=1182402 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Fetch' | visible=1 | rect=(782, 153, 845, 176)
+  handle=2884388 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Proceed' | visible=1 | rect=(1119, 671, 1182, 694)
+  handle=1901572 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='File Imports' | visible=1 | rect=(186, 237, 321, 270)
+  handle=1967240 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Trades' | visible=1 | rect=(186, 276, 321, 309)
+  handle=394646 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Processes' | visible=1 | rect=(186, 315, 321, 348)
+  handle=263580 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Others' | visible=1 | rect=(186, 354, 321, 387)
+  handle=263582 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Special Charges' | visible=1 | rect=(186, 393, 321, 426)
+  handle=526224 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Contracts' | visible=1 | rect=(186, 432, 321, 465)
+  handle=655780 | class='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' | title='Confirmations' | visible=1 | rect=(186, 471, 321, 504)
+
+--- COMBOBOXES / SELECTION DROPDOWNS (Product, Type) ---
+  handle=1116366 | class='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' | title='' | visible=1 | rect=(602, 671, 635, 692)
+  handle=2164746 | class='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' | title='' | visible=1 | rect=(391, 148, 487, 169)
+  handle=2296156 | class='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' | title='' | visible=1 | rect=(342, 195, 412, 216)
+
+--- DATE SELECTION, INPUT PATHS & EDIT FIELDS ---
+  handle=2752762 | class='WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1' | title='' | visible=1 | rect=(671, 151, 774, 177)
+  handle=198040 | class='WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1' | title='' | visible=1 | rect=(227, 119, 330, 145)
+
+--- DATA VIEW GRIDS & TABLES (File Import Success Matrix) ---
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\Control_Center_Process_output.txt

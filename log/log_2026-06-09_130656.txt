@@ -1,0 +1,81 @@
+========================================================
+Log Session Started At: 2026-06-09 13:06:56
+Console output path: D:\TradePlus_Automation\log\log_2026-06-09_130656.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows
+
+[WORKFLOW RUNNER] Executing Control Center Dashboard Suite...
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 9: handle=1181456
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified fully loaded (Stabilized on attempt 6) ✓
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+Configuring Matrix Checkbox intersection for [BSE] -> State: True
+  ✓ Located exact BSE Cash control handle: 67806 at bounds: (613, 169, 628, 183)
+  BSE Checkbox toggled successfully ✓
+
+Starting Dynamic Clipboard Scan Row-by-Row Processing Matrix...
+Directly clicking File Name cell of row 1 to anchor focus: (590, 297)
+  Row 1 Selected File Name from Grid: 'Trade_BSE_CM_0_TM_6351_20260609_F_0000.csv'
+    File Name text 'Trade_BSE_CM_0_TM_6351_20260609_F_0000.csv' not found in active JSON workflow rules. Skipping.
+  Row 2 Selected File Name from Grid: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260609_P_0000.CSV'
+    File Name text 'Obligation_ICCL_CM_EquityT1_TM_6351_20260609_P_0000.CSV' not found in active JSON workflow rules. Skipping.
+  Row 3 Selected File Name from Grid: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260609_F_0000.CSV'
+    File Name text 'Obligation_ICCL_CM_EquityT1_TM_6351_20260609_F_0000.CSV' not found in active JSON workflow rules. Skipping.
+  Row 4 Selected File Name from Grid: 'STT_ICCL_CM_0_CM_6351_20260609_F_0000.CSV'
+    File Name text 'STT_ICCL_CM_0_CM_6351_20260609_F_0000.CSV' not found in active JSON workflow rules. Skipping.
+  Row 5 Selected File Name from Grid: 'StampDuty_ICCL_CM_0_CM_6351_20260609_F_0000.CSV'
+    File Name text 'StampDuty_ICCL_CM_0_CM_6351_20260609_F_0000.CSV' not found in active JSON workflow rules. Skipping.
+  Row 6 Selected File Name from Grid: 'BhavCopy_BSE_CM_0_0_0_20260609_F_0000.csv'
+    File Name text 'BhavCopy_BSE_CM_0_0_0_20260609_F_0000.csv' not found in active JSON workflow rules. Skipping.
+  Row 7 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+  Row 8 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+  Row 9 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+  Row 10 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+  Row 11 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+  Row 12 Selected File Name from Grid: 'AN090626.6351'
+    File Name text 'AN090626.6351' not found in active JSON workflow rules. Skipping.
+
+Dynamic clipboard-scan filename verification routine finished processing successfully.
+Configuring Matrix Checkbox intersection for [BSE] -> State: False
+  ✓ Located exact BSE Cash control handle: 67806 at bounds: (613, 169, 628, 183)
+  BSE Checkbox already in target state, skipped.
+Configuring Matrix Checkbox intersection for [NSE] -> State: True
+  ✓ Located exact NSE Cash control handle: 67810 at bounds: (613, 193, 628, 207)
+  NSE Checkbox toggled successfully ✓
+
+Starting Dynamic Clipboard Scan Row-by-Row Processing Matrix...
+Directly clicking File Name cell of row 1 to anchor focus: (590, 297)
+  Row 1: [BLANK ENTRY] reached or grid table end. Finalizing grid workspace.
+
+Dynamic clipboard-scan filename verification routine finished processing successfully.
+ControlCenterPage processing completed.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+  ✓ Entire maximized application window screenshot saved: Control_Center_20260609_130803.png
+
+ERROR OCCURRED DURING WORKFLOW RUN: 'ControlCenterPage' object has no attribute 'close_window'
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 210, in <module>
+    page.close_window()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'ControlCenterPage' object has no attribute 'close_window'
+
+Press Enter to Exit...
