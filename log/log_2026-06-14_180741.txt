@@ -1,0 +1,62 @@
+========================================================
+Log Session Started At: 2026-06-14 18:07:41
+Console output path: D:\TradePlus_Automation\log\log_2026-06-14_180741.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 118: handle=459608
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 69)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 1] Activating BSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: True
+  Clicking BSE checkbox to set state=True...
+  BSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for File BSE grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv'
+    -> 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+  [ALERT INTERCEPT] Modal target dialog identified. Extracting text strings...
+  [ALERT INTERCEPT] Inspected Text Content: ' fatal error &ok'
+
+[ALERT INTERCEPT] Application error detected: ' fatal error &ok'
+
+[CRITICAL ERROR] Pipeline stopped by window intercept during row 0 handling.
+
+ERROR OCCURRED DURING WORKFLOW RUN: Pipeline stopped: ERROR_STOP: fatal error &ok
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 259, in <module>
+    status = page.process(
+        date               = step_cfg.get("date"),
+    ...<18 lines>...
+        raw_workflow_config = step_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1166, in process
+    status = self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, date_value=date)
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 461, in scan_and_process_data_grid
+    raise Exception(f"Pipeline stopped: {msg_status}")
+Exception: Pipeline stopped: ERROR_STOP: fatal error &ok
+
+Press Enter to Exit...

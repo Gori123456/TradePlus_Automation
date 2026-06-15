@@ -1,7 +1,0 @@
-========================================================
-Log Session Started At: 2026-06-10 00:25:35
-Console output path: D:\TradePlus_Automation\log\log_2026-06-10_002535.txt
-Screenshot storage path: D:\TradePlus_Automation\Capture_Data
-========================================================
-Application Started
-Found 4 edit controls

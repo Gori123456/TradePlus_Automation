@@ -1,6 +1,6 @@
 """
-Run this script WHILE the Control Center window is open on your screen.
-Uses pure win32 handle-based scanning to dump all child controls.
+Run this script WHILE the process window is open on your screen.
+Dynamically handles both 'Share Pay-in / Pay-out Processes' and 'Control Center' titles.
 """
 import time
 import sys
@@ -8,8 +8,8 @@ import os
 import win32gui
 import win32con
 
-# Updated to generate a dedicated layout configuration report file
-output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "demat_control_output.txt")
+# Layout configuration output path
+output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "SharePayInOut_RedCircle_Output.txt")
 
 class Tee:
     def __init__(self, *streams):
@@ -26,7 +26,7 @@ f = open(output_file, "w", encoding="utf-8")
 sys.stdout = Tee(sys.__stdout__, f)
 
 print(f"Saving layout log to: {output_file}")
-print("Waiting 3 seconds — keep the Control Center window open and on top...")
+print("Waiting 3 seconds — keep the Share Pay-in / Pay-out Processes window visible...")
 time.sleep(3)
 
 # ── Step 1: Find TradePlusX main window ──
@@ -57,100 +57,106 @@ def enum_child(hwnd, lparam):
 win32gui.EnumChildWindows(main_hwnd, enum_child, None)
 print(f"✓ Total child controls found inside application frame: {len(all_windows)}\n")
 
-print("=" * 100)
-print(f"{'HANDLE':<12} {'VISIBLE':<8} {'CLASS':<55} {'TITLE':<40} RECT")
-print("=" * 100)
-for hwnd, cname, title, rect, visible in all_windows:
-    v = "YES" if visible else "no"
-    print(f"{hwnd:<12} {v:<8} {cname:<55} {title:<40} {rect}")
-
-# ── Step 3: Find the Control Center dialog specifically ──
+# ── Step 3: Find the targeting window sub-frame dynamically ──
 print("\n" + "=" * 100)
-print("SEARCHING FOR CONTROL CENTER WINDOW FRAME")
+print("SEARCHING FOR TARGET PROCESS WINDOW FRAME")
 print("=" * 100)
-cc_hwnd = None
+target_hwnd = None
+
+# Checks both possible titles seen across your execution steps
+VALID_TITLES = ["share pay-in", "pay-out processes", "control center"]
+
 for hwnd, cname, title, rect, visible in all_windows:
     t_low = title.lower()
-    if "control" in t_low and "center" in t_low:
-        if "window" in cname.lower() or "sys" in cname.lower() or rect[2] - rect[0] > 400:
-            print(f"\n*** FOUND CONTROL CENTER INTERFACE: handle={hwnd} | class='{cname}' | title='{title}' | rect={rect}")
-            cc_hwnd = hwnd
-            break
+    if any(vt in t_low for vt in VALID_TITLES):
+        print(f"\n*** FOUND TARGET INTERFACE: handle={hwnd} | class='{cname}' | title='{title}' | rect={rect}")
+        target_hwnd = hwnd
+        break
 
-if not cc_hwnd:
-    print("Control Center window not found in nested application children. Trying desktop window tree lookup...")
+if not target_hwnd:
+    print("Target sub-window not found inside application tree. Attempting global desktop scan...")
     def enum_all(hwnd, lparam):
-        global cc_hwnd
+        global target_hwnd
         try:
             title = win32gui.GetWindowText(hwnd)
             t_low = title.lower()
-            if "control" in t_low and "center" in t_low:
+            if any(vt in t_low for vt in VALID_TITLES):
                 cname = win32gui.GetClassName(hwnd)
                 rect  = win32gui.GetWindowRect(hwnd)
-                print(f"  Found via desktop-wide surface scan: handle={hwnd} | class='{cname}' | title='{title}' | rect={rect}")
-                cc_hwnd = hwnd
+                print(f"  Found via desktop scan: handle={hwnd} | class='{cname}' | title='{title}' | rect={rect}")
+                target_hwnd = hwnd
         except: 
             pass
         return True
     win32gui.EnumWindows(enum_all, None)
 
-# ── Step 4: Dump target window child sub-components ──
-if cc_hwnd:
+# ── Step 4: Dump and filter window sub-components ──
+if target_hwnd:
     print(f"\n" + "=" * 100)
-    print(f"ALL CHILDREN of Control Center window (handle={cc_hwnd})")
+    print(f"ALL CHILDREN of Target Process Window (handle={target_hwnd})")
     print("=" * 100)
 
-    cc_children = []
-    def enum_cc_child(hwnd, lparam):
+    target_children = []
+    def enum_target_child(hwnd, lparam):
         try:
             title      = win32gui.GetWindowText(hwnd)
             class_name = win32gui.GetClassName(hwnd)
             rect       = win32gui.GetWindowRect(hwnd)
             visible    = win32gui.IsWindowVisible(hwnd)
-            cc_children.append((hwnd, class_name, title, rect, visible))
+            target_children.append((hwnd, class_name, title, rect, visible))
         except:
             pass
         return True
-    win32gui.EnumChildWindows(cc_hwnd, enum_cc_child, None)
+    win32gui.EnumChildWindows(target_hwnd, enum_target_child, None)
 
     print(f"{'HANDLE':<12} {'VISIBLE':<8} {'CLASS':<55} {'TITLE':<40} RECT")
     print("-" * 100)
-    for hwnd, cname, title, rect, visible in cc_children:
+    for hwnd, cname, title, rect, visible in target_children:
         v = "YES" if visible else "no"
         print(f"{hwnd:<12} {v:<8} {cname:<55} {title:<40} {rect}")
 
-    # ── Step 5: Segment elements by Control Classes ──
+    # ── Step 5: HIGHEST PRIORITY - Find the Red Circle Control (Process Log Window) ──
     print(f"\n" + "=" * 100)
-    print("KEY CONTROLS SUMMARY (CONTROL CENTER)")
+    print("PRIORITY TARGET: PROCESS LOG CONSOLE (RED CIRCLE AREA)")
     print("=" * 100)
-
-    print("\n--- ACTION BUTTONS & CHECKBOXES (BSE, NSE, Cash, F&O, Go, etc.) ---")
-    for hwnd, cname, title, rect, visible in cc_children:
-        if "button" in cname.lower():
-            print(f"  handle={hwnd} | class='{cname}' | title='{title}' | visible={visible} | rect={rect}")
-
-    print("\n--- COMBOBOXES / SELECTION DROPDOWNS (Product, Type) ---")
-    for hwnd, cname, title, rect, visible in cc_children:
-        if "combobox" in cname.lower() or "combo" in cname.lower():
-            print(f"  handle={hwnd} | class='{cname}' | title='{title}' | visible={visible} | rect={rect}")
-
-    print("\n--- DATE SELECTION, INPUT PATHS & EDIT FIELDS ---")
-    for hwnd, cname, title, rect, visible in cc_children:
+    
+    t_left, t_top, t_right, t_bottom = win32gui.GetWindowRect(target_hwnd)
+    t_width = t_right - t_left
+    
+    found_log_box = False
+    for hwnd, cname, title, rect, visible in target_children:
         c_low = cname.lower()
-        if "edit" in c_low or "datetime" in c_low or "sysdate" in c_low:
-            print(f"  handle={hwnd} | class='{cname}' | title='{title}' | visible={visible} | rect={rect}")
-            
-    print("\n--- DATA VIEW GRIDS & TABLES (File Import Success Matrix) ---")
-    for hwnd, cname, title, rect, visible in cc_children:
-        c_low = cname.lower()
-        # Enhanced to catch pure generic window nodes that WinForms relies on for its embedded tables
-        if "grid" in c_low or "view" in c_low or "list" in c_low or "window" in c_low:
-            # Filters for the size profile matching the layout grid shown on your screenshot
-            if rect[2] - rect[0] > 300 and rect[3] - rect[1] > 200:
-                print(f"  [TARGET DATA TABLE FOUND] handle={hwnd} | class='{cname}' | title='{title}' | visible={visible} | rect={rect}")
+        r_left, r_top, r_right, r_bottom = rect
+        w = r_right - r_left
+        h = r_bottom - r_top
+        
+        # Geolocation criteria: Must sit heavily on the right side of the inner layout panel
+        is_right_side = r_left > (t_left + (t_width * 0.58))
+        
+        # Expanded target text signatures matching your new screenshot
+        LOG_SIGNATURES = [
+            "Process Started", 
+            ">>Process", 
+            "Trades not found", 
+            "Process Completed", 
+            "Settlement"
+        ]
+        contains_log_text = any(sig in title for sig in LOG_SIGNATURES)
+        
+        # Look for the control container matching position bounds or text elements
+        if (contains_log_text) or (is_right_side and w > 100 and h > 120 and ("list" in c_low or "edit" in c_low or "window" in c_low)):
+            print(f"🌟 MATCH FOUND FOR RED CIRCLE CONTROL:")
+            print(f"   Handle: {hwnd}")
+            print(f"   Class Name: {cname}")
+            print(f"   Current Text/Title: '{title}'")
+            print(f"   Dimensions: Width={w}, Height={h} | Rect={rect}\n")
+            found_log_box = True
+
+    if not found_log_box:
+        print("  Could not definitively isolate the log box. Review the structural layout dump saved above.")
 
 else:
-    print("\nCRITICAL: Could not locate window matching Control Center layout descriptors.")
+    print(f"\nCRITICAL: Could not locate window matching titles: {VALID_TITLES}")
 
 print(f"\n✓ Analysis completed successfully. Output saved to: {output_file}")
 f.close()

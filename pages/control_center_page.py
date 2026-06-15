@@ -164,15 +164,39 @@ class ControlCenterPage:
         win32gui.EnumWindows(find_box, None)
 
         if popup_hwnd:
-            print("  [ALERT INTERCEPT] Modal target dialog identified. Finding confirmation targets...")
+            print("  [ALERT INTERCEPT] Modal target dialog identified. Extracting text strings...")
             try:
                 win32gui.SetForegroundWindow(popup_hwnd)
                 time.sleep(0.3)
             except:
                 pass
 
-            yes_rect = None
+            # --- NEW FEATURE: DIALOG TEXT STRING CHECK ---
             dialog_children = get_all_children(popup_hwnd)
+            dialog_text_combined = ""
+            
+            # Combine text fields from all children elements inside the dialog (Labels, Titles, Textboxes)
+            for hwnd, cls, title, rect, vis in dialog_children:
+                if title.strip():
+                    dialog_text_combined += " " + title.lower().strip()
+
+            print(f"  [ALERT INTERCEPT] Inspected Text Content: {dialog_text_combined!r}")
+
+            # Fail-safe conditions evaluation
+            if "mis match found" in dialog_text_combined:
+                print("\n[CRITICAL STOP] Mismatch flag triggered inside dialog text panel.")
+                raise Exception("Pipeline stopped: 'mis match found' string discovered in popup message box.")
+            
+            elif "mis match not found" in dialog_text_combined:
+                print("  ✓ Verification matched: 'mis match not found' confirmed. Proceeding with clearing the box...")
+            
+            # If neither string is present, you specified to terminate the entire process as a fallback
+            elif "mis match" in dialog_text_combined:
+                print("\n[CRITICAL STOP] Undefined status rule trace context matched.")
+                raise Exception("Pipeline stopped: Dialog contains an ambiguous mismatch notification state.")
+            # ---------------------------------------------
+
+            yes_rect = None
             for hwnd, cls, title, rect, vis in dialog_children:
                 title_clean = title.strip().lower()
                 if vis and ("yes" in title_clean or "ok" in title_clean or "button" in cls.lower()):
@@ -428,7 +452,7 @@ class ControlCenterPage:
             print(f"    -> Import complete for row {row_idx}. Continuing to next file...")
 
         return "SUCCESS"
-
+    
     def process_processes_grid_selection(self, cc_hwnd, target_settlement):
         if not target_settlement:
             print("  [PROCESSES GRID] No target settlement specified. Skipping.")
@@ -455,7 +479,7 @@ class ControlCenterPage:
             print(f"  [PROCESSES GRID] Focus: {fe}")
 
         anchor_y = row_centre_y(0)
-        print(f"  [PROCESSES GRID] Anchoring focus at Settlement ({SETTLEMENT_X}, {anchor_y})")
+        print(f"  [PROCESSES GRID] Anchoring focus at Settlement ({SETTLEMENT_X}, anchor_y)")
         mouse.click(button='left', coords=(SETTLEMENT_X, anchor_y))
         time.sleep(1.5)
 
@@ -521,7 +545,58 @@ class ControlCenterPage:
         if proceed_rect:
             print(f"  [PROCESSES GRID] Clicking Proceed at {proceed_rect}")
             click_center(proceed_rect)
-            time.sleep(20.0)
+            
+            # --- DYNAMIC CONSOLE MONITORING FEATURE ---
+            # Replaces the hardcoded 20-second sleep block
+            print("  [MONITOR] Proceed triggered. Locating process log panel frame...")
+            
+            log_panel_rect = None
+            for hwnd, cls, title, rect, vis in all_children:
+                # Isolate the element using class names and coordinates matching your log data file
+                if cls == TRADEPLUS_CLASS and vis and (840 <= rect[0] <= 850) and (180 <= rect[1] <= 190):
+                    log_panel_rect = rect
+                    break
+            
+            if not log_panel_rect:
+                # Fallback layout coordinates from the layout log output 
+                log_panel_rect = (846, 183, 1174, 654)
+
+            # Center calculation for the red-circled log console element area
+            console_x = (log_panel_rect[0] + log_panel_rect[2]) // 2
+            console_y = (log_panel_rect[1] + log_panel_rect[3]) // 2
+            
+            print("  [MONITOR] Entering dynamic evaluation loop. Waiting for process completion tokens...")
+            check_interval = 5.0  # Verification polling frequency rate
+            
+            while True:
+                try:
+                    # Focus inside the console log panel to make clipboard selection commands viable
+                    mouse.click(button='left', coords=(console_x, console_y))
+                    time.sleep(0.3)
+                    
+                    # Clear clipboard cache channels
+                    win32clipboard.OpenClipboard()
+                    win32clipboard.EmptyClipboard()
+                    win32clipboard.CloseClipboard()
+                    time.sleep(0.1)
+                    
+                    # Perform Select-All and Copy sequence sequences
+                    send_keys("^a")
+                    time.sleep(0.2)
+                    send_keys("^c")
+                    time.sleep(0.4)
+                    
+                    console_content = self.get_clipboard_text().lower()
+                    
+                    if "process completed" in console_content:
+                        print("  [MONITOR] ✓ 'Process Completed' string detected in console layout. Progressing pipeline updates.")
+                        break
+                except Exception as monitor_err:
+                    print(f"  [MONITOR WARNING] Extraction polling skip trace context: {monitor_err}")
+                
+                time.sleep(check_interval)
+            
+            # Continue standard completion dismissal routine blocks
             self.dismiss_center_msgbox(cc_hwnd, date_value=None)
             self._close_report_popup()
         else:
@@ -1049,6 +1124,10 @@ class ControlCenterPage:
                     self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=True)
                     time.sleep(0.5)
 
+                    # --- ADDED 10 SECOND STABILIZATION TIMER FOR BSE ---
+                    print("  [TIMER] Waiting 10 seconds for File BSE grid data to load...")
+                    time.sleep(10.0)
+
                     status = self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, date_value=date)
 
                     print("  [SEQUENCER PASS 1] Clearing BSE selection state...")
@@ -1063,6 +1142,10 @@ class ControlCenterPage:
                     print("  [SEQUENCER PASS 2] Activating NSE matrix grid segment...")
                     self.check_matrix_checkbox(cc_hwnd, market_segment="NSE", state=True)
                     time.sleep(0.5)
+
+                    # --- ADDED 10 SECOND STABILIZATION TIMER FOR NSE ---
+                    print("  [TIMER] Waiting 10 seconds for NSE File grid data to load...")
+                    time.sleep(10.0)
 
                     status = self.scan_and_process_data_grid(cc_hwnd, nse_files_workflow, date_value=date)
 

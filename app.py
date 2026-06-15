@@ -1,6 +1,7 @@
 import ctypes
 import json
 import os
+os.environ["__COMPAT_LAYER"] = "RunAsInvoker"
 import sys
 import time
 import win32api

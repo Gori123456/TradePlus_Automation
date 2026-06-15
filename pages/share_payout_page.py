@@ -56,7 +56,7 @@ class SharePayoutPage:
                             if "button" in cc.lower() or cc == "Button":
                                 if ct.lower() == "yes":
                                     yes_h = ch
-                                elif ct.lower() == "no":
+                                if ct.lower() == "no":
                                     no_h = ch
                         except:
                             pass
@@ -115,7 +115,7 @@ class SharePayoutPage:
         self.window.wait("ready", timeout=30)
 
         # ==========================
-        # 1. DATE SELECTION
+# 1. DATE SELECTION
         # ==========================
         print(f"Setting Date value to: {date_value}")
         date_pane = self.window.child_window(auto_id="dtMain", control_type="Pane")
@@ -132,7 +132,7 @@ class SharePayoutPage:
         time.sleep(1.5)
 
         # ==========================
-        # 2. SETTLEMENT SELECTION
+# 2. SETTLEMENT SELECTION
         # ==========================
         print(f"Targeting Settlement Name: {settlement_name}")
 
@@ -186,7 +186,7 @@ class SharePayoutPage:
         self.window = self.app.top_window()
 
         # ==========================================
-        # 3. FETCH
+# 3. FETCH
         # ==========================================
         try:
             error_dialog = self.window.child_window(title="Information", control_type="Window")
@@ -288,15 +288,14 @@ class SharePayoutPage:
             time.sleep(1.0)
 
         # ==========================
-        # 4. CLICK TARGET PROCESS
+# 4. CLICK TARGET PROCESS
         # ==========================
         self.click_process_by_live_clipboard_scan(target_process_name)
 
         # ==========================
-        # 5. CLOSE WINDOW
+# 5. CLOSE WINDOW
         # ==========================
         print("Finishing workflow...")
-        time.sleep(15.0)
         self.close_window()
 
     def get_clipboard_text(self):
@@ -331,7 +330,6 @@ class SharePayoutPage:
 
         win32gui.EnumWindows(find_confirm_window, None)
 
-        # Scene A: The "Demat Processes" confirmation grid sub-window appears (image_720bc6.png)
         if confirm_hwnd:
             print(f"  [CONFIRMATION SCREEN] Identified active validation layout frame: handle={confirm_hwnd}")
             
@@ -362,9 +360,8 @@ class SharePayoutPage:
                 send_keys("{ENTER}")
 
             print("    Waiting for information report dialog to surface...")
-            time.sleep(2.5)  # Breather to let calculations compile cleanly
+            time.sleep(2.5)
 
-        # Scene B: Intercept and dismiss the report generated dialogue alert popup (image_720805.png / image_3d458f.png)
         popup_hwnd = None
         for lookup_attempt in range(25):
             def find_info_box(hwnd, _):
@@ -458,7 +455,49 @@ class SharePayoutPage:
         mouse.click(button='left', coords=(int(col1_x), int(click_y)))
         print(f"  Process button clicked at ({col1_x}, {click_y})")
         self._handle_post_process_confirmation_screens()
-        time.sleep(15.0)
+        
+        # ======================================================================
+        # --- NEW DYNAMIC LOG CONSOLE MONITORING BLOCK ---
+        # ======================================================================
+        print("  [MONITOR] Action confirmed. Tracking RichEdit console text outputs...")
+        
+        # Isolate the window sub-frame tracking handle
+        p_hwnd = self._get_demat_win_hwnd()
+        
+        # Targets mapping to information from SharePayInOut_RedCircle_Output.txt
+        # Coordinates: (970, 202, 1184, 583) | Class: WindowsForms10.RichEdit20W...
+        console_x = 970 + (1184 - 970) // 2
+        console_y = 202 + (583 - 202) // 2
+        
+        print("  [MONITOR] Entering dynamic execution tracking loop...")
+        while True:
+            try:
+                # Force active focus inside the RichEdit control layout boundaries
+                mouse.click(button='left', coords=(console_x, console_y))
+                time.sleep(0.2)
+                
+                # Wipe the local clip structures clean
+                win32clipboard.OpenClipboard()
+                win32clipboard.EmptyClipboard()
+                win32clipboard.CloseClipboard()
+                time.sleep(0.05)
+                
+                # Trigger internal text capture context rules
+                send_keys("^a")
+                time.sleep(0.15)
+                send_keys("^c")
+                time.sleep(0.3)
+                
+                captured_logs = self.get_clipboard_text().lower()
+                
+                if "process completed" in captured_logs:
+                    print("  [MONITOR] ✓ 'Process Completed' phrase tracked in execution console. Continuing workflow.")
+                    break
+            except Exception as loop_err:
+                print(f"  [MONITOR] Log sweep skipped context: {loop_err}")
+                
+            time.sleep(4.0) # Check log status every 4 seconds
+        # ======================================================================
 
     def _get_demat_win_hwnd(self):
         for attempt in range(10):

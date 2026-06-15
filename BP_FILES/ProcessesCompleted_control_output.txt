@@ -1,0 +1,14 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\ProcessesCompleted_control_output.txt
+Waiting 3 seconds — keep the Share Pay-in / Pay-out window open and on top...
+✓ TradePlusX main window handle: 265280
+✓ Total child controls found inside application frame: 44
+
+
+====================================================================================================
+SEARCHING FOR TARGET PROCESS WINDOW FRAME
+====================================================================================================
+Target window not found in nested application children. Trying desktop window tree lookup...
+
+CRITICAL: Could not locate window matching 'Share Pay-in / Pay-out Processes' titles.
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\ProcessesCompleted_control_output.txt

@@ -1,0 +1,64 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\SharePayInOut_RedCircle_Output.txt
+Waiting 3 seconds — keep the Share Pay-in / Pay-out Processes window visible...
+✓ TradePlusX main window handle: 592698
+✓ Total child controls found inside application frame: 31
+
+
+====================================================================================================
+SEARCHING FOR TARGET PROCESS WINDOW FRAME
+====================================================================================================
+
+*** FOUND TARGET INTERFACE: handle=1314042 | class='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' | title='Share Pay-in / Pay-Out Processes' | rect=(163, 135, 1203, 633)
+
+====================================================================================================
+ALL CHILDREN of Target Process Window (handle=1314042)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+1443568      no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              UDIFF format                             (644, 597, 733, 614)
+2032424      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (473, 175, 498, 196)
+1248420      YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (373, 176, 472, 196)
+527518       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Show Detail Before Process               (633, 180, 791, 197)
+527516       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              ...                                      (615, 593, 638, 616)
+526682       YES      WindowsForms10.EDIT.app.0.141b42a_r7_ad1                                                         (327, 594, 613, 614)
+724022       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Import Path :                            (259, 598, 326, 611)
+1837990      YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (966, 202, 1192, 583)
+658354       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Setup                                    (177, 590, 247, 619)
+723844       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (178, 178, 217, 191)
+461772       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Settlement :                             (313, 179, 379, 192)
+3672184      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              &Clear                                   (526, 175, 601, 196)
+527590       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (223, 175, 306, 195)
+527588       YES      WindowsForms10.RichEdit20W.app.0.141b42a_r7_ad1                                                  (970, 202, 1184, 583)
+527594       no       WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Go                                       (894, 590, 964, 619)
+1705830      YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              One by One Processing                    (826, 180, 964, 197)
+527592       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Pay-Out                                  (1120, 180, 1184, 197)
+593062       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Pay-In                                   (1058, 180, 1114, 197)
+658386       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (177, 202, 964, 583)
+1707154      YES      WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (946, 203, 963, 582)
+1117030      no       WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (338, 202, 513, 352)
+723924       no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (339, 306, 495, 323)
+527302       no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (495, 203, 512, 306)
+
+====================================================================================================
+PRIORITY TARGET: PROCESS LOG CONSOLE (RED CIRCLE AREA)
+====================================================================================================
+🌟 MATCH FOUND FOR RED CIRCLE CONTROL:
+   Handle: 1837990
+   Class Name: WindowsForms10.Window.8.app.0.141b42a_r7_ad1
+   Current Text/Title: ''
+   Dimensions: Width=226, Height=381 | Rect=(966, 202, 1192, 583)
+
+🌟 MATCH FOUND FOR RED CIRCLE CONTROL:
+   Handle: 461772
+   Class Name: WindowsForms10.STATIC.app.0.141b42a_r7_ad1
+   Current Text/Title: 'Settlement : '
+   Dimensions: Width=66, Height=13 | Rect=(313, 179, 379, 192)
+
+🌟 MATCH FOUND FOR RED CIRCLE CONTROL:
+   Handle: 527588
+   Class Name: WindowsForms10.RichEdit20W.app.0.141b42a_r7_ad1
+   Current Text/Title: ''
+   Dimensions: Width=214, Height=381 | Rect=(970, 202, 1184, 583)
+
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\SharePayInOut_RedCircle_Output.txt

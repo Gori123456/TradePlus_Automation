@@ -1,5 +1,5 @@
 {
-    "auto_close": false,
+    "auto_close": true,
     "execution_pipeline": [
         {
             "module": "control_center",
@@ -10,15 +10,21 @@
                 "enabled": true,
                 "product": "Equity",
                 "type": "UDIFF",
-                "check_bse_cash": true,
+                "check_F&O_cash": true,
                 "check_nse_cash": true,
                 "bse_files_workflow": {
-                    "Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv": true
+                    "Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv": true,
+                    "Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV": false,
+                    "Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV": false,
+                    "STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV": false,
+                    "StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV": false,
+                    "BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv": false,
+                    "AN110226.6351": false
                 },
                 "nse_files_workflow": {
-                    "Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv": true,
-                    "Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv": true,
-                    "Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv": false,
+                    "Trade_NSE_CM_0_TM_08854_20250211_F_0000.csv": true,
+                    "Obligation_NCL_CM_EquityT1_CM_08854_20265211_P_0000.csv": false,
+                    "Obligation_NCL_CM_EquityT1_CM_08854_20560211_F_0000.csv": false,
                     "STT_NCL_CM_0_CM_08854_20260211_F_0000.csv": false,
                     "StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv": false,
                     "BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv": false

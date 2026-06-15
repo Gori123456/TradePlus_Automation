@@ -1,0 +1,72 @@
+========================================================
+Log Session Started At: 2026-06-14 17:42:16
+Console output path: D:\TradePlus_Automation\log\log_2026-06-14_174216.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 126: handle=1641598
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 68)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 1] Activating BSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: True
+  Clicking BSE checkbox to set state=True...
+  BSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for File BSE grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: 'AN110226.6351'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: 'AN110226.6351'
+    -> Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 8 at (590, 457)
+  Row 8: 'AN110226.6351'
+  [GRID BREAK] Detected duplicate values ('AN110226.6351') out of active view rows. Breaking loop.
+  [SEQUENCER PASS 1] Clearing BSE selection state...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: False
+  Clicking BSE checkbox to set state=False...
+  BSE Checkbox clicked ✓
+  [SEQUENCER PASS 1] Holding thread for interface refresh synchronization...
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for NSE File grid data to load...

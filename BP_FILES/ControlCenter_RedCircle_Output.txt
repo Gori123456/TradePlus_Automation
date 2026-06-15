@@ -1,0 +1,65 @@
+Saving layout log to: d:\TradePlus_Automation\BP_FILES\ControlCenter_RedCircle_Output.txt
+Waiting 3 seconds — keep the Control Center window visible on screen...
+✓ TradePlusX main window handle: 265280
+✓ Total child controls found inside application frame: 44
+
+
+====================================================================================================
+SEARCHING FOR TARGET 'CONTROL CENTER' WINDOW FRAME
+====================================================================================================
+
+*** FOUND TARGET INTERFACE: handle=330840 | class='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' | title='Control Center' | rect=(162, 67, 1188, 699)
+
+====================================================================================================
+ALL CHILDREN of Control Center (handle=330840)
+====================================================================================================
+HANDLE       VISIBLE  CLASS                                                   TITLE                                    RECT
+----------------------------------------------------------------------------------------------------
+330836       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Masters                                  (179, 513, 314, 546)
+724048       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Rights                                   (179, 550, 314, 583)
+265308       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Cancel                                   (179, 621, 314, 654)
+265310       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Parameters                               (179, 585, 314, 618)
+527370       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (259, 136, 322, 159)
+592986       YES      WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1                                              (325, 106, 1183, 693)
+526782       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1            Processes                                (329, 128, 1179, 689)
+526780       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Advanced Options                         (657, 658, 762, 681)
+526784       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              AGTS                                     (336, 663, 391, 680)
+1247696      YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (594, 660, 627, 681)
+134092       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Lock Bill prior to            Days       (499, 663, 660, 680)
+199630       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Revenue Sharing                          (391, 663, 500, 680)
+134090       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Product :                                (333, 141, 383, 154)
+134088       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (383, 137, 479, 158)
+134084       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (593, 159, 612, 172)
+134082       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1                                                       (593, 139, 612, 152)
+1378150      YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (663, 140, 766, 166)
+134080       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              For :                                    (634, 147, 662, 160)
+134078       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Bill Generation                          (501, 137, 595, 154)
+134076       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Accumulation                             (501, 157, 591, 174)
+134074       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Fetch                                    (774, 142, 837, 165)
+134072       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (332, 183, 844, 654)
+134070       no       WindowsForms10.SCROLLBAR.app.0.141b42a_r7_ad1                                                    (333, 636, 843, 653)
+134064       YES      WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1                                                     (334, 184, 404, 205)
+134068       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (846, 183, 1174, 654)
+134066       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Proceed                                  (1111, 660, 1174, 683)
+592900       YES      WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1                                            (219, 108, 322, 134)
+265288       YES      WindowsForms10.STATIC.app.0.141b42a_r7_ad1              Date :                                   (171, 110, 227, 130)
+265294       YES      WindowsForms10.Window.8.app.0.141b42a_r7_ad1                                                     (175, 223, 316, 507)
+527378       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              File Imports                             (178, 226, 313, 259)
+527388       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Trades                                   (178, 265, 313, 298)
+265302       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Processes                                (178, 304, 313, 337)
+265312       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Others                                   (178, 343, 313, 376)
+265314       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Special Charges                          (178, 382, 313, 415)
+265316       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Contracts                                (178, 421, 313, 454)
+265318       YES      WindowsForms10.BUTTON.app.0.141b42a_r7_ad1              Confirmations                            (178, 460, 313, 493)
+
+====================================================================================================
+PRIORITY TARGET: PROCESS LOG CONSOLE (RED CIRCLE AREA)
+====================================================================================================
+🌟 MATCH FOUND FOR RED CIRCLE CONTROL:
+   Handle: 134068
+   Class Name: WindowsForms10.Window.8.app.0.141b42a_r7_ad1
+   Current Text/Title: ''
+   Dimensions: Width=328, Height=471 | Rect=(846, 183, 1174, 654)
+
+
+✓ Analysis completed successfully. Output saved to: d:\TradePlus_Automation\BP_FILES\ControlCenter_RedCircle_Output.txt
