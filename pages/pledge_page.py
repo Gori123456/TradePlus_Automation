@@ -42,6 +42,24 @@ def is_checked(hwnd):
     return result == win32con.BST_CHECKED
 
 
+def _normalize_to_dd_mm_yyyy(date_str):
+    """
+    Converts incoming date formats (YYYY/MM/DD or YYYY-MM-DD) safely
+    into the application's required structural format (DD/MM/YYYY).
+    """
+    if not date_str:
+        return date_str
+    
+    date_clean = date_str.strip().replace("-", "/")
+    parts = date_clean.split("/")
+    
+    if len(parts) == 3 and len(parts[0]) == 4:
+        year, month, day = parts[0], parts[1], parts[2]
+        return f"{day}/{month}/{year}"
+        
+    return date_str
+
+
 # ══════════════════════════════════════════════
 # SIMPLIFIED KEYBOARD POPUP DISMISSER
 # ══════════════════════════════════════════════
@@ -197,6 +215,7 @@ class PledgePage:
 
     def set_manage_date(self, pledge_win_hwnd, date_value):
         """Targets and modifies cross-process date constraints safely using virtual memory and windows messages."""
+        date_value = _normalize_to_dd_mm_yyyy(date_value)
         print(f"Setting Control Center style date to: '{date_value}'")
         time.sleep(0.3)
         
@@ -405,33 +424,25 @@ class PledgePage:
                 self.set_checkbox_state(pledge_win_hwnd, "Items Sold By Client", items_sold_by_client)
                 
             if click_fetch:
-                # STEP 1: Spawn thread killer to handle baseline data warnings
                 killer_thread = threading.Thread(target=async_popup_killer, args=(self.main_hwnd,), daemon=True)
                 killer_thread.start()
                 
-                # STEP 2: Trigger data fetch query sequence
                 self.click_pledge_fetch_button(pledge_win_hwnd)
                 time.sleep(10.0)
                 
-                # Enforce a strict 3-second delay after fetching data before moving to save
                 print("  [WAIT CONTROL] Fetch cycle finalized. Waiting exactly 3 seconds before executing Save...")
-                time.sleep(10.0)
+                time.sleep(3.0)
                 
-                # STEP 3: Trigger the Save pipeline
                 save_killer = threading.Thread(target=async_popup_killer, args=(self.main_hwnd,), daemon=True)
                 save_killer.start()
                 
-                # Trigger the physical Save button click event node
                 self.click_pledge_save_button(pledge_win_hwnd)
                 
-                # Allow time for report rendering processing to serialize
                 time.sleep(3.5)
                 
-                # STEP 4: Close the newly spawned text preview document context frame
                 self.close_slip_printing_tab()
                 time.sleep(1.0)
 
-        # FIXED CALIBRATION: Closes the main module tab cleanly before completing execution block tasks
         print("Finishing Pledge Management workflow routine segment layout...")
         self.close_window()
 

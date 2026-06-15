@@ -1,0 +1,146 @@
+========================================================
+Log Session Started At: 2026-06-15 12:12:02
+Console output path: D:\TradePlus_Automation\log\log_2026-06-15_121202.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 49: handle=1117668
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 38)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for NSE File grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Trade File'
+    -> 'NSE_Cash_Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Provisional)'
+    -> 'NSE_Cash_Obligation File (Provisional)' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 1...
+    -> Waiting for import pipeline...
+    -> Import complete for row 1. Continuing to next file...
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: '{
+    "auto_close": true,
+    "execution_pipeline": [
+        {
+            "module": "control_center",
+            "enabled": true,
+            "index": 5,
+            "date": "11/02/2026",
+            "file_imports": {
+                "enabled": true,
+                "product": "Equity",
+                "type": "UDIFF",
+                "check_bse_cash": false,
+                "check_nse_cash": true,
+                "bse_files_workflow": {
+                    "BSE_Cash_Broker Query": true,
+                    "BSE_Cash_Obligation File (Provisional)": false,
+                    "BSE_Cash_Obligation File (Final)": false,
+                    "BSE_Cash_STT Details File": false,
+                    "BSE_Cash_Stamp Duty File": false,
+                    "BSE_Cash_Bhavcopy": false,
+                    "BSE_Cash_Offer For Sale Trade File": false
+                },
+                "nse_files_workflow": {
+                    "NSE_Cash_": true,
+                    "NSE_Cash_Obligation File (Provisional)": true,
+                    "NSE_Cash_ObligatiTron File (Final)": false,
+                    "NSE_Cash_STT Details File": false,
+                    "NSE_Cash_Stamp Duty File": false,
+                    "NSE_Cash_Bhavcopy": false
+                }
+            },
+            "others": {
+                "enabled": true,
+                "exchange": "NSE",
+                "settlement": "NQ",
+                "exchange_obligation_reconciliation": true,
+                "unprocess_bills": false
+            },
+            "processes": {
+                "enabled": true,
+                "product": "Equity",
+                "for_date": "11/02/2026",
+                "click_fetch": true,
+                "target_settlement": "NQ"
+            }
+        },
+        {
+            "module": "demat_auto_entries",
+            "enabled": true,
+            "index": 7,
+            "date": "11/02/2026",
+            "settlement_name": "NQ",
+            "target_process_name": "Demat Auto Entries"
+        },
+        {
+            "module": "pledge_management",
+            "enabled": true,
+            "index": 13,
+            "tab_name": "Manage",
+            "manage_action": "Un Pledge",
+            "manage_date": "11/02/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true
+        },
+        {
+            "module": "demat_auto_entries",
+            "enabled": true,
+            "index": 7,
+            "date": "11/02/2026",
+            "settlement_name": "NQ",
+            "target_process_name": "Pay-In(POA)"
+        }
+    ]
+}' parsed as mapping key: 'NSE_Cash_d'
+    -> 'NSE_Cash_d' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: '"NSE_Cash_Obligation File (Final)": false,' parsed as mapping key: 'NSE_Cash_"NSE_Cash_Obligation File (Final)": false,'
+    -> 'NSE_Cash_"NSE_Cash_Obligation File (Final)": false,' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: '"NSE_Cash_Bhavcopyz": false' parsed as mapping key: 'NSE_Cash_"NSE_Cash_Bhavcopy": false'
+    -> 'NSE_Cash_"NSE_Cash_Bhavcopy": false' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: '}zz' parsed as mapping key: 'NSE_Cash_}zzzzz'
+    -> 'NSE_Cash_}zzzzz' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: '}zzzzzzzzz' parsed as mapping key: 'NSE_Cash_}zzzzzzzz'
+    -> 'NSE_Cash_}zzzzzzzz' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: '"enabled": true,zzzzzzzzzzzzzzzzzzzz' parsed as mapping key: 'NSE_Cash_"enabled": true,zzzzzzzzzzzzzzzzzzzz'
+    -> 'NSE_Cash_"enabled": true,zzzzzzzzzzzzzzzzzzzz' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 8 at (590, 457)
+  Row 8: '"enabled": true,' parsed as mapping key: 'NSE_Cash_zz
+            },'
+    -> 'NSE_Cash_zz
+            },' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 9 at (590, 477)
+  Row 9: '"settlement": "NQ",' parsed as mapping key: 'NSE_Cash_"others": {'
+    -> 'NSE_Cash_"others": {' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 10 at (590, 497)

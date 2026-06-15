@@ -1,0 +1,63 @@
+========================================================
+Log Session Started At: 2026-06-15 11:13:16
+Console output path: D:\TradePlus_Automation\log\log_2026-06-15_111316.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 63: handle=789522
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 38)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 1] Activating BSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: True
+  Clicking BSE checkbox to set state=True...
+  BSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for File BSE grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking description cell row 0 at (340, y)
+  Row 0 Parsed Metadata Key: 'BSE_BSE_BSE'
+    -> 'BSE_BSE_BSE' not specified in JSON config. Skipping.
+  [GRID] Clicking description cell row 1 at (340, y)
+  Row 1 Parsed Metadata Key: 'BSE_BSE_BSE'
+    -> 'BSE_BSE_BSE' not specified in JSON config. Skipping.
+  [GRID] Clicking description cell row 2 at (340, y)
+  Row 2 Parsed Metadata Key: 'BSE_BSE_BSE'
+  [GRID BREAK] Detected duplicate structural rows ('BSE_BSE_BSE'). Breaking loop.
+  [SEQUENCER PASS 1] Clearing BSE selection state...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: False
+  Clicking BSE checkbox to set state=False...
+  BSE Checkbox clicked ✓
+  [SEQUENCER PASS 1] Holding thread for interface refresh synchronization...
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for NSE File grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking description cell row 0 at (340, y)
+  Row 0: [BLANK / END OF GRID]. Done Extraction Loop.
+  [SEQUENCER PASS 2] Clearing NSE selection state...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: False
+  Clicking NSE checkbox to set state=False...
+  NSE Checkbox clicked ✓
+  [SEQUENCER PASS 2] Holding thread for interface refresh synchronization...

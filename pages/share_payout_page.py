@@ -7,6 +7,24 @@ from pywinauto.keyboard import send_keys
 from pywinauto import mouse
 
 
+def _normalize_to_dd_mm_yyyy(date_str):
+    """
+    Converts incoming date formats (YYYY/MM/DD or YYYY-MM-DD) safely
+    into the application's required structural format (DD/MM/YYYY).
+    """
+    if not date_str:
+        return date_str
+    
+    date_clean = date_str.strip().replace("-", "/")
+    parts = date_clean.split("/")
+    
+    if len(parts) == 3 and len(parts[0]) == 4:
+        year, month, day = parts[0], parts[1], parts[2]
+        return f"{day}/{month}/{year}"
+        
+    return date_str
+
+
 class SharePayoutPage:
 
     def __init__(self, app):
@@ -111,11 +129,14 @@ class SharePayoutPage:
         return False
 
     def process(self, date_value, settlement_name, target_process_name):
+        # Convert incoming workflow format to native environment standard mapping style
+        date_value = _normalize_to_dd_mm_yyyy(date_value)
+
         self.window = self.app.top_window()
         self.window.wait("ready", timeout=30)
 
         # ==========================
-# 1. DATE SELECTION
+        # 1. DATE SELECTION
         # ==========================
         print(f"Setting Date value to: {date_value}")
         date_pane = self.window.child_window(auto_id="dtMain", control_type="Pane")
@@ -132,7 +153,7 @@ class SharePayoutPage:
         time.sleep(1.5)
 
         # ==========================
-# 2. SETTLEMENT SELECTION
+        # 2. SETTLEMENT SELECTION
         # ==========================
         print(f"Targeting Settlement Name: {settlement_name}")
 
@@ -186,7 +207,7 @@ class SharePayoutPage:
         self.window = self.app.top_window()
 
         # ==========================================
-# 3. FETCH
+        # 3. FETCH
         # ==========================================
         try:
             error_dialog = self.window.child_window(title="Information", control_type="Window")
@@ -288,12 +309,12 @@ class SharePayoutPage:
             time.sleep(1.0)
 
         # ==========================
-# 4. CLICK TARGET PROCESS
+        # 4. CLICK TARGET PROCESS
         # ==========================
         self.click_process_by_live_clipboard_scan(target_process_name)
 
         # ==========================
-# 5. CLOSE WINDOW
+        # 5. CLOSE WINDOW
         # ==========================
         print("Finishing workflow...")
         self.close_window()

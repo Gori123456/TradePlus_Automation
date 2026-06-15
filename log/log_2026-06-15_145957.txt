@@ -1,0 +1,33 @@
+========================================================
+Log Session Started At: 2026-06-15 14:59:57
+Console output path: D:\TradePlus_Automation\log\log_2026-06-15_145957.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 153: handle=3279576
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 42)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for NSE File grid data to load...

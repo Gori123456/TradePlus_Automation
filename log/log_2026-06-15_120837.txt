@@ -1,0 +1,150 @@
+========================================================
+Log Session Started At: 2026-06-15 12:08:37
+Console output path: D:\TradePlus_Automation\log\log_2026-06-15_120837.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+  [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 51: handle=2165764
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (attempt 38)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER PASS 1] Activating BSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: True
+  Clicking BSE checkbox to set state=True...
+  BSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for File BSE grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Broker Query'
+    -> 'BSE_Cash_Broker Query' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+    -> Import complete for row 0. Continuing to next file...
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Provisional)'
+    -> 'BSE_Cash_Obligation File (Provisional)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Final)'
+    -> 'BSE_Cash_Obligation File (Final)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_STT Details File'
+    -> 'BSE_Cash_STT Details File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Stamp Duty File'
+    -> 'BSE_Cash_Stamp Duty File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Bhavcopy'
+    -> 'BSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 8 at (590, 457)
+  Row 8: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+  [GRID BREAK] Detected duplicate dynamic values ('BSE_Cash_Offer For Sale Trade File'). Breaking loop.
+  [SEQUENCER PASS 1] Clearing BSE selection state...
+Configuring Matrix Checkbox intersection for [BSE] -> Target State: False
+  Clicking BSE checkbox to set state=False...
+  BSE Checkbox clicked ✓
+  [SEQUENCER PASS 1] Holding thread for interface refresh synchronization...
+  [SEQUENCER PASS 2] Activating NSE matrix grid segment...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: True
+  Clicking NSE checkbox to set state=True...
+  NSE Checkbox clicked ✓
+  [TIMER] Waiting 10 seconds for NSE File grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (590, 297)
+  Row 0: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Trade File'
+    -> 'NSE_Cash_Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (590, 317)
+  Row 1: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Provisional)'
+    -> 'NSE_Cash_Obligation File (Provisional)' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 1...
+    -> Waiting for import pipeline...
+  [ALERT INTERCEPT] Modal target dialog identified. Extracting text strings...
+  [ALERT INTERCEPT] Inspected Text Content: ''
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+    -> Import complete for row 1. Continuing to next file...
+  [GRID] Clicking filename cell row 2 at (590, 337)
+  Row 2: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Final)'
+    -> 'NSE_Cash_Obligation File (Final)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 3 at (590, 357)
+  Row 3: 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_STT Details File'
+    -> 'NSE_Cash_STT Details File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 4 at (590, 377)
+  Row 4: 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Stamp Duty File'
+    -> 'NSE_Cash_Stamp Duty File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 5 at (590, 397)
+  Row 5: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 6 at (590, 417)
+  Row 6: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 7 at (590, 437)
+  Row 7: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+  [GRID BREAK] Detected duplicate dynamic values ('NSE_Cash_Bhavcopy'). Breaking loop.
+  [SEQUENCER PASS 2] Clearing NSE selection state...
+Configuring Matrix Checkbox intersection for [NSE] -> Target State: False
+  Clicking NSE checkbox to set state=False...
+  NSE Checkbox clicked ✓
+  [SEQUENCER PASS 2] Holding thread for interface refresh synchronization...
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+Selecting Settlement option using prefix tracking: 'NQ' (from 'NQ')
+  [WIN32 CB] Prefix match successfully found at selection index: 2
+Selecting 'Exchange Obligation Reconciliation' option row...
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Checking for post-Proceed dialog box...
+  [OTHERS PROCEED] Dialog found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=1574086
+  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...
+  [OTHERS PROCEED] Dialog dismissed via ENTER ✓
+  [REPORT POPUP] Found: 'Exchange Obligation Comparison of NSE Cash for NQ2026029' handle=1574086
+  [REPORT POPUP]   Close btn: handle=2098522 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=2098522
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+
+ERROR OCCURRED DURING WORKFLOW RUN: Workspace 'For :' date picker element not found!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 259, in <module>
+    status = page.process(
+        date               = step_cfg.get("date"),
+    ...<18 lines>...
+        raw_workflow_config = step_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1200, in process
+    self.set_process_for_date(cc_hwnd, for_date)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 736, in set_process_for_date
+    raise Exception("Workspace 'For :' date picker element not found!")
+Exception: Workspace 'For :' date picker element not found!
+
+Press Enter to Exit...

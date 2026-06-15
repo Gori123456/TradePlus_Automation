@@ -76,6 +76,25 @@ def _filename_matches(config_fn, grid_fn):
     return False
 
 
+def _normalize_to_dd_mm_yyyy(date_str):
+    """
+    Converts any incoming date string from JSON (supporting YYYY/MM/DD or YYYY-MM-DD)
+    into the standard DD/MM/YYYY format required by TradePlus applications.
+    """
+    if not date_str:
+        return date_str
+    
+    date_clean = date_str.strip().replace("-", "/")
+    parts = date_clean.split("/")
+    
+    # If the string starts with a 4-digit year (YYYY/MM/DD), re-order it to DD/MM/YYYY
+    if len(parts) == 3 and len(parts[0]) == 4:
+        year, month, day = parts[0], parts[1], parts[2]
+        return f"{day}/{month}/{year}"
+        
+    return date_str
+
+
 class ControlCenterPage:
 
     def __init__(self, app):
@@ -142,6 +161,9 @@ class ControlCenterPage:
         return False
 
     def dismiss_center_msgbox(self, cc_hwnd, date_value):
+        # Normalize date context explicitly
+        date_value = _normalize_to_dd_mm_yyyy(date_value)
+        
         if self.handle_special_settlement_popup(cc_hwnd, date_value):
             return "RESTART"
             
@@ -171,18 +193,15 @@ class ControlCenterPage:
             except:
                 pass
 
-            # --- NEW FEATURE: DIALOG TEXT STRING CHECK ---
             dialog_children = get_all_children(popup_hwnd)
             dialog_text_combined = ""
             
-            # Combine text fields from all children elements inside the dialog (Labels, Titles, Textboxes)
             for hwnd, cls, title, rect, vis in dialog_children:
                 if title.strip():
                     dialog_text_combined += " " + title.lower().strip()
 
             print(f"  [ALERT INTERCEPT] Inspected Text Content: {dialog_text_combined!r}")
 
-            # Fail-safe conditions evaluation
             if "mis match found" in dialog_text_combined:
                 print("\n[CRITICAL STOP] Mismatch flag triggered inside dialog text panel.")
                 raise Exception("Pipeline stopped: 'mis match found' string discovered in popup message box.")
@@ -190,11 +209,9 @@ class ControlCenterPage:
             elif "mis match not found" in dialog_text_combined:
                 print("  ✓ Verification matched: 'mis match not found' confirmed. Proceeding with clearing the box...")
             
-            # If neither string is present, you specified to terminate the entire process as a fallback
             elif "mis match" in dialog_text_combined:
                 print("\n[CRITICAL STOP] Undefined status rule trace context matched.")
                 raise Exception("Pipeline stopped: Dialog contains an ambiguous mismatch notification state.")
-            # ---------------------------------------------
 
             yes_rect = None
             for hwnd, cls, title, rect, vis in dialog_children:
@@ -224,6 +241,15 @@ class ControlCenterPage:
             except:
                 pass
             return ""
+
+    def _clear_clipboard(self):
+        try:
+            win32clipboard.OpenClipboard()
+            win32clipboard.EmptyClipboard()
+            win32clipboard.CloseClipboard()
+        except:
+            pass
+        time.sleep(0.1)
 
     def _close_report_popup(self):
         BM_CLICK = 0x00F5
@@ -331,7 +357,7 @@ class ControlCenterPage:
             except:
                 pass
 
-    def scan_and_process_data_grid(self, cc_hwnd, files_workflow_config, date_value):
+    def scan_and_process_data_grid(self, cc_hwnd, files_workflow_config, date_value, current_segment=None):
         if not files_workflow_config:
             print("  No file workflow config loaded. Skipping grid processing.")
             return "SUCCESS"
@@ -351,19 +377,13 @@ class ControlCenterPage:
             time.sleep(0.5)
 
         MAX_ROWS = 12
-        previous_filename = None
+        previous_key = None
         consecutive_skipped_duplicates = 0
 
         for row_idx in range(MAX_ROWS):
             click_filename_cell(row_idx)
 
-            try:
-                win32clipboard.OpenClipboard()
-                win32clipboard.EmptyClipboard()
-                win32clipboard.CloseClipboard()
-            except:
-                pass
-            time.sleep(0.1)
+            self._clear_clipboard()
             send_keys("^c")
             time.sleep(0.4)
 
@@ -373,39 +393,50 @@ class ControlCenterPage:
                 print(f"  Row {row_idx}: [BLANK / END OF GRID]. Done Extraction Loop.")
                 break
 
-            print(f"  Row {row_idx}: '{current_row_filename}'")
+            send_keys("{LEFT}")
+            time.sleep(0.2)
+            
+            self._clear_clipboard()
+            send_keys("^c")
+            time.sleep(0.4)
+            row_description = self.get_clipboard_text().strip()
 
-            if current_row_filename == previous_filename:
+            send_keys("{RIGHT}")
+            time.sleep(0.2)
+
+            seg_prefix = current_segment if current_segment else "BSE"
+            combined_table_key = f"{seg_prefix}_Cash_{row_description}"
+            print(f"  Row {row_idx}: '{current_row_filename}' parsed as mapping key: '{combined_table_key}'")
+
+            if combined_table_key == previous_key:
                 consecutive_skipped_duplicates += 1
                 if consecutive_skipped_duplicates >= 2:
-                    print(f"  [GRID BREAK] Detected duplicate values ('{current_row_filename}') out of active view rows. Breaking loop.")
+                    print(f"  [GRID BREAK] Detected duplicate dynamic values ('{combined_table_key}'). Breaking loop.")
                     break
             else:
                 consecutive_skipped_duplicates = 0
 
-            previous_filename = current_row_filename
+            previous_key = combined_table_key
 
             match_found = False
             target_enabled = False
-            matched_config_fn = None
-            for config_fn, enabled_status in files_workflow_config.items():
-                if _filename_matches(config_fn, current_row_filename):
+            for config_key, enabled_status in files_workflow_config.items():
+                if config_key.strip().lower() == combined_table_key.lower():
                     match_found = True
                     target_enabled = enabled_status
-                    matched_config_fn = config_fn
                     break
 
             if not match_found:
-                print(f"    -> Not in JSON config. Skipping.")
+                print(f"    -> '{combined_table_key}' Not in JSON config. Skipping.")
                 time.sleep(0.3)
                 continue
 
             if not target_enabled:
-                print(f"    -> '{matched_config_fn}' is FALSE in JSON. Skipping.")
+                print(f"    -> '{combined_table_key}' is FALSE in JSON. Skipping.")
                 time.sleep(0.3)
                 continue
 
-            print(f"    -> '{matched_config_fn}' is TRUE — checking import status...")
+            print(f"    -> '{combined_table_key}' is TRUE — checking import status...")
             time.sleep(0.3)
 
             send_keys("{RIGHT}")
@@ -546,41 +577,33 @@ class ControlCenterPage:
             print(f"  [PROCESSES GRID] Clicking Proceed at {proceed_rect}")
             click_center(proceed_rect)
             
-            # --- DYNAMIC CONSOLE MONITORING FEATURE ---
-            # Replaces the hardcoded 20-second sleep block
             print("  [MONITOR] Proceed triggered. Locating process log panel frame...")
             
             log_panel_rect = None
             for hwnd, cls, title, rect, vis in all_children:
-                # Isolate the element using class names and coordinates matching your log data file
                 if cls == TRADEPLUS_CLASS and vis and (840 <= rect[0] <= 850) and (180 <= rect[1] <= 190):
                     log_panel_rect = rect
                     break
             
             if not log_panel_rect:
-                # Fallback layout coordinates from the layout log output 
                 log_panel_rect = (846, 183, 1174, 654)
 
-            # Center calculation for the red-circled log console element area
             console_x = (log_panel_rect[0] + log_panel_rect[2]) // 2
             console_y = (log_panel_rect[1] + log_panel_rect[3]) // 2
             
             print("  [MONITOR] Entering dynamic evaluation loop. Waiting for process completion tokens...")
-            check_interval = 5.0  # Verification polling frequency rate
+            check_interval = 5.0  
             
             while True:
                 try:
-                    # Focus inside the console log panel to make clipboard selection commands viable
                     mouse.click(button='left', coords=(console_x, console_y))
                     time.sleep(0.3)
                     
-                    # Clear clipboard cache channels
                     win32clipboard.OpenClipboard()
                     win32clipboard.EmptyClipboard()
                     win32clipboard.CloseClipboard()
                     time.sleep(0.1)
                     
-                    # Perform Select-All and Copy sequence sequences
                     send_keys("^a")
                     time.sleep(0.2)
                     send_keys("^c")
@@ -596,13 +619,14 @@ class ControlCenterPage:
                 
                 time.sleep(check_interval)
             
-            # Continue standard completion dismissal routine blocks
             self.dismiss_center_msgbox(cc_hwnd, date_value=None)
             self._close_report_popup()
         else:
             print("  ⚠ [PROCESSES GRID] ERROR: Proceed button not found!")
 
     def set_control_center_date(self, cc_hwnd, date_value):
+        # Normalize incoming config input to standard Application format (DD/MM/YYYY)
+        date_value = _normalize_to_dd_mm_yyyy(date_value)
         print(f"Setting Control Center date to: '{date_value}'")
         time.sleep(0.5)
         
@@ -687,7 +711,6 @@ class ControlCenterPage:
         all_children = get_all_children(cc_hwnd)
         btn_rect = None
         for hwnd, cls, title, rect, vis in all_children:
-            # FIXED: Removed the stray text syntax error here
             if cls == BUTTON_CLASS and vis and title.strip() == "Processes" and rect[0] < 350:
                 btn_rect = rect
                 break
@@ -718,6 +741,8 @@ class ControlCenterPage:
         time.sleep(0.8)
 
     def set_process_for_date(self, cc_hwnd, for_date_value):
+        # Normalize dynamic workspace input execution strings 
+        for_date_value = _normalize_to_dd_mm_yyyy(for_date_value)
         print(f"Setting Processes workspace 'For :' date to: '{for_date_value}'")
         all_children = get_all_children(cc_hwnd)
         date_ctrl = None
@@ -813,7 +838,6 @@ class ControlCenterPage:
         time.sleep(0.8)
 
     def set_others_settlement(self, cc_hwnd, settlement_name):
-        """Locates the settlement dropdown under Others tab and dynamically selects matching item by first 2 letters prefix."""
         prefix_target = settlement_name.strip()[:2].upper()
         print(f"Selecting Settlement option using prefix tracking: '{prefix_target}' (from '{settlement_name}')")
         
@@ -832,7 +856,6 @@ class ControlCenterPage:
         click_center(settlement_combo_rect)
         time.sleep(0.5)
 
-        # WIN32 COMBOBOX MESSAGES
         CB_SELECTSTRING = 0x014D
         CBN_SELCHANGE   = 1
         WM_COMMAND      = 0x0111
@@ -1096,6 +1119,7 @@ class ControlCenterPage:
             cc_hwnd = self._get_control_center_hwnd()
 
             if date is not None:
+                # Internal normalization converts YYYY/MM/DD target string securely inside application layout sets
                 self.set_control_center_date(cc_hwnd, date)
                 time.sleep(0.2)
                 self.click_proceed_button(cc_hwnd)
@@ -1124,11 +1148,10 @@ class ControlCenterPage:
                     self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=True)
                     time.sleep(0.5)
 
-                    # --- ADDED 10 SECOND STABILIZATION TIMER FOR BSE ---
                     print("  [TIMER] Waiting 10 seconds for File BSE grid data to load...")
                     time.sleep(10.0)
 
-                    status = self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, date_value=date)
+                    status = self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, date_value=date, current_segment="BSE")
 
                     print("  [SEQUENCER PASS 1] Clearing BSE selection state...")
                     self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=False)
@@ -1143,11 +1166,10 @@ class ControlCenterPage:
                     self.check_matrix_checkbox(cc_hwnd, market_segment="NSE", state=True)
                     time.sleep(0.5)
 
-                    # --- ADDED 10 SECOND STABILIZATION TIMER FOR NSE ---
                     print("  [TIMER] Waiting 10 seconds for NSE File grid data to load...")
                     time.sleep(10.0)
 
-                    status = self.scan_and_process_data_grid(cc_hwnd, nse_files_workflow, date_value=date)
+                    status = self.scan_and_process_data_grid(cc_hwnd, nse_files_workflow, date_value=date, current_segment="NSE")
 
                     print("  [SEQUENCER PASS 2] Clearing NSE selection state...")
                     self.check_matrix_checkbox(cc_hwnd, market_segment="NSE", state=False)

@@ -1,0 +1,57 @@
+========================================================
+Log Session Started At: 2026-06-15 15:10:33
+Console output path: D:\TradePlus_Automation\log\log_2026-06-15_151033.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 3] Processing Module: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+Opening Menu: Utilities → Pledge Management (index 13)
+Opened: Utilities → Pledge Management
+Clicking tab: 'Manage' (index 1)
+  Tab 'Manage' activated.
+Setting action dropdown selection to: 'Un Pledge'
+  ✓ Found target Action ComboBox via precise match: handle=1837962, rect=(362, 211, 553, 232)
+  [WIN32 CB] Searching internal memory structure for string layout exact match: 'Un Pledge'
+  Dropdown action successfully configured to selection index 0 ✓
+Setting Control Center style date to: '11/02/2026'
+  ✓ Date value set to '11/02/2026' smoothly via memory write pipeline configuration.
+  Processing checkbox: 'With EPN-BLK' -> Target: True
+    Checkbox 'With EPN-BLK': CHANGED TO True
+  Processing checkbox: 'Items Sold By Client' -> Target: True
+    Checkbox 'Items Sold By Client': CHANGED TO True
+[THREAD WATCHER] Scanning for dialog box contexts...Clicking the 'Fetch' button...
+
+[THREAD WATCHER] Pop-up window identified: handle=1707758. Dismissing via ENTER...
+[THREAD WATCHER] ✓ Pressed ENTER to dismiss the popup ✓
+  Fetch button clicked successfully ✓
+  [WAIT CONTROL] Fetch cycle finalized. Waiting exactly 3 seconds before executing Save...
+[THREAD WATCHER] Scanning for dialog box contexts...Clicking the 'Save' button...
+
+
+ERROR OCCURRED DURING WORKFLOW RUN: Core execution grid layout 'Save' process button not found!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 333, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        tab_name              = step_cfg["tab_name"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        click_fetch           = step_cfg.get("click_fetch", False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 439, in process
+    self.click_pledge_save_button(pledge_win_hwnd)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 363, in click_pledge_save_button
+    raise Exception("Core execution grid layout 'Save' process button not found!")
+Exception: Core execution grid layout 'Save' process button not found!
+
+Press Enter to Exit...
