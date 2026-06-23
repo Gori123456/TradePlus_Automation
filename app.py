@@ -120,31 +120,20 @@ class BackgroundScreenRecorder:
 # ══════════════════════════════════════════════
 def send_execution_email_report(success=True, error_message=None, screenshot_path=None, video_path=None):
     """
-    Sends a status email with only the screenshot attached.
-    Video is saved locally for reference but NOT emailed (file too large for SMTP).
-    Reads SMTP credentials from mail.json. Retries once on transient failures.
+    Sends status email utilizing credentials read from the unified master_action_data memory tree.
     """
     smtp_server   = "smtp.gmail.com"
     smtp_port     = 587
     MAX_RETRIES   = 2
 
-    # ─── LOAD mail.json ───
-    mail_config_path = os.path.join(BASE_DIR, "mail.json")
-    if not os.path.exists(mail_config_path):
-        print(f"❌ EMAIL: 'mail.json' not found at {mail_config_path}. Skipping email.")
-        return
-    try:
-        with open(mail_config_path, "r") as f:
-            mail_data = json.load(f)
-        sender_email    = mail_data.get("sender_email", "").strip()
-        sender_password = mail_data.get("sender_password", "").replace(" ", "")
-        recipient_email = mail_data.get("recipient_email", "").strip()
-    except Exception as json_err:
-        print(f"❌ EMAIL: Failed to parse mail.json: {json_err}")
-        return
+    # Parse parameters directly out of global nested mapping dictionary
+    mail_data = master_action_data.get("mail_config", {})
+    sender_email    = mail_data.get("sender_email", "").strip()
+    sender_password = mail_data.get("sender_password", "").replace(" ", "")
+    recipient_email = mail_data.get("recipient_email", "").strip()
 
     if not sender_email or not sender_password or not recipient_email:
-        print("❌ EMAIL: sender_email / sender_password / recipient_email missing in mail.json.")
+        print("❌ EMAIL: sender_email / sender_password / recipient_email missing in Action.json 'mail_config' block. Skipping email.")
         return
 
     # ─── BUILD MESSAGE ───
@@ -369,19 +358,20 @@ def close_any_open_report_tabs(context_label="REPORT INTERCEPT", wait_for_render
 
 
 # ══════════════════════════════════════════════
-# CONFIGURATION LOADERS & LAUNCHER
+# CONFIGURATION LOADERS & LAUNCHER (UPDATED)
 # ══════════════════════════════════════════════
-config_path = os.path.join(BASE_DIR, "config.json")
-actions_path = os.path.join(BASE_DIR, "payout_workflow.json")
+action_json_path = os.path.join(BASE_DIR, "Action.json")
 
-with open(config_path, "r") as f:
-    config_data = json.load(f)
+if not os.path.exists(action_json_path):
+    raise FileNotFoundError(f"CRITICAL: Unified configuration file missing at {action_json_path}")
 
-with open(actions_path, "r") as f:
-    workflow_data = json.load(f)
+with open(action_json_path, "r") as f:
+    master_action_data = json.load(f)
 
-should_auto_close = workflow_data.get("auto_close", False)
-pipeline = workflow_data.get("execution_pipeline", [])
+# Extract segregated blocks from unified mapping dictionary
+config_data       = master_action_data.get("app_config", {})
+should_auto_close = master_action_data.get("auto_close", False)
+pipeline          = master_action_data.get("execution_pipeline", [])
 
 # ══════════════════════════════════════════════
 # ★ INITIALIZE SCREEN RECORDER BEFORE APP LAUNCH

@@ -1,0 +1,68 @@
+{
+    "app_config": {
+        "application_path": "D:\\TradePlus\\TradePlusX.exe",
+        "username": "JATIN",
+        "password": "123456"
+    },
+    "mail_config": {
+        "sender_email": "jatingori72@gmail.com",
+        "sender_password": "ytwdxepjhldmudte",
+        "recipient_email": "Raj2024sm@outlook.com"
+    },
+    "auto_close": true,
+    "execution_pipeline": [
+        {
+            "module": "control_center",
+            "enabled": true,
+            "index": 5,
+            "date": "2026/02/11",
+            "file_imports": {
+                "enabled": true,
+                "product": "Equity",
+                "type": "UDIFF",
+                "check_bse_cash": true,
+                "check_nse_cash": true,
+                "bse_files_workflow": {
+                    "BSE_Cash_Broker Query": true
+                },
+                "nse_files_workflow": {
+                    "NSE_Cash_Trade File": true,
+                    "NSE_Cash_Obligation File (Provisional)": true
+                }
+            },
+            "others": {
+                "enabled": true,
+                "exchange": "NSE",
+                "settlement": "NQ2026013",
+                "exchange_obligation_reconciliation": true,
+                "unprocess_bills": false
+            },
+            "processes": {
+                "enabled": true,
+                "product": "Equity",
+                "for_date": "11/01/2026",
+                "click_fetch": true,
+                "target_settlement": "NQ2026013"
+            }
+        },
+        {
+            "module": "demat_auto_entries",
+            "enabled": true,
+            "index": 7,
+            "date": "11/02/2026",
+            "settlement_name": "NQ2026013",
+            "target_process_name": "Demat Auto Entries"
+        },
+        {
+            "module": "pledge_management",
+            "enabled": true,
+            "index": 13,
+            "tab_name": "Manage",
+            "manage_action": "Un Pledge",
+            "manage_date": "11/02/2026",
+            "items_sold_by_client": true,
+            "with_epn_blk": true,
+            "click_fetch": true
+        }
+    ]
+}
