@@ -1,0 +1,39 @@
+========================================================
+Log Session Started At: 2026-06-23 12:50:15
+Console output path: D:\TradePlus_Automation\log\log_2026-06-23_125015.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+Video logs storage path: D:\TradePlus_Automation\Capture_Data\recording_20260623_125015.avi
+========================================================
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 375, in <module>
+    login_page.login(config_data["username"], config_data["password"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\login_page.py", line 46, in login
+    ).click_input()
+      ^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 379, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+        timeout,
+    ...<5 lines>...
+         controls.InvalidElement),
+        criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 203, in __get_ctrl
+    dialog = self.backend.generic_wrapper_class(findwindows.find_element(**criteria[0]))
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 84, in find_element
+    elements = find_elements(**kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 181, in find_elements
+    return [backend_obj.element_info_class(handle), ]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 71, in __init__
+    self._element = IUIA().iuia.ElementFromHandle(handle_or_elem)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+_ctypes.COMError: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))

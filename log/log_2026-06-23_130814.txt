@@ -1,0 +1,26 @@
+========================================================
+Log Session Started At: 2026-06-23 13:08:14
+Console output path: D:\TradePlus_Automation\log\log_2026-06-23_130814.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+Video logging path: D:\TradePlus_Automation\Capture_Data\recording_20260623_130814.avi
+========================================================
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 383, in <module>
+    login_page = LoginPage(app)
+  File "D:\TradePlus_Automation\pages\login_page.py", line 7, in __init__
+    self.window = app.top_window()
+                  ~~~~~~~~~~~~~~^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 1149, in top_window
+    windows = findwindows.find_elements(process=self.process,
+                                        backend=self.backend.name)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 194, in find_elements
+    elements = element.children(process=process,
+                                class_name=class_name,
+                                control_type=control_type,
+                                cache_enable=True)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 283, in children
+    return self._get_elements(IUIA().tree_scope["children"], cond, cache_enable)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 269, in _get_elements
+    ptrs_array = self._element.FindAll(tree_scope, cond)
+KeyboardInterrupt

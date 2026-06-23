@@ -922,84 +922,183 @@ class ControlCenterPage:
         if not proceed_rect:
             raise Exception("Could not find bottom-right workspace Proceed button!")
         click_center(proceed_rect)
-        time.sleep(1.0)
+        time.sleep(1.5)
 
-        self._dismiss_others_proceed_popup()
+        result = self._dismiss_others_proceed_popup()
+        if result == "MISMATCH":
+            raise Exception(
+                "[OTHERS PROCEED] CRITICAL STOP: 'Mis Match Found' detected in post-Proceed dialog. "
+                "Halting entire execution pipeline — data integrity check failed."
+            )
+
         self._close_report_popup()
 
     def _dismiss_others_proceed_popup(self):
-        print("  [OTHERS PROCEED] Checking for post-Proceed dialog box...")
-        time.sleep(0.6)  
+        """
+        Polls up to 10 seconds for a post-Proceed confirmation or mismatch dialog.
+
+        DIALOG MATCHING RULES (tight — avoids VB6 "Query Management" and other
+        unrelated windows that happen to use WindowsForms classes):
+          - Class is "#32770" (standard Win32 MessageBox)                   OR
+          - Title contains "information", "are you sure", "mis match",
+            "mismatch", or "reconcil"                                       OR
+          - Class contains "windowsforms" AND title contains at least one
+            of the above keywords   (prevents bare WindowsForms panels from
+            matching, e.g. the "Query Management" VB6 host window)
+
+        MISMATCH LOGIC:
+          "mis match found"     → dismisses dialog cleanly, returns "MISMATCH"
+                                  → caller raises Exception → pipeline stops
+          "mis match not found" → dismisses safely, returns None → continue
+          anything else         → dismisses safely, returns None → continue
+          no dialog found       → returns None → continue
+
+        KEYSTROKE SAFETY:
+          Never fires send_keys("{ENTER}") unless GetForegroundWindow() confirms
+          the dialog handle is in foreground — prevents stray keystrokes reaching
+          the desktop taskbar or pinned CRM applications.
+        """
+        print("  [OTHERS PROCEED] Waiting for post-Proceed dialog box (up to 10 s)...")
+
+        DIALOG_TITLE_KEYWORDS = ("information", "are you sure", "mis match", "mismatch", "reconcil")
 
         popup_hwnd = None
-        def _find_dialog(hwnd, _):
-            nonlocal popup_hwnd
+        for _poll in range(20):        # 20 × 0.5 s = 10 s max
+            time.sleep(0.5)
+            candidate = None
+
+            def _find_dialog(hwnd, _):
+                nonlocal candidate
+                try:
+                    if not win32gui.IsWindowVisible(hwnd):
+                        return True
+                    if hwnd == self.main_hwnd:
+                        return True
+                    cls   = win32gui.GetClassName(hwnd)
+                    title = win32gui.GetWindowText(hwnd).lower().strip()
+
+                    # Standard Win32 message box — always match
+                    if cls == "#32770":
+                        candidate = hwnd
+                        return True
+
+                    title_hit = any(kw in title for kw in DIALOG_TITLE_KEYWORDS)
+
+                    # WindowsForms window: only match when title also has a keyword
+                    # (avoids grabbing the "Query Management" VB6 host or CC panel)
+                    if "windowsforms" in cls.lower() and title_hit:
+                        candidate = hwnd
+                        return True
+
+                    # Any other non-WF class with a matching title
+                    if title_hit:
+                        candidate = hwnd
+                        return True
+
+                except:
+                    pass
+                return True
+
+            win32gui.EnumWindows(_find_dialog, None)
+
+            if candidate:
+                popup_hwnd = candidate
+                break
+
+        if not popup_hwnd:
+            print("  [OTHERS PROCEED] No confirmation dialog detected. Continuing ✓")
+            return None
+
+        dialog_title = win32gui.GetWindowText(popup_hwnd)
+        print(f"  [OTHERS PROCEED] Dialog found: '{dialog_title}' handle={popup_hwnd}")
+        time.sleep(0.3)
+
+        # ── Collect ALL visible child text from the dialog ──
+        text_parts = [dialog_title.lower()]
+        def _collect(hwnd, _):
             try:
-                if not win32gui.IsWindowVisible(hwnd):
-                    return True
-                if hwnd == self.main_hwnd:
-                    return True
-                cls   = win32gui.GetClassName(hwnd)
-                title = win32gui.GetWindowText(hwnd).lower()
-                if (cls == "#32770"
-                        or "information" in title
-                        or "are you sure" in title
-                        or "windowsforms" in cls.lower()):
-                    popup_hwnd = hwnd
+                t = win32gui.GetWindowText(hwnd).strip()
+                if t:
+                    text_parts.append(t.lower())
             except:
                 pass
             return True
+        try:
+            win32gui.EnumChildWindows(popup_hwnd, _collect, None)
+        except:
+            pass
 
-        win32gui.EnumWindows(_find_dialog, None)
+        combined = " ".join(text_parts)
+        print(f"  [OTHERS PROCEED] Dialog content: {combined!r}")
 
-        if not popup_hwnd:
-            print("  [OTHERS PROCEED] No dialog detected. Continuing ✓")
-            return
+        # ── MISMATCH DETECTION ──
+        is_mismatch_found     = "mis match found"     in combined or "mismatch found"     in combined
+        is_mismatch_not_found = "mis match not found" in combined or "mismatch not found" in combined
 
-        print(f"  [OTHERS PROCEED] Dialog found: '{win32gui.GetWindowText(popup_hwnd)}' handle={popup_hwnd}")
-        time.sleep(0.4)
+        if is_mismatch_found and not is_mismatch_not_found:
+            print("  [OTHERS PROCEED] ⛔ CRITICAL: 'Mis Match Found' — stopping pipeline.")
+            # Cleanly dismiss the dialog before propagating the stop signal
+            self._click_ok_or_close_on_dialog(popup_hwnd)
+            return "MISMATCH"
 
+        if is_mismatch_not_found:
+            print("  [OTHERS PROCEED] ✓ 'Mis Match Not Found' confirmed — safe to continue.")
+        else:
+            print("  [OTHERS PROCEED] Normal confirmation dialog — dismissing and continuing.")
+
+        self._click_ok_or_close_on_dialog(popup_hwnd)
+        return None
+
+    def _click_ok_or_close_on_dialog(self, popup_hwnd):
+        """
+        Brings popup_hwnd to foreground then dismisses it via:
+          1. BM_CLICK on OK / Yes button handle (preferred — no focus dependency)
+          2. send_keys("{ENTER}") only when GetForegroundWindow confirms focus
+          3. PostMessage(WM_CLOSE) as last resort if focus cannot be obtained
+        """
+        # Bring to foreground
+        try:
+            win32gui.SetForegroundWindow(popup_hwnd)
+            time.sleep(0.4)
+        except:
+            pass
+
+        # Find OK / Yes button
         btn_hwnd = None
-        btn_rect  = None
-
         def _find_ok(hwnd, _):
-            nonlocal btn_hwnd, btn_rect
+            nonlocal btn_hwnd
             try:
                 raw   = win32gui.GetWindowText(hwnd).strip()
                 clean = raw.replace("&", "").lower()
                 cls   = win32gui.GetClassName(hwnd)
                 if clean in ("ok", "yes") and "button" in cls.lower() and win32gui.IsWindowVisible(hwnd):
                     btn_hwnd = hwnd
-                    btn_rect  = win32gui.GetWindowRect(hwnd)
             except:
                 pass
             return True
-
         try:
             win32gui.EnumChildWindows(popup_hwnd, _find_ok, None)
         except:
             pass
 
-        try:
-            win32gui.SetForegroundWindow(popup_hwnd)
-            time.sleep(0.3)
-        except:
-            pass
-
         if btn_hwnd:
-            print(f"  [OTHERS PROCEED] Clicking OK/Yes button handle={btn_hwnd}")
             try:
-                win32api.SendMessage(btn_hwnd, 0x00F5, 0, 0)  
+                win32api.SendMessage(btn_hwnd, 0x00F5, 0, 0)   # BM_CLICK
                 time.sleep(0.5)
-                print("  [OTHERS PROCEED] Dialog dismissed via BM_CLICK ✓")
+                print("  [OTHERS PROCEED] Dismissed via BM_CLICK ✓")
                 return
             except Exception as e:
                 print(f"  [OTHERS PROCEED] BM_CLICK failed: {e}")
 
-        print("  [OTHERS PROCEED] Sending {ENTER} to dismiss dialog...")
-        send_keys("{ENTER}")
-        time.sleep(0.5)
-        print("  [OTHERS PROCEED] Dialog dismissed via ENTER ✓")
+        # send_keys only when we truly own foreground
+        if win32gui.GetForegroundWindow() == popup_hwnd:
+            send_keys("{ENTER}")
+            time.sleep(0.5)
+            print("  [OTHERS PROCEED] Dismissed via {ENTER} ✓")
+        else:
+            win32api.PostMessage(popup_hwnd, win32con.WM_CLOSE, 0, 0)
+            time.sleep(0.5)
+            print("  [OTHERS PROCEED] Dismissed via WM_CLOSE ✓")
 
     def click_file_imports_button(self, cc_hwnd):
         print("Clicking sidebar 'File Imports' navigation button...")
@@ -1130,6 +1229,11 @@ class ControlCenterPage:
         print(f"[DYNAMIC ROUTER] Computed task sequence pipeline order: {execution_sequence}")
 
         for step in execution_sequence:
+            # ── Re-fetch cc_hwnd before EVERY step so stale handles from prior
+            # ── suite operations (e.g. Others Proceed reloading the CC window)
+            # ── never cause element-not-found failures in subsequent steps.
+            cc_hwnd = self._get_control_center_hwnd()
+
             if step == "file_imports" and click_file_imports:
                 print("\n--- Executing File Imports Suite ---")
                 self.click_file_imports_button(cc_hwnd)

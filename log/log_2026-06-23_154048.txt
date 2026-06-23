@@ -1,0 +1,41 @@
+========================================================
+Log Session Started At: 2026-06-23 15:40:48
+Console output path: D:\TradePlus_Automation\log\log_2026-06-23_154048.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-23_154048.avi
+Application Started
+Found 4 edit controls
+Password entered. Verify on screen.
+Clicking Login
+Login Completed
+Starting Configured Workflows Sequence...
+
+[PIPELINE STEP 1] Processing Module: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+Opening Menu: Utilities → Control Center (index 5)
+Opened: Utilities → Control Center
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 53: handle=133642
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+
+--- Executing Others Suite ---
+Clicking 'Others' button...
+Setting Others Tab Exchange to: 'NSE'
+
+ERROR OCCURRED DURING WORKFLOW RUN: Exchange dropdown box not found under Others view scope!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 407, in <module>
+    status = page.process(
+        date                = step_cfg.get("date"),
+    ...<18 lines>...
+        raw_workflow_config = step_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1296, in process
+    self.set_others_exchange(cc_hwnd, exchange)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 829, in set_others_exchange
+    raise Exception("Exchange dropdown box not found under Others view scope!")
+Exception: Exchange dropdown box not found under Others view scope!

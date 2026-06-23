@@ -536,6 +536,39 @@ class SharePayoutPage:
                 return result[0]
             time.sleep(0.5)
         raise Exception("Demat Processes window not found!")
+    
+    def handle_special_settlement_popup(self, cc_hwnd, date_value):
+        time.sleep(0.5)  
+        popup_hwnd = None
+        for wait_step in range(6):
+            time.sleep(0.1)
+            def find_settlement_box(hwnd, _):
+                nonlocal popup_hwnd
+                try:
+                    if win32gui.IsWindowVisible(hwnd):
+                        title = win32gui.GetWindowText(hwnd).lower()
+                        if "settlement" in title or "create" in title:
+                            if hwnd != self.main_hwnd:
+                                popup_hwnd = hwnd
+                except: pass
+                return True
+            win32gui.EnumWindows(find_settlement_box, None)
+            if popup_hwnd:
+                break
+
+        if popup_hwnd:
+            print("  [SETTLEMENT ALERT] 'Create Settlement' dialog discovered. Dismissing with ENTER...")
+            win32gui.SetForegroundWindow(popup_hwnd)
+            time.sleep(0.3)
+            send_keys("{ENTER}")
+            time.sleep(0.5)
+            try:
+                win32gui.SetForegroundWindow(self.main_hwnd)
+                time.sleep(0.3)
+            except:
+                pass
+            return True
+        return False
 
     def close_window(self):
         print("Closing Demat Processes window...")

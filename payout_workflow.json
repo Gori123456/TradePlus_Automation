@@ -7,11 +7,19 @@
             "index": 5,
             "date": "2026/02/11",
             "file_imports": {
-                "enabled": true,
+                "enabled": false,
                 "product": "Equity",
                 "type": "UDIFF",
                 "check_bse_cash": true,
-                "check_nse_cash": true,
+                "check_nse_cash": true,    
+                "check_bse_fo": false,
+                "check_nse_fo": true,
+                "check_bse_currency": false,
+                "check_nse_currency": true,
+                "check_bse_mf": false,
+                "check_nse_mf": false,
+                "check_bse_slbm": false,
+                "check_nse_slbm": true,
                 "bse_files_workflow": {
                     "BSE_Cash_Broker Query": true,
                     "BSE_Cash_Obligation File (Provisional)": false,
@@ -28,6 +36,19 @@
                     "NSE_Cash_STT Details File": false,
                     "NSE_Cash_Stamp Duty File": false,
                     "NSE_Cash_Bhavcopy": false
+                },
+                "nse_fo_workflow": {
+                    "NSE_F&O_Trade File": false,
+                    "NSE_F&O_Postion File": false,
+                    "NSE_F&O_STT Details File": false,
+                    "NSE_F&O_Stamp Duty File": false,
+                    "NSE_F&O_Bhavcopy": false
+                },
+                "nse_currency_workflow": {
+                    "NSE_Currency_Trade File": false,
+                    "NSE_Currency_Postion File": false,
+                    "NSE_Currency_Stamp Duty File": false,
+                    "NSE_Currency_Bhavcopy": false
                 }
             },
             "others": {
