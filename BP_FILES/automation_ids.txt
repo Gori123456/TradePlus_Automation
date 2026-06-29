@@ -1,0 +1,301 @@
+AUTOMATION ID INSPECTOR
+Generated: 2026-06-25 14:57:00
+Window: TradePlusX
+★ = Has AutomationId   <<< = Use this!
+====================================================================================================
+
+[★] AutomationId='frmMainMenu' | Name='TradePlusX' | ControlType='Window' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+    [★] AutomationId='ToolStrip' | Name='ToolStrip' | ControlType='ToolBar' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+        [★] AutomationId='3017630' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+        [★] AutomationId='1641634' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+        [★] AutomationId='3410980' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='Grip' | ControlType='Thumb' | ClassName=''
+        [ ] AutomationId='' | Name='Calculator' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='' | ControlType='Separator' | ClassName=''
+        [ ] AutomationId='' | Name='Accounting Year : ' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='' | ControlType='Separator' | ClassName=''
+        [ ] AutomationId='' | Name='Company :' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='' | ControlType='Separator' | ClassName=''
+        [ ] AutomationId='' | Name='ToolStripButton1' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='ToolStripButton2' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='My Tasks' | ControlType='Button' | ClassName=''
+    [★] AutomationId='MenuStrip' | Name='MenuStrip' | ControlType='MenuBar' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+        [ ] AutomationId='' | Name='Masters' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Client Master' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='General Accounts' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Brokerages' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Cash Segment' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Derivatives' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Sharing Schemes' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Special Brokerages' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Charge Setting (Cash) ' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Charge Setting (F&O) ' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Our Dps' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Securities ' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Scrips' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Products & Series' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Utilities' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bulk Update' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Client Export' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Contact ID' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Settlements' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Authorised Persons & RMs' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Branches' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Sub Masters' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='DP Master' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Groups, Family . . . +10' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Collateral Type Definition' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Holidays' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='CTCL Master' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Terminals' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Transactions' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Special Charges' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Market Summary' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Trades' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Cash Segment' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Derivatives (FO & FX)' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Reports' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Investor Report' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Taxes' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Trades' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Trade Listing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Daily Confirmation' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bill Summary' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bill Printing' | ControlType='MenuItem' | ClassName=''
+                    [ ] AutomationId='' | Name='Cash Segment' | ControlType='MenuItem' | ClassName=''
+                    [ ] AutomationId='' | Name='Derivatives (FO & FX)' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Outstanding Position' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Charges' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Commision Report' | ControlType='MenuItem' | ClassName=''
+                    [ ] AutomationId='' | Name='Exchange Segment wise' | ControlType='MenuItem' | ClassName=''
+                    [ ] AutomationId='' | Name='Combined Report' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='AGTS' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='STT Listing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Acknowledgements' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Multiple Settlement Position' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Contract Annexture' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Assist' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Internal Exercise/Assignment Allocation' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Exercise/Assignment Listing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Trade Confirmation (SLBM)' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='MIS' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Performance Report' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Outstanding Report' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Clients' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Margin' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='SMS' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Client Listing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Account Opening Letter' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Outstanding Report' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='General Letter' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Margin Funding' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Request By Clients' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Early Pay-in of Funds' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Short Allocation' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Holding Statement' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Accounts' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Ledger' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='MIS' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Account Audit' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Entry Analysis' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Compliance' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='STT Yearly Certificate' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Inspection Report' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Collateral at Client Level' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bulk Trade Reporting' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Collateral Allocation' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Collateral Release' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='RMS Merge Report' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Demat' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Demat Audit' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Delivery Pending' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bulk Printing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Sell Beneficiary Holdings' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Demat Confirmation Letter' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Utilities' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Entries' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Corporate Action (F&O)' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='BuyBack' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Symbol / CM Change (F&O)' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Dividend Receipt Entry' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Combine Contract Note' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Control Center' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Demat Charges' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Demat Processes' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Demat Share Management' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='RMS' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Front Office Export' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Remissier sharing' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Stamp Duty Reconciliation' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Pledge Management' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Trade File Export' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Institutional' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='STP Files' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='CP & OTR File' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Corporate Action (Cash)' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Span Interface' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Query Management' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Payout Release Status' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='CUPSPA Management' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Scheduler' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Accounts' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Entries' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Receipts' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Payment' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Journals' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Contra' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='GST' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Vouchers' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Receipt/Payment Printing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Expense Voucher Printing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Note Printing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Journal' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bank Pay Slip' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Utility' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Payout Analysis' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Interest Calculator' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bank Reconcilation' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bulk Accounting Entries' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Cheque Printing' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='DP Balance Transfer' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Intersegment Balance Transfer' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Writeoff Balance' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Monthly Debit/Credits' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Registers' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Final Accounts' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Combined' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Balance sheet' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Year End Proccess' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Repost Accounts' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Authorise Accounts' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Administration' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Query Reporting' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Setup' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='System' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Bank Reco / Cheque Print' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='TradeNet' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Default Selection' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Users' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Rights Definition' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Authority to Verify Accounts' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='TradeNet Users Right Settings' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Help' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='About ...' | ControlType='MenuItem' | ClassName=''
+            [ ] AutomationId='' | Name='Calculator' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Exit' | ControlType='MenuItem' | ClassName=''
+    [★] AutomationId='StatusStrip' | Name='StatusStrip' | ControlType='StatusBar' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+        [ ] AutomationId='' | Name='TradePlusX' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='Released On : 03/06/2026 ' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name=' 12:38 PM' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='Version : 1.1.16.52' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='JATIN' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='25/06/2026' | ControlType='Text' | ClassName=''
+        [ ] AutomationId='' | Name='tplusnariman on DESKTOP-RAN971J' | ControlType='Text' | ClassName=''
+    [★] AutomationId='1051592' | Name='' | ControlType='Pane' | ClassName='WindowsForms10.MDICLIENT.app.0.141b42a_r7_ad1' <<<
+        [★] AutomationId='PledgeMgmt' | Name='Margin - Pledge/Unpledge' | ControlType='Window' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+            [★] AutomationId='tabMain' | Name='' | ControlType='Tab' | ClassName='WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1' <<<
+                [★] AutomationId='tabpageUnpledge' | Name='Manage' | ControlType='Pane' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='grpSave' | Name='' | ControlType='Group' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='btnManageSave' | Name='Save' | ControlType='Button' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label32' | Name=' CDSL :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label31' | Name=' NSDL :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManageDPNSDLFormat' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                        [★] AutomationId='btnManageCancel' | Name='Cancel' | ControlType='Button' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageReject' | Name='Reject Pending Requests' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label18' | Name='Execution Date :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='lblManageDPFormat' | Name='Format :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='dtManageExecDt' | Name='25/06/2026' | ControlType='Pane' | ClassName='WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManageDPFormat' | Name='Execution Date :' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='Execution Date :' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                    [★] AutomationId='Label19' | Name='Date :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='btnManageFetch' | Name='Fetch' | ControlType='Button' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='grpManage' | Name='' | ControlType='Group' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkEPNBLK' | Name='With EPN-BLK' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkUnApprovedSec' | Name='Unapproved Securities' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkClPos' | Name='Client with Position' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageRequest' | Name='By Client & Branch Request' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageDeductDP' | Name='Deduct DP Holding' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='ntxtManageExcess' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='NtxtManageValBelHc' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='txtManageMarReq' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='ntxtManagePledgePast' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='ntxtManageValAbvHc' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManageRePledgee' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                        [★] AutomationId='chkManageRePledgee' | Name='Re-Pledged to' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label11' | Name='Days' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label9' | Name='Days' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkItemNotReplede' | Name='Items Not Re-Pledged Only' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='Label7' | Name='% of Margin' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageExcess' | Name='Excess Over' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManageRePledgeSeg' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                        [★] AutomationId='chkManageRepldgeFor' | Name='Re-Pledged for' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageExcRepldge' | Name='Exclude Re-Pledged' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageValBelHc' | Name='Value After Hair-Cut Below Rs.' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageMarReq' | Name='By Client Not Having Margin Requirement in Past ' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageItemSold' | Name='Items Sold By Client' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManageSeg' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                        [★] AutomationId='chk4' | Name='Segment' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='cmbManagePledgee' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                            [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                            [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                        [★] AutomationId='chkManagePledgee' | Name='Pledgee A/c' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManagePledgePast' | Name='Pledged in Past ' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                        [★] AutomationId='chkManageValAbvHc' | Name='Value After Hair-Cut Above Rs.' | ControlType='CheckBox' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='dgvUnpledge' | Name='DataGridView' | ControlType='Table' | ClassName='WindowsForms10.Window.8.app.0.141b42a_r7_ad1' <<<
+                        [ ] AutomationId='' | Name='Top Row' | ControlType='Custom' | ClassName=''
+                            [ ] AutomationId='' | Name='PSN' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Our DP' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Client' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Name' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='ISIN' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Scrip' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Name' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Qty' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Remark' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='NetValue' | ControlType='Header' | ClassName=''
+                            [ ] AutomationId='' | Name='Release' | ControlType='Header' | ClassName=''
+                    [★] AutomationId='Label12' | Name='Security :' | ControlType='Text' | ClassName='WindowsForms10.STATIC.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='txtManageSecCd1' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='cmdManageSecHelp1' | Name='...' | ControlType='Button' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='txtManageSecName1' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='txtManageName1' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='txtManageGroup1' | Name='' | ControlType='Edit' | ClassName='WindowsForms10.EDIT.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='cmdManageGroup1' | Name='...' | ControlType='Button' | ClassName='WindowsForms10.BUTTON.app.0.141b42a_r7_ad1' <<<
+                    [★] AutomationId='cmbManageSel1' | Name='' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                        [ ] AutomationId='' | Name='' | ControlType='Text' | ClassName=''
+                        [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                    [★] AutomationId='cmbManage' | Name='Securities :' | ControlType='ComboBox' | ClassName='WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1' <<<
+                        [ ] AutomationId='' | Name='Securities :' | ControlType='Text' | ClassName=''
+                        [ ] AutomationId='' | Name='Open' | ControlType='Button' | ClassName=''
+                    [★] AutomationId='dtManageDate' | Name='25/06/2026' | ControlType='Pane' | ClassName='WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1' <<<
+                [ ] AutomationId='' | Name='Pledge' | ControlType='TabItem' | ClassName=''
+                [ ] AutomationId='' | Name='Manage' | ControlType='TabItem' | ClassName=''
+                [ ] AutomationId='' | Name='Imports' | ControlType='TabItem' | ClassName=''
+                [ ] AutomationId='' | Name='Reports' | ControlType='TabItem' | ClassName=''
+                [ ] AutomationId='' | Name='Approved Securities' | ControlType='TabItem' | ClassName=''
+                [ ] AutomationId='' | Name='Never Re-Pledge' | ControlType='TabItem' | ClassName=''
+            [ ] AutomationId='' | Name='' | ControlType='TitleBar' | ClassName=''
+                [★] AutomationId='MenuBar' | Name='System' | ControlType='MenuBar' | ClassName='' <<<
+                    [ ] AutomationId='' | Name='Document Window' | ControlType='MenuItem' | ClassName=''
+                [ ] AutomationId='' | Name='Close' | ControlType='Button' | ClassName=''
+    [ ] AutomationId='' | Name='' | ControlType='TitleBar' | ClassName=''
+        [★] AutomationId='MenuBar' | Name='System' | ControlType='MenuBar' | ClassName='' <<<
+            [ ] AutomationId='' | Name='System' | ControlType='MenuItem' | ClassName=''
+        [ ] AutomationId='' | Name='Minimize' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='Restore' | ControlType='Button' | ClassName=''
+        [ ] AutomationId='' | Name='Close' | ControlType='Button' | ClassName=''

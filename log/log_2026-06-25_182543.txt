@@ -1,0 +1,6 @@
+========================================================
+Log Session Started At: 2026-06-25 18:25:43
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_182543.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_182543.avi

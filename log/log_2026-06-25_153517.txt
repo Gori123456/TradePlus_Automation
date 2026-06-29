@@ -1,0 +1,88 @@
+========================================================
+Log Session Started At: 2026-06-25 15:35:17
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_153517.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_153517.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 3] Processing Menu: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+ 🖲️ Accessing Application Menu: Utilities -> Pledge Management
+ ✓ Menu accessed successfully via selection engine path.
+[INIT] Attaching to Pledge Management Window Context...
+Selecting tab: 'Manage' via explicit UIA Pane mapping...
+
+ERROR OCCURRED DURING WORKFLOW RUN: Could not select target 'Manage' layout tab panel: {'auto_id': 'tabpageUnpledge', 'control_type': 'Pane', 'top_level_only': False, 'parent': <uia_element_info.UIAElementInfo - 'TradePlusX', WindowsForms10.Window.8.app.0.141b42a_r7_ad1, 1510408>, 'backend': 'uia'}
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+        timeout,
+    ...<5 lines>...
+         controls.InvalidElement),
+        criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 458, in wait_until_passes
+    raise err
+pywinauto.timings.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 113, in click_manage_tab
+    click_control_center(target_tab)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 17, in click_control_center
+    rect = control.rectangle()
+           ^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 379, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 261, in __resolve_control
+    raise e.original_exception
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 222, in __get_ctrl
+    ctrl = self.backend.generic_wrapper_class(findwindows.find_element(**ctrl_criteria))
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 87, in find_element
+    raise ElementNotFoundError(kwargs)
+pywinauto.findwindows.ElementNotFoundError: {'auto_id': 'tabpageUnpledge', 'control_type': 'Pane', 'top_level_only': False, 'parent': <uia_element_info.UIAElementInfo - 'TradePlusX', WindowsForms10.Window.8.app.0.141b42a_r7_ad1, 1510408>, 'backend': 'uia'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 444, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        tab_name              = step_cfg["tab_name"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        click_fetch           = step_cfg.get("click_fetch", False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 316, in process
+    self.click_manage_tab()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 117, in click_manage_tab
+    raise Exception(f"Could not select target 'Manage' layout tab panel: {e}")
+Exception: Could not select target 'Manage' layout tab panel: {'auto_id': 'tabpageUnpledge', 'control_type': 'Pane', 'top_level_only': False, 'parent': <uia_element_info.UIAElementInfo - 'TradePlusX', WindowsForms10.Window.8.app.0.141b42a_r7_ad1, 1510408>, 'backend': 'uia'}
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_CRASH_State_20260625_153553.png
+🛑 Screen recording stopped safely.
+📎 Packing attachment context: Pipeline_CRASH_State_20260625_153553.png...
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+✅ Full report bundle successfully routed via customizable parameters!
+
+Press Enter to Exit...

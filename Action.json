@@ -1,68 +1,131 @@
 {
-    "app_config": {
-        "application_path": "D:\\TradePlus\\TradePlusX.exe",
-        "username": "JATIN",
-        "password": "123456"
-    },
-    "mail_config": {
-        "sender_email": "jatingori72@gmail.com",
-        "sender_password": "ytwdxepjhldmudte",
-        "recipient_email": "Raj2024sm@outlook.com"
-    },
-    "auto_close": true,
-    "execution_pipeline": [
+  "app_config": {
+    "application_path": "D:\\TradePlus\\TradePlusX.exe",
+    "username": "JATIN",
+    "password": "123456"
+  },
+
+  "mail_config": {
+    "From Email": "jatingori72@gmail.com",
+    "IPAddress": "smtp.gmail.com",
+    "Port": 587,
+    "User": "jatingori72@gmail.com",
+    "Password": "ytwdxepjhldmudte",
+    "CCEmail": "",
+    "BCCEmail": "",
+    "SSL": "N"
+  },
+
+  "auto_close": true,
+
+  "execution_pipeline": [
+    {
+      "Parent_Menu": "Utilities",
+      "enabled": true,
+
+      "sub_pipeline": [
         {
-            "module": "control_center",
-            "enabled": true,
-            "index": 5,
-            "date": "2026/02/11",
+          "enabled": true,
+            "Menu": "control_center",
+            "date": "20260211",
+
             "file_imports": {
                 "enabled": true,
                 "product": "Equity",
                 "type": "UDIFF",
-                "check_bse_cash": true,
-                "check_nse_cash": true,
-                "bse_files_workflow": {
-                    "BSE_Cash_Broker Query": true
+                "matrix_checkboxes": {
+                "chkBSECash": true,
+                "chkNSECash": true,
+                "chkBSEFO": false,
+                "chkNSEFO": false,
+                "chkMCXCash": false,
+                "chkFX": false,
+                "chkSLBM": false,
+                "chkMF": false
                 },
-                "nse_files_workflow": {
+                "bse_files_workflow": 
+                {
+                    "BSE_Cash_Broker Query": true,
+                    "BSE_Cash_Obligation File (Provisional)": false,
+                    "BSE_Cash_Obligation File (Final)": false,
+                    "BSE_Cash_STT Details File": false,
+                    "BSE_Cash_Stamp Duty File": false,
+                    "BSE_Cash_Bhavcopy": false,
+                    "BSE_Cash_Offer For Sale Trade File": false
+                },
+                "nse_files_workflow": 
+                {
                     "NSE_Cash_Trade File": true,
-                    "NSE_Cash_Obligation File (Provisional)": true
+                    "NSE_Cash_Obligation File (Provisional)": true,
+                    "NSE_Cash_Obligation File (Final)": false,
+                    "NSE_Cash_STT Details File": false,
+                    "NSE_Cash_Stamp Duty File": false,
+                    "NSE_Cash_Bhavcopy": false
                 }
             },
+
             "others": {
                 "enabled": true,
                 "exchange": "NSE",
-                "settlement": "NQ2026013",
+                "segment": "Cash",
+                "settlement": "NQ2026112",
                 "exchange_obligation_reconciliation": true,
-                "unprocess_bills": false
+                "unprocess_bills": false,
+                "display_obligation_money_sheet": false,
+                "accumulation_difference": false,
+                "stt_mismatch": false,
+                "bill_reconciliation": false
             },
+
             "processes": {
                 "enabled": true,
                 "product": "Equity",
-                "for_date": "11/01/2026",
+                "date": "20260211",
+                "bill_generation": true,
+                "accumulation": true,
+                "agts": true,
+                "revenue_sharing": true,
+                "lock_bill_prior": false,
                 "click_fetch": true,
                 "target_settlement": "NQ2026013"
             }
         },
+
         {
-            "module": "demat_auto_entries",
-            "enabled": true,
-            "index": 7,
-            "date": "11/02/2026",
-            "settlement_name": "NQ2026013",
-            "target_process_name": "Demat Auto Entries"
+          "Menu": "demat_processes",
+          "enabled": true,
+          "date": "20260211",
+          "settlement_name": "NQ2026013",
+          "target_process_name": "Demat Auto Entries",
+          "show_detail_before_process": true,
+          "one_by_one_processing": true,
+          "pay_in": true,
+          "pay_out": false
         },
+
         {
-            "module": "pledge_management",
-            "enabled": true,
-            "index": 13,
-            "tab_name": "Manage",
-            "manage_action": "Un Pledge",
-            "manage_date": "11/02/2026",
-            "items_sold_by_client": true,
-            "with_epn_blk": true,
-            "click_fetch": true
+          "Menu": "pledge_management",
+          "enabled": true,
+          "tab_name": "Manage",
+          "manage_action": "Un Pledge",
+          "date": "20260211",
+          "items_sold_by_client": true,
+          "with_epn_blk": true,
+          "click_fetch": true
+        },
+
+        {
+          "Menu": "demat_processes",
+          "enabled": true,
+          "date": "20260211",
+          "settlement_name": "NQ2026013",
+          "target_process_name": "Pay-In(POA)",
+          "show_detail_before_process": true,
+          "one_by_one_processing": true,
+          "pay_in": true,
+          "pay_out": true
         }
-    ]
+      ]
+    }
+  ]
 }

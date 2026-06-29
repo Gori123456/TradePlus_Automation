@@ -1,0 +1,85 @@
+========================================================
+Log Session Started At: 2026-06-25 16:49:19
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_164919.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_164919.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 2] Processing Menu: DEMAT_PROCESSES
+Executing Demat Processes -> Target UI Menu Text: 'Demat Auto Entries'...
+ 🖲️ Accessing Application Menu: Utilities -> Demat Processes
+ ✓ Menu accessed successfully via selection engine path.
+Configuring checkboxes via AutomationId...
+  [CHECKBOX] 'Show Detail Before Process' already CHECKED — no change
+  [CHECKBOX] 'One by One Processing' set to CHECKED
+  [CHECKBOX] 'Pay-In' already CHECKED — no change
+  [CHECKBOX] 'Pay-Out' already CHECKED — no change
+Setting Date value to: 11/02/2026
+Date Selected: 11/02/2026
+Targeting Settlement Name: NQ2026013
+Direct selection failed: No cell starting with 'NQ' found in grid.. Using coordinate fallback...
+Settlement prefix 'NQ' confirmed via coordinate fallback.
+  [DIALOG WAIT] Waiting up to 6s for 'Are You Sure?' dialog...
+  [DIALOG WAIT] No Yes/No dialog appeared within 6s. Continuing to Fetch.
+  [DEMAT CHECK] Grid already has data ('DP Holding Early Pay-in'). Skipping Fetch.
+Scanning for target: 'Demat Auto Entries'...
+  Row 0: 'DP Holding Early Pay-in'
+  Row 1: 'Demat Reco (Speede)'
+  Row 2: 'Demat Reco (NSDL SOT)'
+  Row 3: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 4: 'DP Holding Early Pay-in(DDPI)'
+  Row 5: 'Demat Reco (DP57)'
+  Row 6: 'Demat Reco (COD - UDIFF)'
+  Row 7: 'Demat Reco (DP89)'
+  Row 8: 'Demat Reco (Speede)'
+  Row 9: 'Demat Reco (NSDL SOT)'
+  Row 10: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 11: 'Demat Reco (eDIS/BlockMechanism)'
+  Row 12: 'Demat Reco (DP57)'
+  Row 13: 'Demat Reco (DP89)'
+  Row 14: 'Generate Direct Payout (DPC/CPD) file'
+  Row 15: 'Early Pay-In during Market hours'
+  Row 16: 'Early Pay-In during Market hours(DDPI)'
+  Row 17: 'Demat Reco (Speede)'
+  Row 18: 'Demat Reco (NSDL SOT)'
+  Row 19: 'Demat Reco (NSDL SOT - UDIFF)'
+  Row 20: 'Demat Reco (DP57)'
+  Row 21: 'Demat Reco (DP89)'
+  Row 22: 'Demat Auto Entries'
+  ✓ Found 'Demat Auto Entries' at row 22
+  Process button clicked at (363, 491)
+Checking for intermediate Demat confirmation views...
+  [ALERT INTERCEPT] Report generation popup captured: handle=133166. Clearing via direct Win32 message loop...
+    ⚠ Dialog still present. Dispatching hardware virtual key message hooks...
+    ✓ Confirmation modal dismissed successfully.
+  [MONITOR] Action confirmed. Tracking RichEdit console text outputs...
+  [MONITOR] Console isolated structurally at absolute monitor screen: (1228, 335)
+  [MONITOR] Entering dynamic execution tracking loop...
+  [MONITOR] ✓ 'Process Completed' phrase tracked in execution console. Continuing workflow.
+Finishing workflow...
+Closing Demat Processes window...
+  Closed ✓
+Cleaning up any generated report preview window contexts...
+   [POST-STEP DEMAT] No report viewer windows detected. Continuing ✓
+   ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Demat_Processes_SubStep_2'.
+
+All enabled automation pipeline tasks completed successfully.
+   ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Pipeline_SUCCESS_Final'.
+🛑 Screen recording stopped safely.
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+✅ Full report bundle successfully routed via customizable parameters!
+Initializing Master Shutdown routine...
+
+Closing log file handle session. Goodbye.

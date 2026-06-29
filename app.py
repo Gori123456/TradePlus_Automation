@@ -26,6 +26,7 @@ from email import encoders
 # ══════════════════════════════════════════════
 # FILE DEPENDENCY IMPORTS
 # ══════════════════════════════════════════════
+from records.auto_utils import AutomationUtils
 from core.launcher import start_application
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
@@ -120,101 +121,37 @@ class BackgroundScreenRecorder:
 # ══════════════════════════════════════════════
 def send_execution_email_report(success=True, error_message=None, screenshot_path=None, video_path=None):
     """
-    Sends status email utilizing credentials read from the unified master_action_data memory tree.
+    Sends a dynamically configured status email utilizing the new unified 
+    AutomationUtils engine and configuration map metrics.
     """
-    smtp_server   = "smtp.gmail.com"
-    smtp_port     = 587
-    MAX_RETRIES   = 2
+    try:
+        # Extract the dynamic configuration directly from your initialized master dictionary
+        mail_block = master_action_data.get("mail_config", {})
+        
+        if not mail_block:
+            print("❌ EMAIL: 'mail_config' block is missing inside Action.json. Skipping notification.")
+            return False
 
-    # Parse parameters directly out of global nested mapping dictionary
-    mail_data = master_action_data.get("mail_config", {})
-    sender_email    = mail_data.get("sender_email", "").strip()
-    sender_password = mail_data.get("sender_password", "").replace(" ", "")
-    recipient_email = mail_data.get("recipient_email", "").strip()
+        # Instantiate our fresh utility package 
+        utils = AutomationUtils()
+        
+        # If a live execution clip exists, sync it to the utility context tracker
+        if video_path and os.path.exists(video_path):
+            utils.video_filename = video_path
 
-    if not sender_email or not sender_password or not recipient_email:
-        print("❌ EMAIL: sender_email / sender_password / recipient_email missing in Action.json 'mail_config' block. Skipping email.")
-        return
+        # Fire off the complete attachment and connection routine dynamically
+        utils.send_email_notification(
+            mail_config=mail_block, 
+            success=success, 
+            error_message=error_message, 
+            screenshot_path=screenshot_path
+        )
+        return True
 
-    # ─── BUILD MESSAGE ───
-    msg = MIMEMultipart()
-    msg['From']    = sender_email
-    msg['To']      = recipient_email
-    msg['Subject'] = "✅ TradePlusX Run: SUCCESS" if success else "❌ TradePlusX Run: FAILED"
-
-    run_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    if success:
-        body = f"""
-        <h3>✅ Automation pipeline completed successfully!</h3>
-        <p><strong>Completed at:</strong> {run_time}</p>
-        <p>Final state screenshot is attached for review.</p>
-        <p><em>(Session recording saved locally in Capture_Data folder.)</em></p>
-        """
-    else:
-        body = f"""
-        <h3>❌ Automation run encountered an unhandled exception.</h3>
-        <p><strong>Failed at:</strong> {run_time}</p>
-        <p><strong>Error:</strong> <span style="color:red;">{error_message}</span></p>
-        <p>Crash state screenshot is attached. Session recording saved locally in Capture_Data folder.</p>
-        """
-    msg.attach(MIMEText(body, 'html'))
-
-    # ─── ATTACH SCREENSHOT ONLY (video kept local, not emailed) ───
-    if screenshot_path and os.path.exists(screenshot_path):
-        try:
-            filename = os.path.basename(screenshot_path)
-            print(f"📎 Attaching screenshot: {filename}...")
-            with open(screenshot_path, "rb") as f:
-                part = MIMEBase("application", "octet-stream")
-                part.set_payload(f.read())
-            encoders.encode_base64(part)
-            part.add_header("Content-Disposition", f"attachment; filename={filename}")
-            msg.attach(part)
-        except Exception as att_err:
-            print(f"⚠️ Could not attach screenshot '{screenshot_path}': {att_err}")
-    else:
-        print("⚠️ No screenshot found to attach — sending email without attachment.")
-
-    if video_path:
-        print(f"ℹ️  Video recording saved locally (not emailed): {os.path.basename(video_path)}")
-
-    # ─── SEND WITH RETRY ───
-    raw_message = msg.as_bytes()
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        server = None
-        try:
-            print(f"📧 Sending email to {recipient_email} (attempt {attempt}/{MAX_RETRIES})...")
-            server = smtplib.SMTP(smtp_server, smtp_port, timeout=60)
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
-            server.login(sender_email, sender_password)
-            server.sendmail(sender_email, recipient_email, raw_message)
-            print(f"✅ Email sent successfully to {recipient_email}!")
-            break   # success — exit retry loop
-        except smtplib.SMTPException as smtp_err:
-            print(f"❌ EMAIL SMTP error (attempt {attempt}): {smtp_err}")
-            if attempt < MAX_RETRIES:
-                print("   Retrying in 5 seconds...")
-                time.sleep(5)
-        except Exception as e:
-            print(f"❌ EMAIL unexpected error (attempt {attempt}): {e}")
-            if attempt < MAX_RETRIES:
-                print("   Retrying in 5 seconds...")
-                time.sleep(5)
-        finally:
-            # Always close the connection cleanly regardless of outcome
-            if server:
-                try:
-                    server.quit()
-                except Exception:
-                    try:
-                        server.close()
-                    except Exception:
-                        pass
-
+    except Exception as general_err:
+        print(f"❌ Master Email Trigger Failure: {general_err}")
+        return False
+    
 # ══════════════════════════════════════════════
 # ENTIRE WINDOW SCREENSHOT UTILITY
 # ══════════════════════════════════════════════
@@ -400,108 +337,126 @@ print("Starting Configured Workflows Sequence...")
 
 try:
     # ══════════════════════════════════════════════
-    # DYNAMIC PIPELINE RUNNER (LOOPS IN EXACT ORDER)
+    # DYNAMIC NESTED PIPELINE RUNNER
     # ══════════════════════════════════════════════
-    for step_idx, step_cfg in enumerate(pipeline):
-        if not step_cfg.get("enabled", False):
+    for step_idx, parent_cfg in enumerate(pipeline):
+        if not parent_cfg.get("enabled", False):
             continue
 
-        module_type = step_cfg.get("module", "").lower()
-        print(f"\n[PIPELINE STEP {step_idx + 1}] Processing Module: {module_type.upper()}")
+        parent_menu_name = parent_cfg.get("Parent_Menu", "Utilities")
+        sub_pipeline = parent_cfg.get("sub_pipeline", [])
+        
+        print(f"\n======== Entering Parent Menu Block [{step_idx + 1}]: {parent_menu_name.upper()} ========")
 
-        # ── ROUTINE 1: CONTROL CENTER ──
-        if module_type == "control_center":
-            while True:
-                close_any_open_report_tabs(context_label=f"PRE-FLIGHT CC", wait_for_render=False)
-                main_page.click_submenu_by_index("Utilities", step_cfg["index"], "Control Center")
-                time.sleep(3.0)
-                
-                imports_w = step_cfg.get("file_imports", {})
-                process_w = step_cfg.get("processes", {})
-                others_w  = step_cfg.get("others", {})
-                
-                page = ControlCenterPage(app)
-                status = page.process(
-                    date                = step_cfg.get("date"),
-                    click_file_imports = imports_w.get("enabled", False),
-                    imports_product    = imports_w.get("product") if imports_w.get("enabled") else None,
-                    imports_type       = imports_w.get("type") if imports_w.get("enabled") else None,
-                    check_bse_cash      = imports_w.get("check_bse_cash", False) if imports_w.get("enabled") else False,
-                    check_nse_cash      = imports_w.get("check_nse_cash", False) if imports_w.get("enabled") else False,
-                    bse_files_workflow = imports_w.get("bse_files_workflow", {}),
-                    nse_files_workflow = imports_w.get("nse_files_workflow", {}),
+        for sub_idx, step_cfg in enumerate(sub_pipeline):
+            if not step_cfg.get("enabled", False):
+                continue
+
+            Menu_type = step_cfg.get("Menu", "").lower()
+            print(f"\n   [SUB-STEP {sub_idx + 1}] Processing Menu: {Menu_type.upper()}")
+
+            # ── ROUTINE 1: CONTROL CENTER ──
+            if Menu_type == "control_center":
+                while True:
+                    close_any_open_report_tabs(context_label=f"PRE-FLIGHT CC", wait_for_render=False)
                     
-                    click_processes    = process_w.get("enabled", False),
-                    product            = process_w.get("product") if process_w.get("enabled") else None,
-                    for_date           = process_w.get("for_date") if process_w.get("enabled") else None,
-                    click_fetch        = process_w.get("click_fetch", False) if process_w.get("enabled") else False,
-                    
-                    click_others       = others_w.get("enabled", False),
-                    exchange           = others_w.get("exchange") if others_w.get("enabled") else None,
-                    settlement         = others_w.get("settlement") if others_w.get("enabled") else None,
-                    exchange_obligation_reconciliation = others_w.get("exchange_obligation_reconciliation", False) if others_w.get("enabled") else False,
-                    unprocess_bills    = others_w.get("unprocess_bills", False) if others_w.get("enabled") else False,
-                    raw_workflow_config = step_cfg
-                )
-                
-                if status == "RESTART":
-                    print(f"\n[LOOP OVERRIDE] Restart requested. Retrying Control Center block...")
+                    # Dynamically called via variables from JSON
+                    main_page.click_submenu_by_text(parent_menu_name, "Control Center")
                     time.sleep(3.0)
-                    continue
+
+                    # Inside app.py line parsing loop where Menu_type == "control_center":
+                    imports_w = step_cfg.get("file_imports", {})
+                    process_w = step_cfg.get("processes", {})
+                    others_w  = step_cfg.get("others", {})
+
+                    page = ControlCenterPage(app)
+                    status = page.process(
+                        date                = step_cfg.get("date").replace(" ", "/") if step_cfg.get("date") else None,
+                        click_file_imports = imports_w.get("enabled", False),
+                        imports_product    = imports_w.get("product") if imports_w.get("enabled") else None,
+                        imports_type       = imports_w.get("type") if imports_w.get("enabled") else None,
+                        matrix_checkboxes  = imports_w.get("matrix_checkboxes", {}),
+                        bse_files_workflow = imports_w.get("bse_files_workflow", {}),
+                        nse_files_workflow = imports_w.get("nse_files_workflow", {}),
+                        
+                        click_processes    = process_w.get("enabled", False),
+                        product            = process_w.get("product") if process_w.get("enabled") else None,
+                        for_date           = process_w.get("date") if process_w.get("enabled") else None,
+                        click_fetch        = process_w.get("click_fetch", False) if process_w.get("enabled") else False,
+                        
+                        # Updated pass parameters mapping block configuration logic
+                        click_others       = others_w.get("enabled", False),
+                        exchange           = others_w.get("exchange") if others_w.get("enabled") else None,
+                        settlement         = others_w.get("settlement") if others_w.get("enabled") else None,
+                        exchange_obligation_reconciliation = others_w.get("exchange_obligation_reconciliation", False),
+                        unprocess_bills    = others_w.get("unprocess_bills", False),
+                        raw_workflow_config = step_cfg
+                    )
+                    
+                    if status == "RESTART":
+                        print(f"\n[LOOP OVERRIDE] Restart requested. Retrying Control Center block...")
+                        time.sleep(3.0)
+                        continue
+                    
+                    print("Finishing Control Center Suite. Closing context safely...")
+                    try:
+                        page.close_window()
+                        time.sleep(2.0)
+                    except Exception as e:
+                        print(f"   ⚠ Handshake warning closing CC window: {e}")
+
+                    close_any_open_report_tabs(context_label=f"POST-STEP CC", wait_for_render=True)
+                    time.sleep(1.0)
+                    take_entire_window_screenshot(f"Control_Center_SubStep_{sub_idx + 1}")
+                    break
+
+            # ── ROUTINE 2: DEMAT PROCESSES ──
+            elif Menu_type == "demat_processes":
+                target_name = step_cfg["target_process_name"]
+                print(f"Executing Demat Processes -> Target UI Menu Text: '{target_name}'...")
                 
-                print("Finishing Control Center Suite. Closing context safely...")
-                try:
-                    page.close_window()
-                    time.sleep(2.0)
-                except Exception as e:
-                    print(f"   ⚠ Handshake warning closing CC window: {e}")
-
-                close_any_open_report_tabs(context_label=f"POST-STEP CC", wait_for_render=True)
-                time.sleep(1.0)
-                take_entire_window_screenshot(f"Control_Center_Step_{step_idx + 1}")
-                break
-
-        # ── ROUTINE 2: DEMAT AUTO ENTRIES ──
-        elif module_type == "demat_auto_entries":
-            target_name = step_cfg.get("target_process_name", "Demat Auto Entries")
-            print(f"Executing Demat Auto Entries -> Target: '{target_name}'...")
-            main_page.click_submenu_by_index("Utilities", step_cfg["index"], target_name)
-            time.sleep(2.5)
-            
-            page = SharePayoutPage(app)
-            page.process(
-                step_cfg["date"],
-                step_cfg["settlement_name"],
-                step_cfg["target_process_name"]
-            )
-            time.sleep(1.5)
-            
-            print("Cleaning up any generated report preview window contexts to release main window frame hook locks...")
-            close_any_open_report_tabs(context_label=f"POST-STEP DEMAT", wait_for_render=True)
-            
-            print("  [REST buffer] Allowing main window frame controls to unlock and re-enable active focus...")
-            time.sleep(3.0) 
-            
-            take_entire_window_screenshot(f"Demat_Auto_Entries_Step_{step_idx + 1}")
-            
-        # ── ROUTINE 3: PLEDGE MANAGEMENT ──
-        elif module_type == "pledge_management":
-            print(f"Executing Pledge Management...")
-            main_page.click_submenu_by_index("Utilities", step_cfg["index"], "Pledge Management")
-            time.sleep(2.5)
-            
-            page = PledgePage(app)
-            page.process(
-                tab_name              = step_cfg["tab_name"],
-                manage_action         = step_cfg.get("manage_action"),
-                manage_date           = step_cfg.get("manage_date"),
-                items_sold_by_client  = step_cfg.get("items_sold_by_client"),
-                with_epn_blk          = step_cfg.get("with_epn_blk"),
-                click_fetch           = step_cfg.get("click_fetch", False)
-            )
-            print("Stabilizing workspace context...")
-            time.sleep(2.0)
-            take_entire_window_screenshot(f"Pledge_Management_Step_{step_idx + 1}")
+                # Dynamically called via variables from JSON
+                main_page.click_submenu_by_text(parent_menu_name, "Demat Processes")
+                time.sleep(2.5)
+                
+                page = SharePayoutPage(app)
+                page.process(
+                    step_cfg["date"],
+                    step_cfg["settlement_name"],
+                    target_name,
+                    show_detail_before_process = step_cfg.get("show_detail_before_process"),
+                    one_by_one_processing      = step_cfg.get("one_by_one_processing"),
+                    pay_in                     = step_cfg.get("pay_in"),
+                    pay_out                    = step_cfg.get("pay_out"),
+                )
+                time.sleep(1.5)
+                
+                print("Cleaning up any generated report preview window contexts...")
+                close_any_open_report_tabs(context_label=f"POST-STEP DEMAT", wait_for_render=True)
+                time.sleep(3.0) 
+                
+                take_entire_window_screenshot(f"Demat_Processes_SubStep_{sub_idx + 1}")
+                
+            # ── ROUTINE 3: PLEDGE MANAGEMENT ──
+            elif Menu_type == "pledge_management":
+                print(f"Executing Pledge Management...")
+                
+                # Dynamically called via variables from JSON
+                main_page.click_submenu_by_text(parent_menu_name, "Pledge Management")
+                time.sleep(2.5)
+                
+                page = PledgePage(app)
+                page.process(
+                    tab_name              = step_cfg["tab_name"],
+                    manage_action         = step_cfg.get("manage_action"),
+                    manage_date           = step_cfg.get("date").replace(" ", "/") if step_cfg.get("date") else None,
+                    items_sold_by_client  = step_cfg.get("items_sold_by_client"),
+                    with_epn_blk          = step_cfg.get("with_epn_blk"),
+                    click_fetch           = step_cfg.get("click_fetch", False)
+                )
+                print("Stabilizing workspace context...")
+                time.sleep(2.0)
+                take_entire_window_screenshot(f"Pledge_Management_SubStep_{sub_idx + 1}")
 
     print("\nAll enabled automation pipeline tasks completed successfully.")
     

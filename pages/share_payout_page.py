@@ -1,29 +1,66 @@
+import os
 import time
+import datetime
 import win32con
 import win32gui
 import win32api
 import win32clipboard
 from pywinauto.keyboard import send_keys
 from pywinauto import mouse
+try:
+    import pyautogui
+    PYAUTOGUI_AVAILABLE = True
+except ImportError:
+    PYAUTOGUI_AVAILABLE = False
+try:
+    from PIL import ImageGrab
+    PIL_AVAILABLE = True
+except ImportError:
+    PIL_AVAILABLE = False
+
+
+def get_relative_rect(child_rect, parent_hwnd):
+    """Converts absolute screen coordinates to relative coordinates inside parent window"""
+    p_rect = win32gui.GetWindowRect(parent_hwnd)
+    return (
+        child_rect[0] - p_rect[0],  # Relative Left
+        child_rect[1] - p_rect[1],  # Relative Top
+        child_rect[2] - p_rect[0],  # Relative Right
+        child_rect[3] - p_rect[1]   # Relative Bottom
+    )
 
 
 def _normalize_to_dd_mm_yyyy(date_str):
     """
-    Converts incoming date formats (YYYY/MM/DD or YYYY-MM-DD) safely
-    into the application's required structural format (DD/MM/YYYY).
+    Converts any incoming date string from JSON (supporting YYYYMMDD, YYYY/MM/DD, 
+    spaces, or hyphens) into the standard DD/MM/YYYY format required by TradePlus applications.
     """
     if not date_str:
         return date_str
     
-    date_clean = date_str.strip().replace("-", "/")
-    parts = date_clean.split("/")
+    date_clean = date_str.strip()
     
-    if len(parts) == 3 and len(parts[0]) == 4:
-        year, month, day = parts[0], parts[1], parts[2]
+    # Handle compact YYYYMMDD format (e.g., "20260211")
+    if len(date_clean) == 8 and date_clean.isdigit():
+        year = date_clean[:4]
+        month = date_clean[4:6]
+        day = date_clean[6:]
         return f"{day}/{month}/{year}"
         
-    return date_str
-
+    # Clean up spaces AND hyphens, converting them to forward slashes
+    date_clean = date_clean.replace("-", "/").replace(" ", "/")
+    parts = date_clean.split("/")
+    
+    if len(parts) == 3:
+        # Scenario A: If it's YYYY/MM/DD (starts with a 4-digit year)
+        if len(parts[0]) == 4:
+            year, month, day = parts[0], parts[1], parts[2]
+            return f"{day}/{month}/{year}"
+        # Scenario B: If it's already DD/MM/YYYY (ends with a 4-digit year)
+        elif len(parts[2]) == 4:
+            return f"{parts[0]}/{parts[1]}/{parts[2]}"
+        
+    return date_clean
 
 class SharePayoutPage:
 
@@ -128,12 +165,55 @@ class SharePayoutPage:
         print("  [DIALOG WAIT] No Yes/No dialog appeared within 6s. Continuing to Fetch.")
         return False
 
-    def process(self, date_value, settlement_name, target_process_name):
+    def _set_checkbox(self, auto_id, name, desired_state):
+        """
+        Sets a checkbox to the desired state (True = checked, False = unchecked)
+        using AutomationId. No coordinates used.
+        """
+        try:
+            chk = self.window.child_window(auto_id=auto_id, control_type="CheckBox")
+            chk.wait("visible", timeout=5)
+            current = chk.get_toggle_state()  # 0 = unchecked, 1 = checked
+            desired_int = 1 if desired_state else 0
+            if current != desired_int:
+                chk.click_input()
+                time.sleep(0.2)
+                print(f"  [CHECKBOX] '{name}' set to {'CHECKED' if desired_state else 'UNCHECKED'}")
+            else:
+                print(f"  [CHECKBOX] '{name}' already {'CHECKED' if desired_state else 'UNCHECKED'} — no change")
+        except Exception as e:
+            print(f"  [CHECKBOX] WARNING: Could not set '{name}' (auto_id={auto_id}): {e}")
+
+    def process(self, date_value, settlement_name, target_process_name,
+                show_detail_before_process=None,
+                one_by_one_processing=None,
+                pay_in=None,
+                pay_out=None):
+        """
+        Checkbox params (all optional — if None, existing state in the UI is preserved):
+          show_detail_before_process : bool  → auto_id='chkShowDetail'
+          one_by_one_processing      : bool  → auto_id='chk1By1'
+          pay_in                     : bool  → auto_id='chkPayIn'
+          pay_out                    : bool  → auto_id='chkPayOut'
+        """
         # Convert incoming workflow format to native environment standard mapping style
         date_value = _normalize_to_dd_mm_yyyy(date_value)
 
         self.window = self.app.top_window()
         self.window.wait("ready", timeout=30)
+
+        # ==========================
+        # 0. CHECKBOX CONFIGURATION
+        # ==========================
+        print("Configuring checkboxes via AutomationId...")
+        if show_detail_before_process is not None:
+            self._set_checkbox("chkShowDetail", "Show Detail Before Process", show_detail_before_process)
+        if one_by_one_processing is not None:
+            self._set_checkbox("chk1By1", "One by One Processing", one_by_one_processing)
+        if pay_in is not None:
+            self._set_checkbox("chkPayIn", "Pay-In", pay_in)
+        if pay_out is not None:
+            self._set_checkbox("chkPayOut", "Pay-Out", pay_out)
 
         # ==========================
         # 1. DATE SELECTION
@@ -380,8 +460,11 @@ class SharePayoutPage:
                 time.sleep(0.1)
                 send_keys("{ENTER}")
 
-            print("    Waiting for information report dialog to surface...")
+            print("    Waiting for filename dialog to surface after Continue...")
             time.sleep(2.5)
+
+            # Screenshot + OK: handle the filename dialog after Continue
+            self._screenshot_and_dismiss_filename_dialog()
 
         popup_hwnd = None
         for lookup_attempt in range(25):
@@ -478,22 +561,42 @@ class SharePayoutPage:
         self._handle_post_process_confirmation_screens()
         
         # ======================================================================
-        # --- NEW DYNAMIC LOG CONSOLE MONITORING BLOCK ---
+        # --- NEW DYNAMIC LOG CONSOLE MONITORING BLOCK (POSITION INDEPENDENT) ---
         # ======================================================================
         print("  [MONITOR] Action confirmed. Tracking RichEdit console text outputs...")
         
         # Isolate the window sub-frame tracking handle
         p_hwnd = self._get_demat_win_hwnd()
         
-        # Targets mapping to information from SharePayInOut_RedCircle_Output.txt
-        # Coordinates: (970, 202, 1184, 583) | Class: WindowsForms10.RichEdit20W...
-        console_x = 970 + (1184 - 970) // 2
-        console_y = 202 + (583 - 202) // 2
+        # Dynamically scan children to locate the RichEdit control layout boundaries
+        console_rect = None
+        def scan_for_richedit(hwnd, _):
+            nonlocal console_rect
+            try:
+                cls = win32gui.GetClassName(hwnd)
+                if "richedit" in cls.lower():
+                    console_rect = win32gui.GetWindowRect(hwnd)
+            except:
+                pass
+            return True
+            
+        win32gui.EnumChildWindows(p_hwnd, scan_for_richedit, None)
+        
+        # Fallback to general area dimensions only if programmatic class mapping misses
+        if console_rect:
+            console_x = (console_rect[0] + console_rect[2]) // 2
+            console_y = (console_rect[1] + console_rect[3]) // 2
+            print(f"  [MONITOR] Console isolated structurally at absolute monitor screen: ({console_x}, {console_y})")
+        else:
+            p_rect = win32gui.GetWindowRect(p_hwnd)
+            console_x = p_rect[0] + 950  
+            console_y = p_rect[1] + 350
+            print("  [MONITOR] Warning: RichEdit class trace obscured. Using sub-window relative bounds mapping.")
         
         print("  [MONITOR] Entering dynamic execution tracking loop...")
         while True:
             try:
-                # Force active focus inside the RichEdit control layout boundaries
+                # Force active focus inside the identified console component boundaries
                 mouse.click(button='left', coords=(console_x, console_y))
                 time.sleep(0.2)
                 
@@ -517,7 +620,7 @@ class SharePayoutPage:
             except Exception as loop_err:
                 print(f"  [MONITOR] Log sweep skipped context: {loop_err}")
                 
-            time.sleep(4.0) # Check log status every 4 seconds
+            time.sleep(4.0)  # Check log status every 4 seconds
         # ======================================================================
 
     def _get_demat_win_hwnd(self):
@@ -569,6 +672,138 @@ class SharePayoutPage:
                 pass
             return True
         return False
+
+    def _screenshot_and_dismiss_filename_dialog(self):
+        """
+        After the Continue button is clicked, the application shows a dialog
+        containing a filename/path. This method:
+          1. Waits for that dialog to appear (up to 10s)
+          2. Takes a full-screen screenshot and saves it with a timestamp
+          3. Clicks OK (or sends ENTER) to dismiss the dialog
+        """
+        print("  [FILENAME DIALOG] Waiting for filename dialog after Continue...")
+
+        SCREENSHOT_DIR = r"D:\TradePlus_Automation\Capture_Data"
+        os.makedirs(SCREENSHOT_DIR, exist_ok=True)
+
+        dialog_hwnd = None
+        ok_btn_hwnd = None
+        deadline = time.time() + 10.0
+
+        while time.time() < deadline:
+            found = []
+
+            def _scan(hwnd, _):
+                try:
+                    if not win32gui.IsWindowVisible(hwnd):
+                        return True
+                    if hwnd == self.main_hwnd:
+                        return True
+                    cls   = win32gui.GetClassName(hwnd)
+                    title = win32gui.GetWindowText(hwnd).lower()
+                    if "#32770" in cls or "information" in title or "report" in title or "file" in title:
+                        ok_h = []
+                        def _child(ch, _):
+                            try:
+                                ct = win32gui.GetWindowText(ch).strip().lower()
+                                cc = win32gui.GetClassName(ch).lower()
+                                if (ct in ("ok", "yes", "&ok")) and "button" in cc:
+                                    ok_h.append(ch)
+                            except:
+                                pass
+                            return True
+                        try:
+                            win32gui.EnumChildWindows(hwnd, _child, None)
+                        except:
+                            pass
+                        if ok_h:
+                            found.append((hwnd, ok_h[0]))
+                except:
+                    pass
+                return True
+
+            win32gui.EnumWindows(_scan, None)
+
+            if found:
+                dialog_hwnd, ok_btn_hwnd = found[0]
+                break
+
+            time.sleep(0.2)
+
+        if not dialog_hwnd:
+            print("  [FILENAME DIALOG] No filename dialog appeared within 10s. Continuing.")
+            return
+
+        dialog_title = win32gui.GetWindowText(dialog_hwnd)
+        print(f"  [FILENAME DIALOG] Dialog found: hwnd={dialog_hwnd}  title={dialog_title!r}")
+
+        # Read text content from dialog children
+        dialog_texts = []
+        def _read_text(ch, _):
+            try:
+                t = win32gui.GetWindowText(ch).strip()
+                if t and t.lower() not in ("ok", "yes", "&ok", "cancel", "no"):
+                    dialog_texts.append(t)
+            except:
+                pass
+            return True
+        try:
+            win32gui.EnumChildWindows(dialog_hwnd, _read_text, None)
+        except:
+            pass
+        if dialog_title:
+            dialog_texts.insert(0, dialog_title)
+        filename_hint = " | ".join(dialog_texts) if dialog_texts else "dialog"
+        print(f"  [FILENAME DIALOG] Dialog content: {filename_hint!r}")
+
+        # Take screenshot before dismissing
+        ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        safe_hint = "".join(c if c.isalnum() or c in "._-" else "_" for c in filename_hint[:60])
+        ss_filename = f"FilenameDialog_{ts}_{safe_hint}.png"
+        ss_path = os.path.join(SCREENSHOT_DIR, ss_filename)
+
+        try:
+            win32gui.ShowWindow(dialog_hwnd, win32con.SW_RESTORE)
+            win32gui.SetForegroundWindow(dialog_hwnd)
+            time.sleep(0.4)
+
+            if PYAUTOGUI_AVAILABLE:
+                import pyautogui
+                screenshot = pyautogui.screenshot()
+                screenshot.save(ss_path)
+                print(f"  [FILENAME DIALOG] Screenshot saved (pyautogui): {ss_path}")
+            elif PIL_AVAILABLE:
+                from PIL import ImageGrab
+                screenshot = ImageGrab.grab()
+                screenshot.save(ss_path)
+                print(f"  [FILENAME DIALOG] Screenshot saved (PIL): {ss_path}")
+            else:
+                print("  [FILENAME DIALOG] WARNING: No screenshot library available. Install pyautogui or Pillow.")
+        except Exception as ss_err:
+            print(f"  [FILENAME DIALOG] Screenshot failed: {ss_err}")
+
+        # Click OK to dismiss
+        print(f"  [FILENAME DIALOG] Clicking OK (hwnd={ok_btn_hwnd})...")
+        try:
+            rect = win32gui.GetWindowRect(ok_btn_hwnd)
+            cx = (rect[0] + rect[2]) // 2
+            cy = (rect[1] + rect[3]) // 2
+            mouse.click(button='left', coords=(cx, cy))
+            time.sleep(0.5)
+            print("  [FILENAME DIALOG] OK clicked. Dialog dismissed.")
+        except Exception as ok_err:
+            print(f"  [FILENAME DIALOG] OK click failed: {ok_err}. Sending ENTER...")
+            win32gui.SetForegroundWindow(dialog_hwnd)
+            time.sleep(0.2)
+            send_keys("{ENTER}")
+            time.sleep(0.5)
+
+        # Restore main window focus
+        try:
+            win32gui.SetForegroundWindow(self.main_hwnd)
+        except:
+            pass
+        time.sleep(0.5)
 
     def close_window(self):
         print("Closing Demat Processes window...")

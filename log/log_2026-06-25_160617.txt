@@ -1,0 +1,56 @@
+========================================================
+Log Session Started At: 2026-06-25 16:06:17
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_160617.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_160617.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 3] Processing Menu: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+ 🖲️ Accessing Application Menu: Utilities -> Pledge Management
+ ✓ Menu accessed successfully via selection engine path.
+Clicking tab: 'Manage'
+  [PLEDGE WIN] Found via title fallback: hwnd=790230
+  Tab 'Manage' activated.
+Setting action dropdown to: 'Un Pledge'
+  [PLEDGE WIN] Found via title fallback: hwnd=790230
+
+ERROR OCCURRED DURING WORKFLOW RUN: Action ComboBox (AutomationId=cmbManage) not found!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 444, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        tab_name              = step_cfg["tab_name"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        click_fetch           = step_cfg.get("click_fetch", False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 543, in process
+    self.set_manage_action(manage_action)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 321, in set_manage_action
+    raise Exception("Action ComboBox (AutomationId=cmbManage) not found!")
+Exception: Action ComboBox (AutomationId=cmbManage) not found!
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_CRASH_State_20260625_160650.png
+🛑 Screen recording stopped safely.
+📎 Packing attachment context: Pipeline_CRASH_State_20260625_160650.png...
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+✅ Full report bundle successfully routed via customizable parameters!
+
+Press Enter to Exit...

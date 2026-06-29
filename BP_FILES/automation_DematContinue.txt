@@ -1,0 +1,7 @@
+AUTOMATION ID INSPECTOR
+Generated: 2026-06-29 12:10:59
+Window: TradePlusX
+★ = Has AutomationId   <<< = Use this!
+====================================================================================================
+
+[ERROR] ('[WinError 5] Access is denied.process: %d', 25176)

@@ -1,0 +1,65 @@
+========================================================
+Log Session Started At: 2026-06-29 12:23:26
+Console output path: D:\TradePlus_Automation\log\log_2026-06-29_122326.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-29_122326.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3736324
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3736324
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3736324
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3736324
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: True
+  chkAGTS is already in the desired state.
+Configuring Processes Checkbox [chkRemShare] -> Target State: True
+  chkRemShare is already in the desired state.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement prefix: 'nq' (from 'NQ2026013')...
+  [PROCESSES GRID] Grid rect: (340, 194, 852, 665)
+  [PROCESSES GRID] SETTLEMENT_X=440  CHECKBOX_X=355
+  [PROCESSES GRID] Anchoring focus at Settlement (440, 230)
+  [PROCESSES GRID] Row 0: '' (y=230)
+  [PROCESSES GRID] Empty cell — end of data.
+  [PROCESSES GRID] CRITICAL: 'nq' not found.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+
+Closing log file handle session. Goodbye.

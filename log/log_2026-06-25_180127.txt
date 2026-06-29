@@ -1,0 +1,71 @@
+========================================================
+Log Session Started At: 2026-06-25 18:01:27
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_180127.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_180127.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3084430
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3084430
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3084430
+
+--- Executing Others Suite ---
+Clicking sidebar 'Others' navigation button...
+Waiting for Others workspace layout to render...
+  ✓ Others workspace verified active (cmbExch visible)
+Setting Others Tab Exchange to: 'NSE'
+Setting Others Tab Segment to: 'F&O'
+Selecting Settlement option via target tracking: 'NQ'
+  [WIN32 CB] Prefix match found at index: 2
+Selecting Operational Radio Identifier Node: [optPrDispObgl] for option: display_obligation_money_sheet
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Waiting for post-Proceed dialog box (up to 10 s)...
+  [OTHERS PROCEED] No confirmation dialog detected. Continuing ✓
+  [REPORT POPUP] Found: 'Money Sheet Display of NSE Cash for NQ2026029' handle=1445998
+  [REPORT POPUP]   Close btn: handle=1183818 raw_title='&Close' rect=(772, 703, 829, 726)
+  [REPORT POPUP] Sending BM_CLICK to &Close handle=1183818
+  [REPORT POPUP] Control Center re-focused. Continuing workflow ✓
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3084430
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=3084430
+  Control Center window closed successfully ✓
+   [POST-STEP CC] No report viewer windows detected. Continuing ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Control_Center_SubStep_1_20260625_180303.png
+
+All enabled automation pipeline tasks completed successfully.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_SUCCESS_Final_20260625_180306.png
+🛑 Screen recording stopped safely.
+📎 Packing attachment context: Pipeline_SUCCESS_Final_20260625_180306.png...
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+
+Closing log file handle session. Goodbye.

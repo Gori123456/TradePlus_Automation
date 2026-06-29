@@ -1,0 +1,41 @@
+========================================================
+Log Session Started At: 2026-06-25 15:27:47
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_152747.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_152747.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 3] Processing Menu: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+ 🖲️ Accessing Application Menu: Utilities -> Pledge Management
+ ✓ Menu accessed successfully via selection engine path.
+
+ERROR OCCURRED DURING WORKFLOW RUN: name 'Desktop' is not defined
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 443, in <module>
+    page = PledgePage(app)
+  File "D:\TradePlus_Automation\pages\pledge_page.py", line 143, in __init__
+    self.desktop = Desktop(backend="uia")
+                   ^^^^^^^
+NameError: name 'Desktop' is not defined
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_CRASH_State_20260625_152817.png
+🛑 Screen recording stopped safely.
+📎 Packing attachment context: Pipeline_CRASH_State_20260625_152817.png...
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+✅ Full report bundle successfully routed via customizable parameters!
+
+Press Enter to Exit...

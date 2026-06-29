@@ -1,0 +1,91 @@
+========================================================
+Log Session Started At: 2026-06-29 11:30:42
+Console output path: D:\TradePlus_Automation\log\log_2026-06-29_113042.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-29_113042.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=986074
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=986074
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=986074
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=986074
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: True
+  chkAGTS is already in the desired state.
+Configuring Processes Checkbox [chkRemShare] -> Target State: True
+  chkRemShare is already in the desired state.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement prefix: 'nq' (from 'NQ2026013')...
+  [PROCESSES GRID] Grid rect: (484, 194, 996, 665)
+  [PROCESSES GRID] SETTLEMENT_X=584  CHECKBOX_X=499
+  [PROCESSES GRID] Anchoring focus at Settlement (584, 230)
+  [PROCESSES GRID] Row 0: 'br2025817' (y=230)
+  [PROCESSES GRID] Row 1: 'bu2025818' (y=258)
+  [PROCESSES GRID] Row 2: 'bm2025218' (y=286)
+  [PROCESSES GRID] Row 3: 'bq2025818' (y=314)
+  [PROCESSES GRID] Row 4: 'bm2025218' (y=342)
+  [PROCESSES GRID] Row 5: 'na2026028' (y=370)
+  [PROCESSES GRID] Row 6: 'nm2026029' (y=398)
+  [PROCESSES GRID] Row 7: 'nq2026029' (y=426)
+  ✓ Prefix match at row 7
+  [PROCESSES GRID] Row 8: 'nu2026029' (y=454)
+  [PROCESSES GRID] Row 9: 'na2026028' (y=482)
+  [PROCESSES GRID] Row 10: 'nm2026029' (y=510)
+  [PROCESSES GRID] Row 11: 'nq2026029' (y=538)
+  ✓ Prefix match at row 11
+  [PROCESSES GRID] Row 12: 'nu2026029' (y=566)
+  [PROCESSES GRID] Row 13: 'nu2026029' (y=594)
+  [PROCESSES GRID] Row 14: 'nu2026029' (y=622)
+  [PROCESSES GRID] Row 15: 'nu2026029' (y=650)
+  [PROCESSES GRID] Row 16: 'nu2026029' (y=678)
+  [PROCESSES GRID] Row 17: 'nu2026029' (y=706)
+  [PROCESSES GRID] Row 18: 'nu2026029' (y=734)
+  [PROCESSES GRID] Row 19: 'nu2026029' (y=762)
+  [PROCESSES GRID] Matched rows: [7, 11]
+  [PROCESSES GRID] Re-anchoring row 7 → clicking Settlement (584, 426)
+  [PROCESSES GRID] Confirmed: 'nq2026029'
+  [PROCESSES GRID] Clicking checkbox center (499, 426)
+  [PROCESSES GRID] ✓ Checkbox clicked for row 7
+  [PROCESSES GRID] Re-anchoring row 11 → clicking Settlement (584, 538)
+  [PROCESSES GRID] Confirmed: 'nq2026029'
+  [PROCESSES GRID] Clicking checkbox center (499, 538)
+  [PROCESSES GRID] ✓ Checkbox clicked for row 11
+  [PROCESSES GRID] All 2 checkbox(es) processed ✓
+  [PROCESSES GRID] Clicking Proceed...
+  [MONITOR] Locating process log panel (dgvBillStatus)...
+  [MONITOR] Waiting for 'Process Completed'...

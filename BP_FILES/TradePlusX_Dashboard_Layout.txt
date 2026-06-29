@@ -1,0 +1,30 @@
+Saving structural identification log to: d:\TradePlus_Automation\BP_FILES\TradePlusX_Dashboard_Layout.txt
+Waiting 3 seconds — make sure TradePlusX is visible on screen...
+
+Trying connection using backend='uia'...
+
+⚠️ UIA Backend Scan dropped or failed: 
+Initiating fallback to native Win32/WinForms engine tracking...
+
+Trying connection using backend='win32'...
+✓ Connected successfully via WIN32.
+
+================================================================================
+EXTRACTING TOP-LEVEL CONTROLS (Max Depth = 2) via WIN32
+================================================================================
+Found 7 immediate top-level structural containers.
+
+CONTROL TYPE         AUTOMATION ID / ID             TEXT/TITLE                    
+--------------------------------------------------------------------------------
+WindowsForms10.Win   1969440                        ToolStrip                     
+  ↳ WindowsForms10.C   656008                         '2026-2027'
+  ↳ WindowsForms10.C   1772842                        'NARIMAN FINVEST PVT LTD'
+  ↳ WindowsForms10.C   3017656                        'NSE (Cash)'
+WindowsForms10.COM   656008                         2026-2027                     
+WindowsForms10.COM   1772842                        NARIMAN FINVEST PVT LTD       
+WindowsForms10.COM   3017656                        NSE (Cash)                    
+WindowsForms10.Win   1641758                        MenuStrip                     
+WindowsForms10.Win   1903758                        StatusStrip                   
+WindowsForms10.MDI   331344                                                       
+
+✓ Analysis execution cycle completed. Log: d:\TradePlus_Automation\BP_FILES\TradePlusX_Dashboard_Layout.txt

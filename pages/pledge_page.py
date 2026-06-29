@@ -1,449 +1,587 @@
 import time
 import threading
+import ctypes
+import ctypes.wintypes
 import win32gui
 import win32con
 import win32api
 from pywinauto import mouse
 from pywinauto.keyboard import send_keys
 
+
 TRADEPLUS_CLASS = "WindowsForms10.Window.8.app.0.141b42a_r7_ad1"
 BUTTON_CLASS    = "WindowsForms10.BUTTON.app.0.141b42a_r7_ad1"
 COMBO_CLASS     = "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1"
 DATETIME_CLASS  = "WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1"
+TAB_CLASS       = "WindowsForms10.SysTabControl32.app.0.141b42a_r7_ad1"
 
 
-def click_center(rect):
+# ══════════════════════════════════════════════════════════════════════
+# LOW-LEVEL WIN32 HELPERS
+# ══════════════════════════════════════════════════════════════════════
+
+def _get_all_children(parent_hwnd):
+    """Returns flat list of (hwnd, class, title, rect, visible) for all descendants."""
+    out = []
+    def _cb(hwnd, _):
+        try:
+            out.append((
+                hwnd,
+                win32gui.GetClassName(hwnd),
+                win32gui.GetWindowText(hwnd),
+                win32gui.GetWindowRect(hwnd),
+                win32gui.IsWindowVisible(hwnd),
+            ))
+        except Exception:
+            pass
+        return True
+    win32gui.EnumChildWindows(parent_hwnd, _cb, None)
+    return out
+
+
+def _click_rect_center(rect):
+    """Physical mouse click at the centre of a screen rect (l,t,r,b)."""
     x = (rect[0] + rect[2]) // 2
     y = (rect[1] + rect[3]) // 2
     mouse.click(button='left', coords=(x, y))
     time.sleep(0.3)
 
 
-def get_all_children(parent_hwnd):
-    children = []
-    def cb(hwnd, _):
-        try:
-            children.append((
-                hwnd,
-                win32gui.GetClassName(hwnd),
-                win32gui.GetWindowText(hwnd),
-                win32gui.GetWindowRect(hwnd),
-                win32gui.IsWindowVisible(hwnd)
-            ))
-        except:
-            pass
-        return True
-    win32gui.EnumChildWindows(parent_hwnd, cb, None)
-    return children
-
-
-def is_checked(hwnd):
-    result = win32api.SendMessage(hwnd, win32con.BM_GETCHECK, 0, 0)
-    return result == win32con.BST_CHECKED
+def _bm_click(hwnd):
+    """Sends BM_CLICK to a button/checkbox — no coordinate needed."""
+    win32api.SendMessage(hwnd, win32con.BM_CLICK, 0, 0)
+    time.sleep(0.25)
 
 
 def _normalize_to_dd_mm_yyyy(date_str):
-    """
-    Converts incoming date formats (YYYY/MM/DD or YYYY-MM-DD) safely
-    into the application's required structural format (DD/MM/YYYY).
-    """
     if not date_str:
         return date_str
-    
-    date_clean = date_str.strip().replace("-", "/")
-    parts = date_clean.split("/")
-    
-    if len(parts) == 3 and len(parts[0]) == 4:
-        year, month, day = parts[0], parts[1], parts[2]
-        return f"{day}/{month}/{year}"
-        
-    return date_str
+    s = str(date_str).strip()
+    if len(s) == 8 and s.isdigit():                    # YYYYMMDD
+        return f"{s[6:8]}/{s[4:6]}/{s[0:4]}"
+    s = s.replace("-", "/").replace(" ", "/")
+    p = s.split("/")
+    if len(p) == 3:
+        if len(p[0]) == 4:                             # YYYY/MM/DD
+            return f"{p[2]}/{p[1]}/{p[0]}"
+        if len(p[2]) == 4:                             # DD/MM/YYYY already
+            return f"{p[0]}/{p[1]}/{p[2]}"
+    return s
 
 
 # ══════════════════════════════════════════════
-# SIMPLIFIED KEYBOARD POPUP DISMISSER
+# POPUP KILLER THREAD (unchanged)
 # ══════════════════════════════════════════════
+
 def async_popup_killer(main_hwnd):
-    """
-    Runs on a parallel background thread. Watches the window tree instantly
-    and forces an ENTER key stroke to clear the popup as soon as it surfaces.
-    """
     print("[THREAD WATCHER] Scanning for dialog box contexts...")
-    
-    for attempt in range(35):  
+    for _ in range(35):
         time.sleep(0.2)
-        popup_hwnd = None
-        
-        all_app_children = get_all_children(main_hwnd)
-        
-        for hwnd, cls, title, rect, vis in all_app_children:
-            if vis and ("information" in title.lower() or "confirm" in title.lower() or not title):
-                if "#32770" in cls or "WindowsForms10.Window" in cls:
-                    if rect[2] - rect[0] < 600 and rect[3] - rect[1] < 400:
-                        popup_hwnd = hwnd
-                        break
-        
-        if popup_hwnd:
-            print(f"[THREAD WATCHER] Pop-up window identified: handle={popup_hwnd}. Dismissing via ENTER...")
+        result = []
+        def cb(hwnd, _):
             try:
-                win32gui.ShowWindow(popup_hwnd, win32con.SW_RESTORE)
-                win32gui.SetForegroundWindow(popup_hwnd)
+                title = win32gui.GetWindowText(hwnd)
+                cls   = win32gui.GetClassName(hwnd)
+                if win32gui.IsWindowVisible(hwnd):
+                    if ("information" in title.lower() or "confirm" in title.lower() or not title):
+                        if "#32770" in cls or "WindowsForms10.Window" in cls:
+                            r = win32gui.GetWindowRect(hwnd)
+                            if r[2]-r[0] < 600 and r[3]-r[1] < 400:
+                                result.append(hwnd)
+            except Exception:
+                pass
+            return True
+        win32gui.EnumChildWindows(main_hwnd, cb, None)
+        if result:
+            phwnd = result[0]
+            print(f"[THREAD WATCHER] Popup hwnd={phwnd} — dismissing...")
+            try:
+                win32gui.ShowWindow(phwnd, win32con.SW_RESTORE)
+                win32gui.SetForegroundWindow(phwnd)
                 time.sleep(0.15)
-                
                 send_keys("{ENTER}")
-                print("[THREAD WATCHER] ✓ Pressed ENTER to dismiss the popup ✓")
+                print("[THREAD WATCHER] ✓ ENTER pressed ✓")
                 return True
             except Exception as e:
-                print(f"[THREAD WATCHER] Keystroke injection missed, using close signal fallback: {e}")
-                win32gui.PostMessage(popup_hwnd, win32con.WM_CLOSE, 0, 0)
+                win32gui.PostMessage(phwnd, win32con.WM_CLOSE, 0, 0)
                 return True
-                
-    print("[THREAD WATCHER] Monitoring timed out.")
+    print("[THREAD WATCHER] Timed out.")
     return False
 
 
+# ══════════════════════════════════════════════════════════════════════
+# PLEDGE PAGE
+# ══════════════════════════════════════════════════════════════════════
+
 class PledgePage:
+
+    # ── Maps JSON checkbox label → (title_in_win32, class) ──────────────
+    # Source: automation_ids.txt — Name field for each CheckBox control.
+    # We match by WIN32 WINDOW TEXT (GetWindowText) because GetProp("ControlName")
+    # is unreliable across the 32-bit/64-bit process boundary.
+    _CHECKBOX_TITLE = {
+        "items sold by client":                             "Items Sold By Client",
+        "with epn-blk":                                    "With EPN-BLK",
+        "deduct dp holding":                               "Deduct DP Holding",
+        "by client & branch request":                      "By Client & Branch Request",
+        "unapproved securities":                           "Unapproved Securities",
+        "client with position":                            "Client with Position",
+        "excess over":                                     "Excess Over",
+        "items not re-pledged only":                       "Items Not Re-Pledged Only",
+        "exclude re-pledged":                              "Exclude Re-Pledged",
+        "by client not having margin requirement in past": "By Client Not Having Margin Requirement in Past ",
+        "value after hair-cut below rs.":                  "Value After Hair-Cut Below Rs.",
+        "value after hair-cut above rs.":                  "Value After Hair-Cut Above Rs.",
+        "pledged in past":                                 "Pledged in Past ",
+        "pledgee a/c":                                     "Pledgee A/c",
+        "re-pledged to":                                   "Re-Pledged to",
+        "re-pledged for":                                  "Re-Pledged for",
+        "segment":                                         "Segment",
+        "reject pending requests":                         "Reject Pending Requests",
+    }
 
     def __init__(self, app):
         self.app = app
         self.main_hwnd = win32gui.FindWindow(TRADEPLUS_CLASS, "TradePlusX")
         if not self.main_hwnd:
-            raise Exception("TradePlusX main window handle not found inside PledgePage!")
+            raise Exception("TradePlusX main window not found!")
+
+    # ──────────────────────────────────────────
+    # PLEDGE WINDOW LOCATOR
+    # ──────────────────────────────────────────
 
     def _get_pledge_win_hwnd(self):
-        """Locates the open Margin - Pledge/Unpledge window frame."""
-        for attempt in range(10):
-            result = []
+        """Finds the Margin-Pledge/Unpledge MDI child by window title."""
+        for attempt in range(12):
+            found = []
             def cb(hwnd, _):
                 try:
-                    title = win32gui.GetWindowText(hwnd)
-                    if "pledge" in title.lower() or "unpledge" in title.lower():
-                        result.append(hwnd)
-                except: 
+                    t = win32gui.GetWindowText(hwnd).lower()
+                    if ("pledge" in t or "unpledge" in t) and win32gui.IsWindowVisible(hwnd):
+                        found.append(hwnd)
+                except Exception:
                     pass
                 return True
             win32gui.EnumChildWindows(self.main_hwnd, cb, None)
-            if result and win32gui.IsWindowVisible(result[0]):
-                return result[0]
+            if found:
+                print(f"  [PLEDGE WIN] hwnd={found[0]}  title='{win32gui.GetWindowText(found[0])}'")
+                return found[0]
             time.sleep(0.5)
-        raise Exception("Pledge Management window not found!")
+        raise Exception("Pledge Management window not found after 12 attempts!")
+
+    # ──────────────────────────────────────────
+    # TAB CLICK  — physical mouse click via TCM_GETITEMRECT
+    # ──────────────────────────────────────────
 
     def click_manage_tab(self):
-        """Locates and clicks on the 'Manage' view tab header panel element."""
-        print("Clicking tab: 'Manage' (index 1)")
-        all_children = get_all_children(self.main_hwnd)
-        
-        tab_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if "tabcontrol" in cls.lower() and vis:
-                tab_rect = (rect[0] + 65, rect[1] + 10, rect[0] + 110, rect[1] + 25)
+        """
+        Clicks the 'Manage' tab header with a real mouse event.
+
+        WinForms TabControl ONLY fires SelectedIndexChanged (which swaps the
+        visible panel) when it receives WM_LBUTTONDOWN at a valid tab-header
+        pixel.  TCM_SETCURSEL alone does NOT trigger the event.
+
+        We use TCM_GETITEMRECT (cross-process) to get the exact header rect so
+        there are zero hardcoded screen coordinates.
+        """
+        print("Clicking tab: 'Manage'")
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        win32gui.SetForegroundWindow(pledge_hwnd)
+        time.sleep(0.3)
+
+        children = _get_all_children(pledge_hwnd)
+
+        # Find the SysTabControl32
+        tab_hwnd = tab_rect = None
+        for hwnd, cls, title, rect, vis in children:
+            if cls == TAB_CLASS and vis:
+                tab_hwnd, tab_rect = hwnd, rect
                 break
-                
-        if not tab_rect:
-            raise Exception("Could not find SysTabControl32 navigation panel frame!")
-            
-        click_center(tab_rect)
-        time.sleep(1.2)
-        print("  Tab 'Manage' activated.")
+
+        if not tab_hwnd:
+            raise Exception("SysTabControl32 not found in Pledge window!")
+
+        print(f"  [TAB] hwnd={tab_hwnd}  screen_rect={tab_rect}")
+
+        # ── Cross-process TCM_GETITEMRECT to get exact tab header rect ──────
+        TCM_GETITEMRECT = 0x130A
+        MANAGE_TAB_IDX  = 1     # Pledge=0, Manage=1, Imports=2, Reports=3 …
+
+        class RECT(ctypes.Structure):
+            _fields_ = [("left", ctypes.c_long), ("top",    ctypes.c_long),
+                        ("right",ctypes.c_long), ("bottom", ctypes.c_long)]
+
+        PROCESS_ALL_ACCESS = 0x1F0FFF
+        MEM_COMMIT         = 0x1000
+        MEM_RESERVE        = 0x2000
+        PAGE_READWRITE     = 0x04
+
+        pid = ctypes.wintypes.DWORD(0)
+        ctypes.windll.user32.GetWindowThreadProcessId(tab_hwnd, ctypes.byref(pid))
+        hProc = ctypes.windll.kernel32.OpenProcess(PROCESS_ALL_ACCESS, False, pid)
+
+        click_x = click_y = None
+        try:
+            remote_rect = ctypes.windll.kernel32.VirtualAllocEx(
+                hProc, None, ctypes.sizeof(RECT),
+                MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE)
+            try:
+                ok = ctypes.windll.user32.SendMessageW(
+                    tab_hwnd, TCM_GETITEMRECT, MANAGE_TAB_IDX, remote_rect)
+                if ok:
+                    local_rect = RECT()
+                    read = ctypes.c_size_t(0)
+                    ctypes.windll.kernel32.ReadProcessMemory(
+                        hProc, remote_rect,
+                        ctypes.byref(local_rect), ctypes.sizeof(RECT),
+                        ctypes.byref(read))
+
+                    # client rect → screen coords
+                    cx_client = (local_rect.left + local_rect.right)  // 2
+                    # Use 75 % down the tab header height so we're safely
+                    # inside the clickable label area (not on the border).
+                    cy_client = local_rect.top + int((local_rect.bottom - local_rect.top) * 0.75)
+
+                    click_x = tab_rect[0] + cx_client
+                    click_y = tab_rect[1] + cy_client
+                    print(f"  [TAB] item rect (client) L={local_rect.left} T={local_rect.top} "
+                          f"R={local_rect.right} B={local_rect.bottom}")
+                    print(f"  [TAB] clicking screen ({click_x}, {click_y})")
+            finally:
+                ctypes.windll.kernel32.VirtualFreeEx(hProc, remote_rect, 0, 0x8000)
+        finally:
+            ctypes.windll.kernel32.CloseHandle(hProc)
+
+        if click_x is None:
+            # Fallback: rough estimate — each tab ~55 px wide, strip ~22 px tall
+            click_x = tab_rect[0] + 82     # centre of 2nd tab
+            click_y = tab_rect[1] + 16
+            print(f"  [TAB] TCM_GETITEMRECT failed — fallback ({click_x},{click_y})")
+
+        # Physical click — brings WinForms TabControl to fire its event handler
+        mouse.click(button='left', coords=(click_x, click_y))
+        time.sleep(1.5)
+
+        # ── Verify: 'Items Sold By Client' checkbox must be visible now ──────
+        ok = False
+        for _ in range(6):
+            ch = _get_all_children(pledge_hwnd)
+            for hwnd, cls, title, rect, vis in ch:
+                if cls == BUTTON_CLASS and vis and "items sold by client" in title.lower():
+                    ok = True
+                    break
+            if ok:
+                break
+            time.sleep(0.5)
+
+        if ok:
+            print("  Tab 'Manage' activated and verified ✓")
+        else:
+            print("  [TAB] Manage panel still not visible — retrying click once...")
+            mouse.click(button='left', coords=(click_x, click_y))
+            time.sleep(2.0)
+            print("  [TAB] Retry done.")
+
+    # ──────────────────────────────────────────
+    # ACTION COMBO  — matched by window title "Securities :"
+    # From automation_ids.txt: cmbManage  Name='Securities :'
+    # ──────────────────────────────────────────
 
     def set_manage_action(self, action_value):
-        """Dynamically locates the action dropdown inside the active Manage tab panel using Win32 API messages."""
-        normalized_action = action_value.strip().lower()
-        print(f"Setting action dropdown selection to: '{action_value}'")
-        
-        all_children = get_all_children(self.main_hwnd)
-        target_hwnd = None
-        action_combo_rect = None
-        
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis:
-                if (350 <= rect[0] <= 370) and (205 <= rect[1] <= 235):
-                    target_hwnd = hwnd
-                    action_combo_rect = rect
-                    print(f"  ✓ Found target Action ComboBox via precise match: handle={hwnd}, rect={rect}")
+        """Sets the action ComboBox (title='Securities :') to the requested value."""
+        normalized = action_value.strip().lower()
+        print(f"Setting action dropdown to: '{action_value}'")
+
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        children    = _get_all_children(pledge_hwnd)
+
+        combo_hwnd = combo_rect = None
+        for hwnd, cls, title, rect, vis in children:
+            # cmbManage has window text "Securities :" per automation_ids.txt
+            if cls == COMBO_CLASS and vis and "securities" in title.lower():
+                combo_hwnd, combo_rect = hwnd, rect
+                break
+
+        # Fallback: first VISIBLE combobox whose rect is in the upper portion
+        # of the pledge window (the action combo is near the top of the panel)
+        if not combo_hwnd:
+            pledge_rect = win32gui.GetWindowRect(pledge_hwnd)
+            upper_y     = pledge_rect[1] + (pledge_rect[3] - pledge_rect[1]) * 0.35
+            for hwnd, cls, title, rect, vis in children:
+                if cls == COMBO_CLASS and vis and rect[1] < upper_y:
+                    combo_hwnd, combo_rect = hwnd, rect
+                    print(f"  [COMBO] Fallback — using first upper ComboBox hwnd={hwnd} title='{title}'")
                     break
 
-        if not target_hwnd:
-            print("  Precise combobox match missed. Executing fallback bounding query...")
-            for hwnd, cls, title, rect, vis in all_children:
-                if "combobox" in cls.lower() and vis and (350 <= rect[0] <= 370):
-                    target_hwnd = hwnd
-                    action_combo_rect = rect
-                    break
+        if not combo_hwnd:
+            raise Exception("Action ComboBox (cmbManage / 'Securities :') not found!")
 
-        if not target_hwnd or not action_combo_rect:
-            raise Exception("Failed to locate the Action selection ComboBox inside the active Manage tab wrapper panel!")
+        print(f"  [COMBO] hwnd={combo_hwnd}  title='{win32gui.GetWindowText(combo_hwnd)}'")
 
-        click_center(action_combo_rect)
-        time.sleep(0.3)
+        if normalized in ("un-pledge", "un pledge", "unpledge"):
+            search_term = "Un Pledge"
+        elif normalized in ("un re-pledge", "un re pledge", "un repledge"):
+            search_term = "Un Re-Pledge"
+        else:
+            search_term = "Pledge"
 
         CB_FINDSTRINGEXACT = 0x0158
         CB_SETCURSEL       = 0x014E
         CBN_SELCHANGE      = 1
         WM_COMMAND         = 0x0111
 
-        search_term = "Pledge"
-        if normalized_action in ["un-pledge", "un pledge", "unpledge"]:
-            search_term = "Un Pledge"
-        elif normalized_action in ["un re-pledge", "un re pledge", "un repledge"]:
-            search_term = "Un Re-Pledge"
+        idx = win32api.SendMessage(combo_hwnd, CB_FINDSTRINGEXACT, -1, search_term)
+        if idx == -1:
+            idx = 2 if "un re" in search_term.lower() else (1 if "un" in search_term.lower() else 0)
+            print(f"  [COMBO] String not found — fallback index {idx}")
 
-        print(f"  [WIN32 CB] Searching internal memory structure for string layout exact match: '{search_term}'")
-        
-        matched_idx = win32api.SendMessage(target_hwnd, CB_FINDSTRINGEXACT, -1, search_term)
-        
-        if matched_idx == -1:
-            if "un re" in search_term.lower():
-                matched_idx = 2
-            elif "un" in search_term.lower():
-                matched_idx = 1
-            else:
-                matched_idx = 0
-            print(f"    ⚠ Memory layout query missed. Deploying structural target fallback index: {matched_idx}")
-
-        win32api.SendMessage(target_hwnd, CB_SETCURSEL, matched_idx, 0)
+        win32api.SendMessage(combo_hwnd, CB_SETCURSEL, idx, 0)
         time.sleep(0.2)
 
-        parent_form_hwnd = win32gui.GetParent(target_hwnd)
-        control_id = win32gui.GetDlgCtrlID(target_hwnd)
-        notification_message = (CBN_SELCHANGE << 16) | (control_id & 0xFFFF)
-        win32api.SendMessage(parent_form_hwnd, WM_COMMAND, notification_message, target_hwnd)
-        
+        parent  = win32gui.GetParent(combo_hwnd)
+        ctrl_id = win32gui.GetDlgCtrlID(combo_hwnd)
+        win32api.SendMessage(parent, WM_COMMAND,
+                             (CBN_SELCHANGE << 16) | (ctrl_id & 0xFFFF), combo_hwnd)
         send_keys("{ENTER}")
         time.sleep(0.5)
-        print(f"  Dropdown action successfully configured to selection index {matched_idx} ✓")
+        print(f"  Action set to '{search_term}' (index {idx}) ✓")
 
-    def set_manage_date(self, pledge_win_hwnd, date_value):
-        """Targets and modifies cross-process date constraints safely using virtual memory and windows messages."""
+    # ──────────────────────────────────────────
+    # DATE PICKER  — matched by window title (date string) + DATETIME_CLASS
+    # From automation_ids.txt: dtManageDate  Name='25/06/2026'
+    # ──────────────────────────────────────────
+
+    def set_manage_date(self, date_value):
+        """Sets dtManageDate via cross-process SYSTEMTIME write."""
         date_value = _normalize_to_dd_mm_yyyy(date_value)
-        print(f"Setting Control Center style date to: '{date_value}'")
+        print(f"Setting Manage date to: '{date_value}'")
         time.sleep(0.3)
-        
-        all_children = get_all_children(pledge_win_hwnd)
-        date_hwnd = None
-        date_rect = None
 
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == DATETIME_CLASS and vis:
-                if 550 < rect[0] < 650:
-                    date_hwnd = hwnd
-                    date_rect = rect
-                    break
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        children    = _get_all_children(pledge_hwnd)
 
-        if not date_hwnd:
-            print("  WARNING: Manage panel date picker not found by coordinate — scanning entire frame...")
-            for hwnd, cls, title, rect, vis in get_all_children(self.main_hwnd):
-                if cls == DATETIME_CLASS and vis and (550 < rect[0] < 650):
-                    date_hwnd = hwnd
-                    date_rect = rect
-                    break
+        # There are two DateTimePicker controls in the Manage tab:
+        #   dtManageDate      (the main 'Date :' filter — upper area)
+        #   dtManageExecDt    (Execution Date inside grpSave — lower/right area)
+        # Pick the one that is HIGHER on screen (smaller rect[1]).
+        date_controls = [(hwnd, rect) for hwnd, cls, title, rect, vis in children
+                         if cls == DATETIME_CLASS and vis]
 
-        if not date_hwnd:
-            raise Exception("Manage view core Date picker selection target could not be isolated!")
+        if not date_controls:
+            raise Exception("No DateTimePicker found in Pledge window!")
+
+        # Sort by Y position — dtManageDate is the topmost one
+        date_controls.sort(key=lambda x: x[1][1])
+        date_hwnd, date_rect = date_controls[0]
+        print(f"  [DATE] Using hwnd={date_hwnd}  rect={date_rect}")
 
         parts = date_value.split("/")
         day, month, year = int(parts[0]), int(parts[1]), int(parts[2])
 
-        import ctypes
-        import ctypes.wintypes
-
         PROCESS_ALL_ACCESS = 0x1F0FFF
-        MEM_COMMIT_RESERVE = 0x3000
+        MEM_COMMIT         = 0x1000
+        MEM_RESERVE        = 0x2000
         PAGE_READWRITE     = 0x04
         DTM_SETSYSTEMTIME  = 0x1002
 
-        st_bytes = ctypes.create_string_buffer(16)
-        ctypes.memmove(st_bytes,
-            ctypes.c_uint16(year).value.to_bytes(2, 'little') +
-            ctypes.c_uint16(month).value.to_bytes(2, 'little') +
-            ctypes.c_uint16(0).value.to_bytes(2, 'little') +     
-            ctypes.c_uint16(day).value.to_bytes(2, 'little') +
-            ctypes.c_uint16(0).value.to_bytes(2, 'little') +     
-            ctypes.c_uint16(0).value.to_bytes(2, 'little') +     
-            ctypes.c_uint16(0).value.to_bytes(2, 'little') +     
-            ctypes.c_uint16(0).value.to_bytes(2, 'little'),      
-            16)
+        st = (ctypes.c_uint16(year).value.to_bytes(2, 'little') +
+              ctypes.c_uint16(month).value.to_bytes(2, 'little') +
+              ctypes.c_uint16(0).value.to_bytes(2, 'little') +
+              ctypes.c_uint16(day).value.to_bytes(2, 'little') +
+              b'\x00' * 8)
+        buf = ctypes.create_string_buffer(16)
+        ctypes.memmove(buf, st, 16)
 
         pid = ctypes.wintypes.DWORD(0)
         ctypes.windll.user32.GetWindowThreadProcessId(date_hwnd, ctypes.byref(pid))
         hProc = ctypes.windll.kernel32.OpenProcess(PROCESS_ALL_ACCESS, False, pid)
-
         try:
-            remote_mem = ctypes.windll.kernel32.VirtualAllocEx(hProc, None, 16, MEM_COMMIT_RESERVE, PAGE_READWRITE)
+            remote = ctypes.windll.kernel32.VirtualAllocEx(
+                hProc, None, 16, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE)
             try:
-                ctypes.windll.kernel32.WriteProcessMemory(hProc, remote_mem, st_bytes, 16, None)
-                click_center(date_rect)
+                ctypes.windll.kernel32.WriteProcessMemory(hProc, remote, buf, 16, None)
+                _click_rect_center(date_rect)
                 time.sleep(0.1)
-                
-                ctypes.windll.user32.SendMessageW(date_hwnd, DTM_SETSYSTEMTIME, 0, remote_mem)
+                ctypes.windll.user32.SendMessageW(date_hwnd, DTM_SETSYSTEMTIME, 0, remote)
                 time.sleep(0.2)
-                
                 send_keys("{RIGHT}{UP}{DOWN}{ENTER}")
                 time.sleep(0.3)
-                print(f"  ✓ Date value set to '{date_value}' smoothly via memory write pipeline configuration.")
+                print(f"  ✓ Date set to '{date_value}' ✓")
             finally:
-                ctypes.windll.kernel32.VirtualFreeEx(hProc, remote_mem, 0, 0x8000)
+                ctypes.windll.kernel32.VirtualFreeEx(hProc, remote, 0, 0x8000)
         finally:
             ctypes.windll.kernel32.CloseHandle(hProc)
 
-    def set_checkbox_state(self, pledge_win_hwnd, checkbox_title, target_state):
-        """Locates specific checkbox labels and toggles state configuration parameters."""
-        print(f"  Processing checkbox: '{checkbox_title}' -> Target: {target_state}")
-        all_children = get_all_children(pledge_win_hwnd)
+    # ──────────────────────────────────────────
+    # CHECKBOXES  — matched by exact window title (GetWindowText)
+    # ──────────────────────────────────────────
 
-        target_hwnd = None
-        target_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip().lower() == checkbox_title.lower():
-                target_hwnd = hwnd
-                target_rect = rect
+    def set_checkbox_state(self, checkbox_title, target_state):
+        """
+        Finds a checkbox by its WIN32 window title (GetWindowText) and
+        toggles it to target_state.  No coordinates, no AutomationId property.
+        """
+        print(f"  Processing checkbox: '{checkbox_title}' → Target: {target_state}")
+
+        win32_title = self._CHECKBOX_TITLE.get(checkbox_title.strip().lower())
+        if not win32_title:
+            raise Exception(f"No title mapping for checkbox '{checkbox_title}'.")
+
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        children    = _get_all_children(pledge_hwnd)
+
+        chk_hwnd = None
+        for hwnd, cls, title, rect, vis in children:
+            if cls == BUTTON_CLASS and vis and title.strip() == win32_title.strip():
+                chk_hwnd = hwnd
                 break
 
-        if not target_hwnd:
-            for hwnd, cls, title, rect, vis in get_all_children(self.main_hwnd):
-                if cls == BUTTON_CLASS and vis and title.strip().lower() == checkbox_title.lower():
-                    target_hwnd = hwnd
-                    target_rect = rect
+        if not chk_hwnd:
+            # Partial-match fallback
+            for hwnd, cls, title, rect, vis in children:
+                if cls == BUTTON_CLASS and vis and win32_title.strip().lower() in title.strip().lower():
+                    chk_hwnd = hwnd
+                    print(f"    [CHK] Partial match: '{title}'")
                     break
 
-        if not target_hwnd:
-            raise Exception(f"Target checkbox control labeled '{checkbox_title}' not found!")
+        if not chk_hwnd:
+            raise Exception(f"Checkbox '{checkbox_title}' (title='{win32_title}') not found!")
 
-        current_state = is_checked(target_hwnd)
-        if current_state != target_state:
-            click_center(target_rect)
-            time.sleep(0.3)
-            print(f"    Checkbox '{checkbox_title}': CHANGED TO {target_state}")
+        current = win32api.SendMessage(chk_hwnd, win32con.BM_GETCHECK, 0, 0) == win32con.BST_CHECKED
+        if current != target_state:
+            _bm_click(chk_hwnd)
+            print(f"    Checkbox '{checkbox_title}': CHANGED → {target_state}")
         else:
-            print(f"    Checkbox '{checkbox_title}': ALREADY IN TARGET STATE ({current_state})")
+            print(f"    Checkbox '{checkbox_title}': already {current} — no change.")
 
-    def click_pledge_fetch_button(self, pledge_win_hwnd):
-        """Clicks the Fetch data processing confirmation button."""
-        print("Clicking the 'Fetch' button...")
-        all_children = get_all_children(pledge_win_hwnd)
+    # ──────────────────────────────────────────
+    # FETCH BUTTON  — title='Fetch', lower-right area of window
+    # ──────────────────────────────────────────
 
-        btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Fetch":
-                if rect[0] > 900 and rect[1] > 350:
-                    btn_rect = rect
-                    break
+    def click_pledge_fetch_button(self):
+        print("Clicking 'Fetch' button...")
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        children    = _get_all_children(pledge_hwnd)
+        pledge_rect = win32gui.GetWindowRect(pledge_hwnd)
+        right_half  = pledge_rect[0] + (pledge_rect[2] - pledge_rect[0]) * 0.6
 
-        if not btn_rect:
-            for hwnd, cls, title, rect, vis in get_all_children(self.main_hwnd):
-                if cls == BUTTON_CLASS and vis and title.strip() == "Fetch":
-                    if rect[0] > 900 and rect[1] > 350:
-                        btn_rect = rect
-                        break
-
-        if not btn_rect:
-            raise Exception("Manage Workspace data query Fetch button layout not located!")
-
-        click_center(btn_rect)
-        print("  Fetch button clicked successfully ✓")
-
-    def click_pledge_save_button(self, pledge_win_hwnd):
-        """Dynamically targets and triggers the grid execution 'Save' button control element."""
-        print("Clicking the 'Save' button...")
-        all_children = get_all_children(pledge_win_hwnd)
-        
-        btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Save":
-                btn_rect = rect
+        btn_hwnd = None
+        for hwnd, cls, title, rect, vis in children:
+            if cls == BUTTON_CLASS and vis and title.strip() == "Fetch" and rect[0] > right_half:
+                btn_hwnd = hwnd
                 break
-                
-        if not btn_rect:
-            for hwnd, cls, title, rect, vis in get_all_children(self.main_hwnd):
-                if cls == BUTTON_CLASS and vis and title.strip() == "Save":
-                    btn_rect = rect
+
+        # Fallback: any visible Fetch button
+        if not btn_hwnd:
+            for hwnd, cls, title, rect, vis in children:
+                if cls == BUTTON_CLASS and vis and title.strip() == "Fetch":
+                    btn_hwnd = hwnd
                     break
-                    
-        if not btn_rect:
-            raise Exception("Core execution grid layout 'Save' process button not found!")
-            
-        click_center(btn_rect)
-        print("  Save button clicked successfully. Launching confirmation handlers...")
+
+        if not btn_hwnd:
+            raise Exception("Fetch button not found!")
+
+        _bm_click(btn_hwnd)
+        print("  Fetch button clicked ✓")
+
+    # ──────────────────────────────────────────
+    # SAVE BUTTON  — title='Save'
+    # ──────────────────────────────────────────
+
+    def click_pledge_save_button(self):
+        print("Clicking 'Save' button...")
+        pledge_hwnd = self._get_pledge_win_hwnd()
+        children    = _get_all_children(pledge_hwnd)
+
+        btn_hwnd = None
+        for hwnd, cls, title, rect, vis in children:
+            if cls == BUTTON_CLASS and vis and title.strip() == "Save":
+                btn_hwnd = hwnd
+                break
+
+        if not btn_hwnd:
+            raise Exception("Save button not found!")
+
+        _bm_click(btn_hwnd)
+        print("  Save button clicked ✓")
+
+    # ──────────────────────────────────────────
+    # SLIP PRINTING / CLOSE
+    # ──────────────────────────────────────────
 
     def close_slip_printing_tab(self):
-        """Locates and targets the 'Slip printing' preview window frame and closes it cleanly via Win32."""
-        print("Searching for newly generated 'Slip printing' report window context...")
+        print("Searching for 'Slip printing' report window...")
         time.sleep(1.0)
-        
-        report_hwnd = None
-        def find_report_cb(hwnd, _):
-            nonlocal report_hwnd
+        found = []
+        def _cb(hwnd, _):
             try:
                 if win32gui.IsWindowVisible(hwnd):
-                    title = win32gui.GetWindowText(hwnd)
-                    if "slip" in title.lower() or "printing" in title.lower():
-                        report_hwnd = hwnd
-            except:
+                    t = win32gui.GetWindowText(hwnd).lower()
+                    if "slip" in t or "printing" in t:
+                        found.append(hwnd)
+            except Exception:
                 pass
             return True
-            
-        win32gui.EnumWindows(find_report_cb, None)
-        
-        if report_hwnd:
-            print(f"  [REPORT TAB] Found open report viewer handle={report_hwnd}. Sending native close command...")
-            win32gui.PostMessage(report_hwnd, win32con.WM_CLOSE, 0, 0)
+        win32gui.EnumWindows(_cb, None)
+        if found:
+            print(f"  [REPORT] Closing hwnd={found[0]}...")
+            win32gui.PostMessage(found[0], win32con.WM_CLOSE, 0, 0)
             time.sleep(1.0)
-            print("  [REPORT TAB] Slip printing frame detached successfully ✓")
+            print("  [REPORT] Closed ✓")
         else:
-            print("  ⚠ Notice: 'Slip printing' window frame handle was not caught by systemic window sweeps.")
+            print("  ⚠ Slip printing window not found.")
 
     def close_window(self):
-        """Closes the Margin - Pledge/Unpledge window pane natively via WM_CLOSE."""
         print("Closing Pledge Management window...")
         try:
             hwnd = self._get_pledge_win_hwnd()
             win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
             time.sleep(1.0)
-            print("  Pledge Management window closed successfully ✓")
+            print("  Pledge Management window closed ✓")
         except Exception as e:
-            print(f"  ⚠ Failed to close Pledge window: {e}")
+            print(f"  ⚠ Close failed: {e}")
 
-    def process(self, tab_name, manage_action=None, manage_date=None, 
+    # ══════════════════════════════════════════════
+    # MAIN ENTRY POINT  (app.py signature unchanged)
+    # ══════════════════════════════════════════════
+
+    def process(self, tab_name, manage_action=None, manage_date=None,
                 items_sold_by_client=None, with_epn_blk=None, click_fetch=False):
-        """Main orchestrated business automation pipeline execution path."""
-        pledge_win_hwnd = self._get_pledge_win_hwnd()
 
         if tab_name.strip().lower() == "manage":
             self.click_manage_tab()
-            
+
             if manage_action is not None:
                 self.set_manage_action(manage_action)
-                
+
             if manage_date is not None:
-                self.set_manage_date(pledge_win_hwnd, manage_date)
-                
+                self.set_manage_date(manage_date)
+
             if with_epn_blk is not None:
-                self.set_checkbox_state(pledge_win_hwnd, "With EPN-BLK", with_epn_blk)
-                
+                self.set_checkbox_state("With EPN-BLK", with_epn_blk)
+
             if items_sold_by_client is not None:
-                self.set_checkbox_state(pledge_win_hwnd, "Items Sold By Client", items_sold_by_client)
-                
+                self.set_checkbox_state("Items Sold By Client", items_sold_by_client)
+
             if click_fetch:
-                killer_thread = threading.Thread(target=async_popup_killer, args=(self.main_hwnd,), daemon=True)
-                killer_thread.start()
-                
-                self.click_pledge_fetch_button(pledge_win_hwnd)
+                killer = threading.Thread(target=async_popup_killer,
+                                          args=(self.main_hwnd,), daemon=True)
+                killer.start()
+                self.click_pledge_fetch_button()
                 time.sleep(10.0)
-                
-                print("  [WAIT CONTROL] Fetch cycle finalized. Waiting exactly 3 seconds before executing Save...")
+
+                print("  [WAIT] Fetch done — waiting 3 s before Save...")
                 time.sleep(3.0)
-                
-                save_killer = threading.Thread(target=async_popup_killer, args=(self.main_hwnd,), daemon=True)
+
+                save_killer = threading.Thread(target=async_popup_killer,
+                                               args=(self.main_hwnd,), daemon=True)
                 save_killer.start()
-                
-                self.click_pledge_save_button(pledge_win_hwnd)
-                
+                self.click_pledge_save_button()
                 time.sleep(3.5)
-                
+
                 self.close_slip_printing_tab()
                 time.sleep(1.0)
 
-        print("Finishing Pledge Management workflow routine segment layout...")
+        print("Pledge Management workflow complete.")
         self.close_window()
-
-        print("PledgePage.process() completed successfully.")
+        print("PledgePage.process() finished successfully.")

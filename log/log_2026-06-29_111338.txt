@@ -1,0 +1,79 @@
+========================================================
+Log Session Started At: 2026-06-29 11:13:38
+Console output path: D:\TradePlus_Automation\log\log_2026-06-29_111338.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-29_111338.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1444352
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1444352
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1444352
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1444352
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: True
+  chkAGTS is already in the desired state.
+Configuring Processes Checkbox [chkRemShare] -> Target State: True
+  chkRemShare is already in the desired state.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Target settlement: 'NQ2026013' | Matching prefix: 'NQ'
+  [PROCESSES GRID] Scanning grid rows for prefix 'NQ'...
+  [PROCESSES GRID] Row 0: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 1: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 2: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 3: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 4: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 5: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 6: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 7: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 8: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 9: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 10: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 11: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 12: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 13: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 14: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 15: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 16: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 17: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 18: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] Row 19: '11/02/2026' | Prefix: '11'
+  [PROCESSES GRID] ⚠ No rows matched prefix 'NQ'. Settlement not found in grid.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...

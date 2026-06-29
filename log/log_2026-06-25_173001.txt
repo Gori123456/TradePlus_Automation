@@ -1,0 +1,90 @@
+========================================================
+Log Session Started At: 2026-06-25 17:30:01
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_173001.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_173001.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1249420
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=1249420
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (cmbProduct visible)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+  [SEQUENCER MAP] Activating matrix segment grid targeting: chkBSECash
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: True
+  chkBSECash set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkBSECash grid data to refresh...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Broker Query'
+    -> 'BSE_Cash_Broker Query' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Provisional)'
+    -> 'BSE_Cash_Obligation File (Provisional)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Final)'
+    -> 'BSE_Cash_Obligation File (Final)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_STT Details File'
+    -> 'BSE_Cash_STT Details File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (934, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Stamp Duty File'
+    -> 'BSE_Cash_Stamp Duty File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (934, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Bhavcopy'
+    -> 'BSE_Cash_Bhavcopy' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (934, 417)
+  Row 6: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (934, 437)
+  Row 7: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 8 at (934, 457)
+  Row 8: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+  [GRID BREAK] Detected duplicate dynamic values ('BSE_Cash_Offer For Sale Trade File'). Breaking loop.
+  [SEQUENCER MAP] Clearing chkBSECash selection state...
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: False
+  chkBSECash set to UNCHECKED ✓
+  [SEQUENCER MAP] Activating matrix segment grid targeting: chkNSEFO
+Configuring Matrix Checkbox Identifier [chkNSEFO] -> Target State: True
+  chkNSEFO set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkNSEFO grid data to refresh...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_NSE_FO_0_TM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Trade File'
+    -> 'NSE_Cash_Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Position_NCL_FO_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Postion File'
+    -> 'NSE_Cash_Postion File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'STT_NCL_FO_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_STT Details File'
+    -> 'NSE_Cash_STT Details File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+
+Closing log file handle session. Goodbye.

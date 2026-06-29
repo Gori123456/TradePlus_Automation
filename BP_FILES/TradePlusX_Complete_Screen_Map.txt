@@ -1,0 +1,18 @@
+Connecting to TradePlusX via Win32 Engine...
+
+================================================================================
+MAPPING SYSTEM CONTROL BARS
+================================================================================
+✓ MenuStrip Wrapper Detected: <pywinauto.application.WindowSpecification object at 0x000001D2F5826490>
+✓ ToolStrip Wrapper Detected: <pywinauto.application.WindowSpecification object at 0x000001D2F5826AD0>
+  ↳ Current Accounting Year Element: <pywinauto.application.WindowSpecification object at 0x000001D2F57F3360>
+  ↳ Current Selected Company Element: <pywinauto.application.WindowSpecification object at 0x000001D2F57F0D60>
+
+================================================================================
+DEEP SCANNING MDI CLIENT (INTERNAL ACTIVE WINDOWS)
+================================================================================
+
+CRITICAL ERROR mapping the layout components: {'class_name_re': '.*MDIClient.*', 'top_level_only': False, 'parent': <win32_element_info.HwndElementInfo - 'TradePlusX', WindowsForms10.Window.8.app.0.141b42a_r7_ad1, 3214780>, 'backend': 'win32'}
+Verify the application isn't minimized during the runtime capture loop.
+
+✓ Completed deep window trace sequence. Log saved to: d:\TradePlus_Automation\BP_FILES\TradePlusX_Complete_Screen_Map.txt

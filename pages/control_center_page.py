@@ -78,21 +78,35 @@ def _filename_matches(config_fn, grid_fn):
 
 def _normalize_to_dd_mm_yyyy(date_str):
     """
-    Converts any incoming date string from JSON (supporting YYYY/MM/DD or YYYY-MM-DD)
-    into the standard DD/MM/YYYY format required by TradePlus applications.
+    Converts any incoming date string from JSON (supporting YYYYMMDD, YYYY/MM/DD, 
+    spaces, or hyphens) into the standard DD/MM/YYYY format required by TradePlus applications.
     """
     if not date_str:
         return date_str
     
-    date_clean = date_str.strip().replace("-", "/")
-    parts = date_clean.split("/")
+    date_clean = date_str.strip()
     
-    # If the string starts with a 4-digit year (YYYY/MM/DD), re-order it to DD/MM/YYYY
-    if len(parts) == 3 and len(parts[0]) == 4:
-        year, month, day = parts[0], parts[1], parts[2]
+    # Handle compact YYYYMMDD format (e.g., "20260211")
+    if len(date_clean) == 8 and date_clean.isdigit():
+        year = date_clean[:4]
+        month = date_clean[4:6]
+        day = date_clean[6:]
         return f"{day}/{month}/{year}"
         
-    return date_str
+    # Clean up spaces AND hyphens, converting them to forward slashes
+    date_clean = date_clean.replace("-", "/").replace(" ", "/")
+    parts = date_clean.split("/")
+    
+    if len(parts) == 3:
+        # Scenario A: If it's YYYY/MM/DD (starts with a 4-digit year)
+        if len(parts[0]) == 4:
+            year, month, day = parts[0], parts[1], parts[2]
+            return f"{day}/{month}/{year}"
+        # Scenario B: If it's already DD/MM/YYYY (ends with a 4-digit year)
+        elif len(parts[2]) == 4:
+            return f"{parts[0]}/{parts[1]}/{parts[2]}"
+        
+    return date_clean
 
 
 class ControlCenterPage:
@@ -365,13 +379,22 @@ class ControlCenterPage:
         print("\nStarting File Imports grid scan...")
         time.sleep(1.0)
 
-        GRID_TOP   = 262
+        # Locate grid via AutomationId — no coordinates
+        cc_win = self.app.window(handle=cc_hwnd)
+        grid = cc_win.child_window(auto_id="dgvFileImp", control_type="Pane")
+        grid.wait("visible", timeout=10)
+        grid.set_focus()
+        time.sleep(0.3)
+
+        grid_rect  = win32gui.GetWindowRect(grid.handle)
         HEADER_H   = 25
         ROW_H      = 20
-        FILENAME_X = 340 + 250   
+        # File Name column is 4th col (~offset 450 from grid left), Description is 3rd col (~offset 250)
+        FILENAME_X = grid_rect[0] + 450
+        DESC_X     = grid_rect[0] + 250
 
         def click_filename_cell(row_idx):
-            y = GRID_TOP + HEADER_H + (row_idx * ROW_H) + (ROW_H // 2)
+            y = grid_rect[1] + HEADER_H + (row_idx * ROW_H) + (ROW_H // 2)
             print(f"  [GRID] Clicking filename cell row {row_idx} at ({FILENAME_X}, {y})")
             mouse.click(button='left', coords=(FILENAME_X, y))
             time.sleep(0.5)
@@ -489,19 +512,11 @@ class ControlCenterPage:
             print("  [PROCESSES GRID] No target settlement specified. Skipping.")
             return
 
-        target_clean = target_settlement.strip()[:2].lower()  
+        target_clean = target_settlement.strip()[:2].lower()
         print(f"\n[PROCESSES GRID] Scanning for settlement prefix: '{target_clean}' (from '{target_settlement}')...")
         time.sleep(3.5)
 
-        GRID_TOP       = 199   
-        HEADER_H       = 22    
-        ROW_H          = 28    
-        CHECKBOX_X     = 370   
-        SETTLEMENT_X   = 447   
-
-        def row_centre_y(row_idx):
-            return GRID_TOP + HEADER_H + (row_idx * ROW_H) + (ROW_H // 2)
-
+        # ── Bring main window to foreground ──
         try:
             win32gui.ShowWindow(self.main_hwnd, win32con.SW_SHOWMAXIMIZED)
             win32gui.SetForegroundWindow(self.main_hwnd)
@@ -509,15 +524,78 @@ class ControlCenterPage:
         except Exception as fe:
             print(f"  [PROCESSES GRID] Focus: {fe}")
 
+        # ── Locate grid rect at runtime ──
+        cc_win = self.app.window(handle=cc_hwnd)
+        grid = cc_win.child_window(auto_id="dgvBillProcess", control_type="Pane")
+        grid.wait("visible", timeout=10)
+        time.sleep(0.3)
+
+        grid_rect    = win32gui.GetWindowRect(grid.handle)
+        HEADER_H     = 22
+        ROW_H        = 28
+
+        SETTLEMENT_X = grid_rect[0] + 100   # center of Settlement column
+        CHECKBOX_X   = grid_rect[0] + 15    # center of checkbox inside Selected column
+
+        def row_centre_y(row_idx):
+            return grid_rect[1] + HEADER_H + (row_idx * ROW_H) + (ROW_H // 2)
+
+        # ── Anchor focus on first Settlement cell ──
         anchor_y = row_centre_y(0)
-        print(f"  [PROCESSES GRID] Anchoring focus at Settlement ({SETTLEMENT_X}, anchor_y)")
+        print(f"  [PROCESSES GRID] Grid rect: {grid_rect}")
+        print(f"  [PROCESSES GRID] SETTLEMENT_X={SETTLEMENT_X}  CHECKBOX_X={CHECKBOX_X}")
+        print(f"  [PROCESSES GRID] Anchoring focus at Settlement ({SETTLEMENT_X}, {anchor_y})")
         mouse.click(button='left', coords=(SETTLEMENT_X, anchor_y))
         time.sleep(1.5)
 
-        MAX_ROWS     = 12
+    def process_processes_grid_selection(self, cc_hwnd, target_settlement):
+        if not target_settlement:
+            print("  [PROCESSES GRID] No target settlement specified. Skipping.")
+            return
+
+        target_clean = target_settlement.strip()[:2].lower()
+        print(f"\n[PROCESSES GRID] Scanning for settlement prefix: '{target_clean}' (from '{target_settlement}')...")
+        time.sleep(3.5)
+
+        # ── Bring main window to foreground ──
+        try:
+            win32gui.ShowWindow(self.main_hwnd, win32con.SW_SHOWMAXIMIZED)
+            win32gui.SetForegroundWindow(self.main_hwnd)
+            time.sleep(0.8)
+        except Exception as fe:
+            print(f"  [PROCESSES GRID] Focus: {fe}")
+
+        # ── Locate grid rect at runtime ──
+        cc_win = self.app.window(handle=cc_hwnd)
+        grid = cc_win.child_window(auto_id="dgvBillProcess", control_type="Pane")
+        grid.wait("visible", timeout=10)
+        time.sleep(0.3)
+
+        grid_rect    = win32gui.GetWindowRect(grid.handle)
+        HEADER_H     = 22
+        ROW_H        = 28
+
+        SETTLEMENT_X = grid_rect[0] + 100
+        CHECKBOX_X   = grid_rect[0] + 15
+
+        def row_centre_y(row_idx):
+            return grid_rect[1] + HEADER_H + (row_idx * ROW_H) + (ROW_H // 2)
+
+        # ── Anchor focus on first Settlement cell ──
+        anchor_y = row_centre_y(0)
+        print(f"  [PROCESSES GRID] Grid rect: {grid_rect}")
+        print(f"  [PROCESSES GRID] SETTLEMENT_X={SETTLEMENT_X}  CHECKBOX_X={CHECKBOX_X}")
+        print(f"  [PROCESSES GRID] Anchoring focus at Settlement ({SETTLEMENT_X}, {anchor_y})")
+        mouse.click(button='left', coords=(SETTLEMENT_X, anchor_y))
+        time.sleep(1.5)
+
+        # ── PASS 1: Scan rows ──
+        MAX_ROWS     = 20
         matched_rows = []
 
         for row_idx in range(MAX_ROWS):
+            current_y = row_centre_y(row_idx)
+
             try:
                 win32clipboard.OpenClipboard()
                 win32clipboard.EmptyClipboard()
@@ -530,129 +608,182 @@ class ControlCenterPage:
             time.sleep(0.5)
 
             cell_text = self.get_clipboard_text().lower().strip()
-            print(f"  [PROCESSES GRID] Row {row_idx}: '{cell_text}'")
+            print(f"  [PROCESSES GRID] Row {row_idx}: '{cell_text}' (y={current_y})")
 
             if not cell_text:
                 print("  [PROCESSES GRID] Empty cell — end of data.")
                 break
 
-            if target_clean in cell_text:
-                print(f"  ✓ Match at row {row_idx}")
-                matched_rows.append(row_idx)
+            if cell_text[:2] == target_clean:
+                print(f"  ✓ Prefix match at row {row_idx}")
+                matched_rows.append((row_idx, current_y))
 
             send_keys("{DOWN}")
             time.sleep(0.3)
 
         if not matched_rows:
-            print(f"  [PROCESSES GRID] CRITICAL: '{target_clean}' not found in {MAX_ROWS} rows.")
+            print(f"  [PROCESSES GRID] CRITICAL: '{target_clean}' not found.")
             return
 
-        print(f"  [PROCESSES GRID] Matched rows: {matched_rows}")
+        print(f"  [PROCESSES GRID] Matched rows: {[r for r, y in matched_rows]}")
 
-        for row_idx in matched_rows:
-            chk_y = row_centre_y(row_idx)
-            print(f"  [PROCESSES GRID] Clicking checkbox row {row_idx}: ({CHECKBOX_X}, chk_y)")
-
-            mouse.click(button='left', coords=(SETTLEMENT_X, chk_y))
-            time.sleep(0.4)
-
-            mouse.click(button='left', coords=(CHECKBOX_X, chk_y))
+        # ── PASS 2: Confirm and toggle checkboxes ──
+        for row_idx, scan_y in matched_rows:
+            print(f"  [PROCESSES GRID] Re-anchoring row {row_idx} → clicking Settlement ({SETTLEMENT_X}, {scan_y})")
+            mouse.click(button='left', coords=(SETTLEMENT_X, scan_y))
             time.sleep(0.6)
 
-            print(f"  [PROCESSES GRID] ✓ Checkbox clicked for row {row_idx}")
+            try:
+                win32clipboard.OpenClipboard()
+                win32clipboard.EmptyClipboard()
+                win32clipboard.CloseClipboard()
+            except:
+                pass
+            send_keys("^c")
+            time.sleep(0.4)
+            confirmed = self.get_clipboard_text().lower().strip()
+            print(f"  [PROCESSES GRID] Confirmed: '{confirmed}'")
 
-        print(f"  [PROCESSES GRID] All {len(matched_rows)} checkbox(es) clicked ✓")
+            if confirmed[:2] != target_clean:
+                print(f"  ⚠ Row {row_idx} re-anchor mismatch ('{confirmed}') — skipping.")
+                continue
+
+            checkbox_toggled = False
+            try:
+                print(f"  [PROCESSES GRID] Attempting keyboard toggle: HOME → SPACE")
+                send_keys("{HOME}")
+                time.sleep(0.3)
+                send_keys("{SPACE}")
+                time.sleep(0.5)
+                print(f"  [PROCESSES GRID] ✓ Checkbox toggled via SPACE for row {row_idx}")
+                checkbox_toggled = True
+            except Exception as kb_err:
+                print(f"  [PROCESSES GRID] Keyboard toggle failed: {kb_err}")
+
+            if not checkbox_toggled:
+                print(f"  [PROCESSES GRID] Falling back to pixel click for row {row_idx}")
+                mouse.click(button='left', coords=(SETTLEMENT_X, scan_y))
+                time.sleep(0.4)
+
+                for x_offset in [15, 20, 10, 25, 30]:
+                    test_checkbox_x = grid_rect[0] + x_offset
+                    print(f"  [PROCESSES GRID] Trying checkbox pixel click at ({test_checkbox_x}, {scan_y})")
+                    mouse.click(button='left', coords=(test_checkbox_x, scan_y))
+                    time.sleep(0.4)
+
+                    try:
+                        mouse.click(button='left', coords=(SETTLEMENT_X, scan_y))
+                        time.sleep(0.3)
+                        win32clipboard.OpenClipboard()
+                        win32clipboard.EmptyClipboard()
+                        win32clipboard.CloseClipboard()
+                        send_keys("^c")
+                        time.sleep(0.3)
+                        verify_text = self.get_clipboard_text().lower().strip()
+                        if verify_text[:2] == target_clean:
+                            print(f"  [PROCESSES GRID] ✓ Pixel click succeeded at x_offset={x_offset}")
+                            break
+                    except:
+                        pass
+
+            print(f"  [PROCESSES GRID] ✓ Row {row_idx} checkbox processed.")
+            time.sleep(0.3)
+
+        print(f"  [PROCESSES GRID] All {len(matched_rows)} checkbox(es) processed ✓")
         time.sleep(0.5)
 
-        print("  [PROCESSES GRID] Locating Proceed button...")
-        all_children = get_all_children(cc_hwnd)
-        proceed_rect = None
+        # ── Proceed via AutomationId ──
+        print("  [PROCESSES GRID] Clicking Proceed...")
+        btn = cc_win.child_window(auto_id="btnProcessProceed", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
+        time.sleep(2.0)
 
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Proceed" and rect[0] > 1000:
-                proceed_rect = rect
-                break
+        # ── Close any report popup that opens after Proceed ──
+        print("  [PROCESSES GRID] Checking for report popup after Proceed click...")
+        self._close_report_popup()
+        time.sleep(1.5)
 
-        if proceed_rect:
-            print(f"  [PROCESSES GRID] Clicking Proceed at {proceed_rect}")
-            click_center(proceed_rect)
-            
-            print("  [MONITOR] Proceed triggered. Locating process log panel frame...")
-            
-            log_panel_rect = None
-            for hwnd, cls, title, rect, vis in all_children:
-                if cls == TRADEPLUS_CLASS and vis and (840 <= rect[0] <= 850) and (180 <= rect[1] <= 190):
-                    log_panel_rect = rect
+        # ── Re-acquire cc_win after popup close (handle may have refreshed) ──
+        print("  [PROCESSES GRID] Re-acquiring Control Center window handle...")
+        try:
+            cc_win = self.app.window(handle=cc_hwnd)
+            cc_win.wait("visible", timeout=10)
+            win32gui.SetForegroundWindow(cc_hwnd)
+            time.sleep(1.0)
+        except Exception as reacq_err:
+            print(f"  [PROCESSES GRID] Re-acquire warning: {reacq_err}")
+
+        # ── Monitor dgvBillStatus for completion ──
+        print("  [MONITOR] Locating process log panel (dgvBillStatus)...")
+        try:
+            status_table = cc_win.child_window(auto_id="dgvBillStatus", control_type="Table")
+            status_table.wait("visible", timeout=20)
+        except Exception as tbl_err:
+            print(f"  [MONITOR] dgvBillStatus not found as Table, trying Pane fallback: {tbl_err}")
+            try:
+                status_table = cc_win.child_window(auto_id="dgvBillStatus", control_type="Pane")
+                status_table.wait("visible", timeout=20)
+            except Exception as pane_err:
+                print(f"  [MONITOR] dgvBillStatus Pane fallback also failed: {pane_err}")
+                # ── Last resort: dismiss msgbox and return ──
+                self.dismiss_center_msgbox(cc_hwnd, date_value=None)
+                self._close_report_popup()
+                return
+
+        status_rect = win32gui.GetWindowRect(status_table.handle)
+        console_x = (status_rect[0] + status_rect[2]) // 2
+        console_y = (status_rect[1] + status_rect[3]) // 2
+
+        print("  [MONITOR] Waiting for 'Process Completed'...")
+        check_interval = 5.0
+
+        while True:
+            try:
+                mouse.click(button='left', coords=(console_x, console_y))
+                time.sleep(0.3)
+
+                win32clipboard.OpenClipboard()
+                win32clipboard.EmptyClipboard()
+                win32clipboard.CloseClipboard()
+                time.sleep(0.1)
+
+                send_keys("^a")
+                time.sleep(0.2)
+                send_keys("^c")
+                time.sleep(0.4)
+
+                console_content = self.get_clipboard_text().lower()
+                if "process completed" in console_content:
+                    print("  [MONITOR] ✓ 'Process Completed' detected. Progressing pipeline.")
                     break
-            
-            if not log_panel_rect:
-                log_panel_rect = (846, 183, 1174, 654)
+            except Exception as monitor_err:
+                print(f"  [MONITOR WARNING] {monitor_err}")
 
-            console_x = (log_panel_rect[0] + log_panel_rect[2]) // 2
-            console_y = (log_panel_rect[1] + log_panel_rect[3]) // 2
-            
-            print("  [MONITOR] Entering dynamic evaluation loop. Waiting for process completion tokens...")
-            check_interval = 5.0  
-            
-            while True:
-                try:
-                    mouse.click(button='left', coords=(console_x, console_y))
-                    time.sleep(0.3)
-                    
-                    win32clipboard.OpenClipboard()
-                    win32clipboard.EmptyClipboard()
-                    win32clipboard.CloseClipboard()
-                    time.sleep(0.1)
-                    
-                    send_keys("^a")
-                    time.sleep(0.2)
-                    send_keys("^c")
-                    time.sleep(0.4)
-                    
-                    console_content = self.get_clipboard_text().lower()
-                    
-                    if "process completed" in console_content:
-                        print("  [MONITOR] ✓ 'Process Completed' string detected in console layout. Progressing pipeline updates.")
-                        break
-                except Exception as monitor_err:
-                    print(f"  [MONITOR WARNING] Extraction polling skip trace context: {monitor_err}")
-                
-                time.sleep(check_interval)
-            
-            self.dismiss_center_msgbox(cc_hwnd, date_value=None)
-            self._close_report_popup()
-        else:
-            print("  ⚠ [PROCESSES GRID] ERROR: Proceed button not found!")
+            time.sleep(check_interval)
+
+        self.dismiss_center_msgbox(cc_hwnd, date_value=None)
+        self._close_report_popup()
 
     def set_control_center_date(self, cc_hwnd, date_value):
         # Normalize incoming config input to standard Application format (DD/MM/YYYY)
         date_value = _normalize_to_dd_mm_yyyy(date_value)
         print(f"Setting Control Center date to: '{date_value}'")
         time.sleep(0.5)
-        
-        all_children = get_all_children(cc_hwnd)
-        date_hwnd = None
-        date_rect = None
-        
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == DATETIME_CLASS and vis:
-                if 220 <= rect[0] <= 240 and 115 <= rect[1] <= 130:
-                    date_hwnd = hwnd
-                    date_rect = rect
-                    break
-                    
-        if not date_hwnd:
-            for hwnd, cls, title, rect, vis in all_children:
-                if cls == DATETIME_CLASS and vis and rect[0] < 300:
-                    date_hwnd = hwnd
-                    date_rect = rect
-                    break
 
-        if not date_hwnd:
-            raise Exception("Primary Date Picker workspace element could not be isolated!")
+        # Locate via AutomationId='dtMain' — no coordinates
+        cc_win = self.app.window(handle=cc_hwnd)
+        date_ctrl = cc_win.child_window(auto_id="dtMain", control_type="Pane")
+        date_ctrl.wait("visible", timeout=10)
+        date_hwnd = date_ctrl.handle
+        date_rect  = win32gui.GetWindowRect(date_hwnd)
 
-        parts = date_value.split("/")
-        day, month, year = int(parts[0]), int(parts[1]), int(parts[2])
+        # Parse standardized components
+        clean_date = date_value.replace(" ", "/")
+        parts = clean_date.split("/")
+        day   = int(parts[0])  
+        month = int(parts[1])  
+        year  = int(parts[2])  
         
         import ctypes
         import ctypes.wintypes
@@ -695,43 +826,34 @@ class ControlCenterPage:
 
     def click_proceed_button(self, cc_hwnd):
         print("Clicking primary 'Proceed' button...")
-        all_children = get_all_children(cc_hwnd)
-        btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Proceed" and rect[0] < 350:
-                btn_rect = rect
-                break
-        if not btn_rect:
-            raise Exception("Primary Proceed button not found!")
-        click_center(btn_rect)
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnProceed", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
         time.sleep(1.0)
 
     def click_processes_button(self, cc_hwnd):
         print("Clicking sidebar 'Processes' navigation button...")
-        all_children = get_all_children(cc_hwnd)
-        btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Processes" and rect[0] < 350:
-                btn_rect = rect
-                break
-        if not btn_rect:
-            raise Exception("Sidebar Processes menu option missing!")
-        click_center(btn_rect)
-        time.sleep(1.0)
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnOthers", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
+        
+        print("Waiting for Processes workspace view to fully render...")
+        cc_win.child_window(auto_id="cmbProcProduct", control_type="ComboBox").wait("visible", timeout=15)
+        print("  ✓ Processes workspace active and verified.")
+        time.sleep(0.5)
 
     def set_product_selection(self, cc_hwnd, product_name):
         normalized_name = product_name.strip().capitalize()
         print(f"Setting Product Selection Dropdown to: '{normalized_name}'")
-        all_children = get_all_children(parent_hwnd=cc_hwnd)
-        product_combo_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis and (380 < rect[0] < 420) and (140 < rect[1] < 185):
-                product_combo_rect = rect
-                break
-        if not product_combo_rect:
-            raise Exception("Product selection dropdown element not found!")
-        click_center(product_combo_rect)
+        
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbProcProduct", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        combo.click_input()
         time.sleep(0.4)
+        
         send_keys("{HOME}")
         time.sleep(0.3)
         if normalized_name == "Commodity":
@@ -741,26 +863,28 @@ class ControlCenterPage:
         time.sleep(0.8)
 
     def set_process_for_date(self, cc_hwnd, for_date_value):
-        # Normalize dynamic workspace input execution strings 
         for_date_value = _normalize_to_dd_mm_yyyy(for_date_value)
         print(f"Setting Processes workspace 'For :' date to: '{for_date_value}'")
-        all_children = get_all_children(cc_hwnd)
-        date_ctrl = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == DATETIME_CLASS and vis and (650 < rect[0] < 700):
-                date_ctrl = (hwnd, rect)
-                break
-        if not date_ctrl:
-            raise Exception("Workspace 'For :' date picker element not found!")
-        date_hwnd, date_rect = date_ctrl
-        parts = for_date_value.split("/")
-        day, month, year = int(parts[0]), int(parts[1]), int(parts[2])
+        
+        cc_win = self.app.window(handle=cc_hwnd)
+        date_ctrl = cc_win.child_window(auto_id="dtProcess", control_type="Pane")
+        date_ctrl.wait("visible", timeout=10)
+        date_hwnd = date_ctrl.handle
+        date_rect = win32gui.GetWindowRect(date_hwnd)
+
+        clean_date = for_date_value.replace(" ", "/")
+        parts = clean_date.split("/")
+        day   = int(parts[0])
+        month = int(parts[1])
+        year  = int(parts[2])
+        
         import ctypes
         import ctypes.wintypes
         PROCESS_ALL_ACCESS = 0x1F0FFF
         MEM_COMMIT_RESERVE = 0x3000
         PAGE_READWRITE     = 0x04
         DTM_SETSYSTEMTIME  = 0x1002
+        
         st_bytes = ctypes.create_string_buffer(16)
         ctypes.memmove(st_bytes,
             ctypes.c_uint16(year).value.to_bytes(2,'little') +
@@ -772,6 +896,7 @@ class ControlCenterPage:
             ctypes.c_uint16(0).value.to_bytes(2,'little') +
             ctypes.c_uint16(0).value.to_bytes(2,'little'),
             16)
+            
         pid = ctypes.wintypes.DWORD(0)
         ctypes.windll.user32.GetWindowThreadProcessId(date_hwnd, ctypes.byref(pid))
         hProc = ctypes.windll.kernel32.OpenProcess(PROCESS_ALL_ACCESS, False, pid)
@@ -783,52 +908,63 @@ class ControlCenterPage:
                 time.sleep(0.3)
                 ctypes.windll.user32.SendMessageW(date_hwnd, DTM_SETSYSTEMTIME, 0, remote_mem)
                 time.sleep(0.5)
+                send_keys("{RIGHT}{ENTER}")
             finally:
-                remote_mem_freed = ctypes.windll.kernel32.VirtualFreeEx(hProc, remote_mem, 0, 0x8000)
+                ctypes.windll.kernel32.VirtualFreeEx(hProc, remote_mem, 0, 0x8000)
         finally:
             ctypes.windll.kernel32.CloseHandle(hProc)
 
     def click_process_fetch_button(self, cc_hwnd):
         print("Clicking workspace 'Fetch' button...")
-        all_children = get_all_children(cc_hwnd)
-        fetch_btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Fetch" and rect[0] > 350:
-                fetch_btn_rect = rect
-                break
-        if not fetch_btn_rect:
-            raise Exception("Workspace Fetch button element not found!")
-        click_center(fetch_btn_rect)
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnProcFetch", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
         time.sleep(1.0)
 
+    def set_processes_checkbox(self, cc_hwnd, auto_id, target_state=True):
+        """
+        Sets a functional configuration checkbox on the Processes tab using its explicit AutomationId.
+        """
+        print(f"Configuring Processes Checkbox [{auto_id}] -> Target State: {target_state}")
+        cc_win = self.app.window(handle=cc_hwnd)
+        chk = cc_win.child_window(auto_id=auto_id, control_type="CheckBox")
+        chk.wait("visible", timeout=10)
+        
+        current = chk.get_toggle_state() # 0 = unchecked, 1 = checked
+        desired = 1 if target_state else 0
+        
+        if current != desired:
+            chk.click_input()
+            time.sleep(0.5)
+            print(f"  {auto_id} updated successfully.")
+        else:
+            print(f"  {auto_id} is already in the desired state.")
+
     def click_others_button(self, cc_hwnd):
-        print("Clicking 'Others' button...")
-        all_children = get_all_children(cc_hwnd)
-        others_btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Others" and rect[0] < 350:
-                others_btn_rect = rect
-                break
-        if not others_btn_rect:
-            raise Exception("Could find 'Others' button inside Control Center layout!")
-        click_center(others_btn_rect)
-        time.sleep(1.0)
+        print("Clicking sidebar 'Others' navigation button...")
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnProcess", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
+        
+        print("Waiting for Others workspace layout to render...")
+        cc_win.child_window(auto_id="cmbExch", control_type="ComboBox").wait("visible", timeout=15)
+        print("  ✓ Others workspace verified active (cmbExch visible)")
+        time.sleep(0.5)
 
     def set_others_exchange(self, cc_hwnd, exchange_name):
         target = exchange_name.strip().upper()
         if target not in ["BSE", "NSE"]:
             raise ValueError(f"Invalid Exchange selection: '{exchange_name}'. Must be 'BSE' or 'NSE'.")
         print(f"Setting Others Tab Exchange to: '{target}'")
-        all_children = get_all_children(cc_hwnd)
-        exchange_combo_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis and (410 < rect[0] < 440) and (160 < rect[1] < 185):
-                exchange_combo_rect = rect
-                break
-        if not exchange_combo_rect:
-            raise Exception("Exchange dropdown box not found under Others view scope!")
-        click_center(exchange_combo_rect)
+        
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbExch", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        combo.click_input()
         time.sleep(0.4)
+        
         send_keys("{HOME}")
         time.sleep(0.3)
         if target == "NSE":
@@ -837,23 +973,42 @@ class ControlCenterPage:
         send_keys("{ENTER}")
         time.sleep(0.8)
 
+    def set_others_segment(self, cc_hwnd, segment_name):
+        target = segment_name.strip().upper()
+        # Supports: CASH, F&O, FX, MF
+        print(f"Setting Others Tab Segment to: '{target}'")
+        
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbSeg", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        combo.click_input()
+        time.sleep(0.4)
+        
+        send_keys("{HOME}")
+        time.sleep(0.3)
+        
+        # Incremental downward keyboard offset selectors
+        if target in ["F&O", "FO", "F AND O"]:
+            send_keys("{DOWN}")
+        elif target in ["FX", "CURRENCY"]:
+            send_keys("{DOWN 2}")
+        elif target in ["MF", "MUTUAL FUNDS", "MUTUAL FUND"]:
+            send_keys("{DOWN 3}")
+            
+        time.sleep(0.2)
+        send_keys("{ENTER}")
+        time.sleep(0.8)
+
     def set_others_settlement(self, cc_hwnd, settlement_name):
         prefix_target = settlement_name.strip()[:2].upper()
-        print(f"Selecting Settlement option using prefix tracking: '{prefix_target}' (from '{settlement_name}')")
+        print(f"Selecting Settlement option via target tracking: '{prefix_target}'")
         
-        all_children = get_all_children(cc_hwnd)
-        target_hwnd = None
-        settlement_combo_rect = None
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbStlmnt", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        target_hwnd = combo.handle
         
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis and (410 < rect[0] < 440) and (210 < rect[1] < 245):
-                target_hwnd = hwnd
-                settlement_combo_rect = rect
-                break
-        if not target_hwnd or not settlement_combo_rect:
-            raise Exception("Settlement dropdown box not found under Others view scope!")
-            
-        click_center(settlement_combo_rect)
+        combo.click_input()
         time.sleep(0.5)
 
         CB_SELECTSTRING = 0x014D
@@ -863,7 +1018,7 @@ class ControlCenterPage:
         matched_idx = win32api.SendMessage(target_hwnd, CB_SELECTSTRING, -1, prefix_target)
         
         if matched_idx != -1:
-            print(f"  [WIN32 CB] Prefix match successfully found at selection index: {matched_idx}")
+            print(f"  [WIN32 CB] Prefix match found at index: {matched_idx}")
             time.sleep(0.2)
             
             parent_form_hwnd = win32gui.GetParent(target_hwnd)
@@ -871,10 +1026,9 @@ class ControlCenterPage:
             notification_message = (CBN_SELCHANGE << 16) | (control_id & 0xFFFF)
             win32api.SendMessage(parent_form_hwnd, WM_COMMAND, notification_message, target_hwnd)
             time.sleep(0.3)
-            
             send_keys("{ESC}")
         else:
-            print(f"  ⚠ Prefix scan missed for '{prefix_target}'. Attempting manual sequence fallback typing...")
+            print(f"  ⚠ Prefix missed for '{prefix_target}'. Running fallback injection context...")
             send_keys("^a")
             time.sleep(0.1)
             send_keys("{BACKSPACE}")
@@ -911,17 +1065,37 @@ class ControlCenterPage:
         click_center(radio_rect)
         time.sleep(0.6)
 
+    def select_others_execution_option(self, cc_hwnd, option_key):
+        """
+        Dynamically targets the execution row radio element by its unique AutomationId.
+        """
+        mapping = {
+            "exchange_obligation_reconciliation": "optPrOblComp",
+            "unprocess_bills": "optPrUnProc",
+            "display_obligation_money_sheet": "optPrDispObgl",
+            "accumulation_difference": "optPrAccuDiff",
+            "stt_mismatch": "optPrSTTMismatch",
+            "bill_reconciliation": "optPrBillReco"
+        }
+        
+        target_auto_id = mapping.get(option_key.strip().lower())
+        if not target_auto_id:
+            print(f"  ⚠ Unknown 'Others' operational radio configuration lookup skipped: {option_key}")
+            return
+
+        print(f"Selecting Operational Radio Identifier Node: [{target_auto_id}] for option: {option_key}")
+        cc_win = self.app.window(handle=cc_hwnd)
+        radio = cc_win.child_window(auto_id=target_auto_id, control_type="RadioButton")
+        radio.wait("visible enabled", timeout=10)
+        radio.click_input()
+        time.sleep(0.6)
+
     def click_others_workspace_proceed(self, cc_hwnd):
         print("Clicking workspace final execution 'Proceed' button...")
-        all_children = get_all_children(cc_hwnd)
-        proceed_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "Proceed" and rect[0] > 1000:
-                proceed_rect = rect
-                break
-        if not proceed_rect:
-            raise Exception("Could not find bottom-right workspace Proceed button!")
-        click_center(proceed_rect)
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnProcesses", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
         time.sleep(1.5)
 
         result = self._dismiss_others_proceed_popup()
@@ -930,7 +1104,6 @@ class ControlCenterPage:
                 "[OTHERS PROCEED] CRITICAL STOP: 'Mis Match Found' detected in post-Proceed dialog. "
                 "Halting entire execution pipeline — data integrity check failed."
             )
-
         self._close_report_popup()
 
     def _dismiss_others_proceed_popup(self):
@@ -1102,43 +1275,23 @@ class ControlCenterPage:
 
     def click_file_imports_button(self, cc_hwnd):
         print("Clicking sidebar 'File Imports' navigation button...")
-        all_children = get_all_children(cc_hwnd)
-        btn_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis and title.strip() == "File Imports" and rect[0] < 350:
-                btn_rect = rect
-                break
-        if not btn_rect:
-            raise Exception("Sidebar File Imports menu option missing!")
-        click_center(btn_rect)
-        
-        max_wait = 150
+        cc_win = self.app.window(handle=cc_hwnd)
+        btn = cc_win.child_window(auto_id="btnImports", control_type="Button")
+        btn.wait("visible enabled", timeout=10)
+        btn.click_input()
+
+        # Wait for File Imports tab/workspace to be active — poll for cmbProduct
         print("Waiting for File Imports workspace view to fully render and open...")
-        for attempt in range(max_wait):
-            time.sleep(0.1)
-            current_children = get_all_children(cc_hwnd)
-            workspace_ready = False
-            for hwnd, cls, title, rect, vis in current_children:
-                if cls == COMBO_CLASS and vis and (380 < rect[0] < 410) and (140 < rect[1] < 155):
-                    workspace_ready = True
-                    break
-            if workspace_ready:
-                print(f"  ✓ File Imports workspace active and verified (attempt {attempt+1})")
-                time.sleep(0.5)  
-                return
-        print("  WARNING: Workspace controls did not show up within threshold, continuing anyway...")
+        cc_win.child_window(auto_id="cmbProduct", control_type="ComboBox").wait("visible", timeout=15)
+        print("  ✓ File Imports workspace active and verified (cmbProduct visible)")
+        time.sleep(0.5)
 
     def set_imports_product(self, cc_hwnd, product_name):
         print(f"Setting Imports Workspace Product to: '{product_name}'")
-        all_children = get_all_children(cc_hwnd)
-        combo_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis and (380 < rect[0] < 410) and (140 < rect[1] < 155):
-                combo_rect = rect
-                break
-        if not combo_rect:
-            raise Exception("File Imports configuration product combobox missing!")
-        click_center(combo_rect)
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbProduct", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        combo.click_input()
         time.sleep(0.4)
         send_keys("{HOME}")
         time.sleep(0.2)
@@ -1150,15 +1303,10 @@ class ControlCenterPage:
 
     def set_imports_type(self, cc_hwnd, type_name):
         print(f"Setting Imports Workspace Type to: '{type_name}'")
-        all_children = get_all_children(cc_hwnd)
-        combo_rect = None
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == COMBO_CLASS and vis and (380 < rect[0] < 410) and (170 < rect[1] < 185):
-                combo_rect = rect
-                break
-        if not combo_rect:
-            raise Exception("File Imports configuration type combobox missing!")
-        click_center(combo_rect)
+        cc_win = self.app.window(handle=cc_hwnd)
+        combo = cc_win.child_window(auto_id="cmbFileType", control_type="ComboBox")
+        combo.wait("visible enabled", timeout=10)
+        combo.click_input()
         time.sleep(0.4)
         send_keys("{HOME}")
         time.sleep(0.2)
@@ -1168,35 +1316,26 @@ class ControlCenterPage:
         send_keys("{ENTER}")
         time.sleep(0.5)
 
-    def check_matrix_checkbox(self, cc_hwnd, market_segment, state=True):
-        segment_key = market_segment.strip().upper()
-        print(f"Configuring Matrix Checkbox intersection for [{segment_key}] -> Target State: {state}")
+    def check_matrix_checkbox(self, cc_hwnd, checkbox_id, state=True):
+        """
+        Sets any specified matrix checkbox within grpTplus to the desired state 
+        using its explicit AutomationId.
+        """
+        print(f"Configuring Matrix Checkbox Identifier [{checkbox_id}] -> Target State: {state}")
 
-        all_children = get_all_children(cc_hwnd)
-        target_hwnd = None
-        target_rect = None
+        cc_win = self.app.window(handle=cc_hwnd)
+        chk = cc_win.child_window(auto_id=checkbox_id, control_type="CheckBox")
+        chk.wait("visible", timeout=10)
 
-        if segment_key == "BSE":
-            x_min, x_max, y_min, y_max = 610, 630, 165, 185
-        elif segment_key == "NSE":
-            x_min, x_max, y_min, y_max = 610, 630, 190, 210
+        current = chk.get_toggle_state()   # 0 = unchecked, 1 = checked
+        desired  = 1 if state else 0
+
+        if current != desired:
+            chk.click_input()
+            time.sleep(0.8)
+            print(f"  {checkbox_id} set to {'CHECKED' if state else 'UNCHECKED'} ✓")
         else:
-            raise ValueError(f"Unsupported segment identifier: {market_segment}")
-
-        for hwnd, cls, title, rect, vis in all_children:
-            if cls == BUTTON_CLASS and vis:
-                if (x_min <= rect[0] <= x_max) and (y_min <= rect[1] <= y_max):
-                    target_hwnd = hwnd
-                    target_rect = rect
-                    break
-
-        if not target_hwnd:
-            raise Exception(f"Failed to isolate matrix checkbox for {segment_key}!")
-
-        print(f"  Clicking {segment_key} checkbox to set state={state}...")
-        click_center(target_rect)
-        time.sleep(0.8)
-        print(f"  {segment_key} Checkbox clicked ✓")
+            print(f"  {checkbox_id} already {'CHECKED' if state else 'UNCHECKED'} — no change")
 
     def close_window(self):
         print("Closing Control Center window...")
@@ -1209,16 +1348,14 @@ class ControlCenterPage:
             print(f"  Note: Control Center window was already closed or not found: {e}")
 
     def process(self, date=None, click_file_imports=False, imports_product=None, imports_type=None,
-                check_bse_cash=False, check_nse_cash=False, bse_files_workflow=None, nse_files_workflow=None,
+                matrix_checkboxes=None, bse_files_workflow=None, nse_files_workflow=None,
                 click_processes=False, product=None, for_date=None, click_fetch=False,
                 click_others=False, exchange=None, settlement=None, exchange_obligation_reconciliation=False, unprocess_bills=False,
                 raw_workflow_config=None):
         
         while True:
             cc_hwnd = self._get_control_center_hwnd()
-
             if date is not None:
-                # Internal normalization converts YYYY/MM/DD target string securely inside application layout sets
                 self.set_control_center_date(cc_hwnd, date)
                 time.sleep(0.2)
                 self.click_proceed_button(cc_hwnd)
@@ -1229,9 +1366,6 @@ class ControlCenterPage:
         print(f"[DYNAMIC ROUTER] Computed task sequence pipeline order: {execution_sequence}")
 
         for step in execution_sequence:
-            # ── Re-fetch cc_hwnd before EVERY step so stale handles from prior
-            # ── suite operations (e.g. Others Proceed reloading the CC window)
-            # ── never cause element-not-found failures in subsequent steps.
             cc_hwnd = self._get_control_center_hwnd()
 
             if step == "file_imports" and click_file_imports:
@@ -1247,46 +1381,33 @@ class ControlCenterPage:
                     self.set_imports_type(cc_hwnd, imports_type)
                     time.sleep(0.2)
 
-                if check_bse_cash:
-                    print("  [SEQUENCER PASS 1] Activating BSE matrix grid segment...")
-                    self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=True)
-                    time.sleep(0.5)
+                # Unified, single loop execution for matrix checkboxes
+                if matrix_checkboxes and isinstance(matrix_checkboxes, dict):
+                    for target_cb_id, cb_enabled in matrix_checkboxes.items():
+                        if not cb_enabled:
+                            continue
+                        
+                        print(f"\n  [SEQUENCER PASS] Activating matrix segment grid targeting: {target_cb_id}...")
+                        self.check_matrix_checkbox(cc_hwnd, checkbox_id=target_cb_id, state=True)
+                        time.sleep(0.5)
 
-                    print("  [TIMER] Waiting 10 seconds for File BSE grid data to load...")
-                    time.sleep(10.0)
+                        print(f"  [TIMER] Waiting 10 seconds for {target_cb_id} grid data to load...")
+                        time.sleep(10.0)
 
-                    status = self.scan_and_process_data_grid(cc_hwnd, bse_files_workflow, date_value=date, current_segment="BSE")
+                        active_segment = "NSE" if "NSE" in target_cb_id.upper() else "BSE"
+                        active_workflow = nse_files_workflow if active_segment == "NSE" else bse_files_workflow
 
-                    print("  [SEQUENCER PASS 1] Clearing BSE selection state...")
-                    self.check_matrix_checkbox(cc_hwnd, market_segment="BSE", state=False)
-                    print("  [SEQUENCER PASS 1] Holding thread for interface refresh synchronization...")
-                    time.sleep(1.5)
+                        status = self.scan_and_process_data_grid(cc_hwnd, active_workflow, date_value=date, current_segment=active_segment)
 
-                    if status == "RESTART":
-                        return "RESTART"
+                        print(f"  [SEQUENCER PASS] Clearing {target_cb_id} selection state...")
+                        self.check_matrix_checkbox(cc_hwnd, checkbox_id=target_cb_id, state=False)
+                        print("  [SEQUENCER PASS] Holding thread for interface refresh synchronization...")
+                        time.sleep(1.5)
 
-                if check_nse_cash:
-                    print("  [SEQUENCER PASS 2] Activating NSE matrix grid segment...")
-                    self.check_matrix_checkbox(cc_hwnd, market_segment="NSE", state=True)
-                    time.sleep(0.5)
-
-                    print("  [TIMER] Waiting 10 seconds for NSE File grid data to load...")
-                    time.sleep(10.0)
-
-                    status = self.scan_and_process_data_grid(cc_hwnd, nse_files_workflow, date_value=date, current_segment="NSE")
-
-                    print("  [SEQUENCER PASS 2] Clearing NSE selection state...")
-                    self.check_matrix_checkbox(cc_hwnd, market_segment="NSE", state=False)
-                    print("  [SEQUENCER PASS 2] Holding thread for interface refresh synchronization...")
-                    time.sleep(1.5)
-
-                    if status == "RESTART":
-                        return "RESTART"
+                        if status == "RESTART":
+                            return "RESTART"
 
             elif step == "others" and click_others:
-                if raw_workflow_config and not raw_workflow_config.get("others", {}).get("enabled", True):
-                    continue
-
                 print("\n--- Executing Others Suite ---")
                 self.click_others_button(cc_hwnd)
                 time.sleep(0.5)
@@ -1294,16 +1415,27 @@ class ControlCenterPage:
                 if exchange is not None:
                     self.set_others_exchange(cc_hwnd, exchange)
 
+                others_block = raw_workflow_config.get("others", {})
+                segment_val = others_block.get("segment")
+                if segment_val is not None:
+                    self.set_others_segment(cc_hwnd, segment_val)
+
                 if settlement is not None:
                     self.set_others_settlement(cc_hwnd, settlement)
 
-                if exchange_obligation_reconciliation:
-                    self.select_exchange_obligation_reconciliation_option(cc_hwnd)
-                    time.sleep(0.2)
-
-                if unprocess_bills:
-                    self.select_unprocess_bills_option(cc_hwnd)
-                    time.sleep(0.2)
+                options_to_check = [
+                    "exchange_obligation_reconciliation", 
+                    "unprocess_bills", 
+                    "display_obligation_money_sheet", 
+                    "accumulation_difference", 
+                    "stt_mismatch", 
+                    "bill_reconciliation"
+                ]
+                
+                for option in options_to_check:
+                    if others_block.get(option, False):
+                        self.select_others_execution_option(cc_hwnd, option)
+                        break
 
                 self.click_others_workspace_proceed(cc_hwnd)
 
@@ -1323,14 +1455,25 @@ class ControlCenterPage:
                     self.set_process_for_date(cc_hwnd, for_date)
                     time.sleep(0.2)
 
+                # Set structural options checkboxes parsed out from JSON parameters tracking
+                proc_block = raw_workflow_config.get("processes", {})
+                checkbox_mappings = {
+                    "bill_generation": "chkBillGenerate",
+                    "accumulation": "chkProcAccumulate",
+                    "agts": "chkAGTS",
+                    "revenue_sharing": "chkRemShare",
+                    "lock_bill_prior": "chkLockBill"
+                }
+
+                for json_key, auto_id in checkbox_mappings.items():
+                    if json_key in proc_block:
+                        self.set_processes_checkbox(cc_hwnd, auto_id, target_state=proc_block[json_key])
+
                 if click_fetch:
                     self.click_process_fetch_button(cc_hwnd)
                     time.sleep(0.5)
                     
-                    target_settlement_name = None
-                    if isinstance(raw_workflow_config, dict):
-                        target_settlement_name = raw_workflow_config.get("processes", {}).get("target_settlement")
-                        
+                    target_settlement_name = proc_block.get("target_settlement")
                     if target_settlement_name:
                         self.process_processes_grid_selection(cc_hwnd, target_settlement_name)
                         time.sleep(0.8)

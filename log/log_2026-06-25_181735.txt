@@ -1,0 +1,88 @@
+========================================================
+Log Session Started At: 2026-06-25 18:17:35
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_181735.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_181735.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2166852
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2166852
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2166852
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2166852
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: False
+  chkAGTS updated successfully.
+Configuring Processes Checkbox [chkRemShare] -> Target State: False
+  chkRemShare updated successfully.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement targeting matching rule: 'nq2026013'...
+  [PROCESSES GRID] Row 0: 'br2025817'
+  [PROCESSES GRID] Row 1: 'bu2025818'
+  [PROCESSES GRID] Row 2: 'bu2025818'
+  [PROCESSES GRID] Row 3: 'bm2025218'
+  [PROCESSES GRID] Row 4: 'bq2025818'
+  [PROCESSES GRID] Row 5: 'bm2025218'
+  [PROCESSES GRID] Row 6: 'bm2025218'
+  [PROCESSES GRID] Row 7: 'na2026028'
+  [PROCESSES GRID] Row 8: 'nm2026029'
+  [PROCESSES GRID] Row 9: 'nm2026029'
+  [PROCESSES GRID] Row 10: 'nq2026029'
+  [PROCESSES GRID] Row 11: 'nu2026029'
+  [PROCESSES GRID] Target settlement 'nq2026013' not found in row scans.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2166852
+  Control Center window closed successfully ✓
+   [POST-STEP CC] No report viewer windows detected. Continuing ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Control_Center_SubStep_1_20260625_181911.png
+
+All enabled automation pipeline tasks completed successfully.
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_SUCCESS_Final_20260625_181914.png
+🛑 Screen recording stopped safely.
+📎 Packing attachment context: Pipeline_SUCCESS_Final_20260625_181914.png...
+📧 Connecting to SMTP Server smtp.gmail.com:587...
+📧 Transmitting report package to target recipients...
+✅ Full report bundle successfully routed via customizable parameters!
+
+Closing log file handle session. Goodbye.

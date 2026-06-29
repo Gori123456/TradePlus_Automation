@@ -1,0 +1,55 @@
+========================================================
+Log Session Started At: 2026-06-25 16:30:59
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_163059.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_163059.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 3] Processing Menu: PLEDGE_MANAGEMENT
+Executing Pledge Management...
+ 🖲️ Accessing Application Menu: Utilities -> Pledge Management
+ ✓ Menu accessed successfully via selection engine path.
+Clicking tab: 'Manage'
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+  [TAB] hwnd=724836  screen_rect=(243, 184, 1126, 611)
+  [TAB] item rect (client) L=47 T=2 R=98 B=20
+  [TAB] clicking screen (315, 199)
+  Tab 'Manage' activated and verified ✓
+Setting action dropdown: 'Un Re-Pledge' → selecting 'Un Re-Pledge'
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+  [COMBO] Fallback match hwnd=1642126 title=''
+  [COMBO] Found hwnd=1642126 rect=(787, 262, 875, 283) title=''
+  [COMBO] Dropdown listbox not found — using keyboard navigation
+  Action set to 'Un Re-Pledge' ✓
+Setting Manage date to: '11/02/2026'
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+  [DATE] Using hwnd=1903864  rect=(515, 577, 603, 597)
+  ✓ Date set to '11/02/2026' ✓
+  Processing checkbox: 'With EPN-BLK' → Target: True
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+    Checkbox 'With EPN-BLK': CHANGED → True
+  Processing checkbox: 'Items Sold By Client' → Target: True
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+    Checkbox 'Items Sold By Client': CHANGED → True
+[THREAD WATCHER] Scanning for dialog box contexts...Clicking 'Fetch' button...
+
+  [PLEDGE WIN] hwnd=593752  title='Margin - Pledge/Unpledge'
+[THREAD WATCHER] Popup hwnd=1379966 — dismissing...
+[THREAD WATCHER] ✓ ENTER pressed ✓
+  Fetch button clicked ✓
+  [WAIT] Fetch done — waiting 3 s before Save...
+[THREAD WATCHER] Scanning for dialog box contexts...Clicking 'Save' button...
+
+
+Closing log file handle session. Goodbye.

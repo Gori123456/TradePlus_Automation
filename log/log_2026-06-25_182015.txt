@@ -1,0 +1,223 @@
+========================================================
+Log Session Started At: 2026-06-25 18:20:15
+Console output path: D:\TradePlus_Automation\log\log_2026-06-25_182015.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-25_182015.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2297944
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2297944
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (cmbProduct visible)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+
+  [SEQUENCER PASS] Activating matrix segment grid targeting: chkBSECash...
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: True
+  chkBSECash set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkBSECash grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Broker Query'
+    -> 'BSE_Cash_Broker Query' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Provisional)'
+    -> 'BSE_Cash_Obligation File (Provisional)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Final)'
+    -> 'BSE_Cash_Obligation File (Final)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_STT Details File'
+    -> 'BSE_Cash_STT Details File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (934, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Stamp Duty File'
+    -> 'BSE_Cash_Stamp Duty File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (934, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Bhavcopy'
+    -> 'BSE_Cash_Bhavcopy' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (934, 417)
+  Row 6: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (934, 437)
+  Row 7: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 8 at (934, 457)
+  Row 8: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+  [GRID BREAK] Detected duplicate dynamic values ('BSE_Cash_Offer For Sale Trade File'). Breaking loop.
+  [SEQUENCER PASS] Clearing chkBSECash selection state...
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: False
+  chkBSECash set to UNCHECKED ✓
+  [SEQUENCER PASS] Holding thread for interface refresh synchronization...
+
+  [SEQUENCER PASS] Activating matrix segment grid targeting: chkNSECash...
+Configuring Matrix Checkbox Identifier [chkNSECash] -> Target State: True
+  chkNSECash set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkNSECash grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Trade File'
+    -> 'NSE_Cash_Trade File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Provisional)'
+    -> 'NSE_Cash_Obligation File (Provisional)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Final)'
+    -> 'NSE_Cash_Obligation File (Final)' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+  Row 3: 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_STT Details File'
+    -> 'NSE_Cash_STT Details File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 4 at (934, 377)
+  Row 4: 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Stamp Duty File'
+    -> 'NSE_Cash_Stamp Duty File' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 5 at (934, 397)
+  Row 5: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 6 at (934, 417)
+  Row 6: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' Not in JSON config. Skipping.
+  [GRID] Clicking filename cell row 7 at (934, 437)
+  Row 7: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+  [GRID BREAK] Detected duplicate dynamic values ('NSE_Cash_Bhavcopy'). Breaking loop.
+  [SEQUENCER PASS] Clearing chkNSECash selection state...
+Configuring Matrix Checkbox Identifier [chkNSECash] -> Target State: False
+  chkNSECash set to UNCHECKED ✓
+  [SEQUENCER PASS] Holding thread for interface refresh synchronization...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2297944
+
+--- Executing Others Suite ---
+Clicking sidebar 'Others' navigation button...
+Waiting for Others workspace layout to render...
+  ✓ Others workspace verified active (cmbExch visible)
+Setting Others Tab Exchange to: 'NSE'
+Setting Others Tab Segment to: 'F&O'
+Selecting Settlement option via target tracking: 'NQ'
+  [WIN32 CB] Prefix match found at index: 2
+Selecting Operational Radio Identifier Node: [optPrDispObgl] for option: display_obligation_money_sheet
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Waiting for post-Proceed dialog box (up to 10 s)...
+  [OTHERS PROCEED] Dialog found: 'Information' handle=3542892
+  [OTHERS PROCEED] Dialog content: 'information information &ok'
+  [OTHERS PROCEED] Normal confirmation dialog — dismissing and continuing.
+  [OTHERS PROCEED] Dismissed via BM_CLICK ✓
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2297944
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: False
+  chkAGTS updated successfully.
+Configuring Processes Checkbox [chkRemShare] -> Target State: False
+  chkRemShare updated successfully.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement targeting matching rule: 'nq2026013'...
+  [PROCESSES GRID] Row 0: 'br2025817'
+  [PROCESSES GRID] Row 1: 'bu2025818'
+  [PROCESSES GRID] Row 2: 'bu2025818'
+  [PROCESSES GRID] Row 3: 'bm2025218'
+  [PROCESSES GRID] Row 4: 'bq2025818'
+  [PROCESSES GRID] Row 5: 'bm2025218'
+  [PROCESSES GRID] Row 6: 'bm2025218'
+  [PROCESSES GRID] Row 7: 'na2026028'
+  [PROCESSES GRID] Row 8: 'nm2026029'
+  [PROCESSES GRID] Row 9: 'nm2026029'
+  [PROCESSES GRID] Row 10: 'nq2026029'
+  [PROCESSES GRID] Row 11: 'nu2026029'
+  [PROCESSES GRID] Target settlement 'nq2026013' not found in row scans.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=2297944
+  Control Center window closed successfully ✓
+   [POST-STEP CC] No report viewer windows detected. Continuing ✓
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Control_Center_SubStep_1_20260625_182404.png
+
+   [SUB-STEP 2] Processing Menu: DEMAT_PROCESSES
+Executing Demat Processes -> Target UI Menu Text: 'Demat Auto Entries'...
+ 🖲️ Accessing Application Menu: Utilities -> Demat Processes
+ ✓ Menu accessed successfully via selection engine path.
+Configuring checkboxes via AutomationId...
+  [CHECKBOX] WARNING: Could not set 'Show Detail Before Process' (auto_id=chkShowDetail): (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+  [CHECKBOX] WARNING: Could not set 'One by One Processing' (auto_id=chk1By1): (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+  [CHECKBOX] WARNING: Could not set 'Pay-In' (auto_id=chkPayIn): (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+  [CHECKBOX] WARNING: Could not set 'Pay-Out' (auto_id=chkPayOut): (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+Setting Date value to: 11/02/2026
+
+ERROR OCCURRED DURING WORKFLOW RUN: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 423, in <module>
+    page.process(
+    ~~~~~~~~~~~~^
+        step_cfg["date"],
+        ^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        pay_out                    = step_cfg.get("pay_out"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\TradePlus_Automation\pages\share_payout_page.py", line 211, in process
+    date_pane.click_input(coords=(5, 10))
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 379, in __getattribute__
+    ctrls = self.__resolve_control(self.criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 250, in __resolve_control
+    ctrl = wait_until_passes(
+        timeout,
+    ...<5 lines>...
+         controls.InvalidElement),
+        criteria)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\timings.py", line 436, in wait_until_passes
+    func_val = func(*args, **kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py", line 203, in __get_ctrl
+    dialog = self.backend.generic_wrapper_class(findwindows.find_element(**criteria[0]))
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 84, in find_element
+    elements = find_elements(**kwargs)
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\findwindows.py", line 181, in find_elements
+    return [backend_obj.element_info_class(handle), ]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\uia_element_info.py", line 71, in __init__
+    self._element = IUIA().iuia.ElementFromHandle(handle_or_elem)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+_ctypes.COMError: (-2147220991, 'An event was unable to invoke any of the subscribers', (None, None, None, 0, None))
+
+Closing log file handle session. Goodbye.

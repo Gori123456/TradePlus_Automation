@@ -1,0 +1,49 @@
+========================================================
+Log Session Started At: 2026-06-24 23:58:00
+Console output path: D:\TradePlus_Automation\log\log_2026-06-24_235800.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-24_235800.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=985364
+Setting Control Center date to: '11/02/2026'
+  ℹ️ Primary visibility scan missed. Performing raw structural scan...
+Clicking primary 'Proceed' button...
+
+ERROR OCCURRED DURING WORKFLOW RUN: Primary Proceed button not found!
+Traceback (most recent call last):
+  File "D:\TradePlus_Automation\app.py", line 435, in <module>
+    status = page.process(
+        date                = step_cfg.get("date").replace(" ", "/") if step_cfg.get("date") else None,
+    ...<18 lines>...
+        raw_workflow_config = step_cfg
+    )
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 1246, in process
+    self.click_proceed_button(cc_hwnd)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\TradePlus_Automation\pages\control_center_page.py", line 721, in click_proceed_button
+    raise Exception("Primary Proceed button not found!")
+Exception: Primary Proceed button not found!
+D:\TradePlus_Automation\venv\Lib\site-packages\pywinauto\application.py:1085: UserWarning: 32-bit application should be automated using 32-bit Python (you use 64-bit Python)
+  warnings.warn(
+   ✓ Entire maximized application window screenshot saved: Pipeline_CRASH_State_20260624_235844.png
+🛑 Screen recording stopped safely.
+❌ EMAIL: sender_email / sender_password / recipient_email missing in Action.json 'mail_config' block. Skipping email.
+
+Press Enter to Exit...

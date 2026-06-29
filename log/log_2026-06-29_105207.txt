@@ -1,0 +1,177 @@
+========================================================
+Log Session Started At: 2026-06-29 10:52:07
+Console output path: D:\TradePlus_Automation\log\log_2026-06-29_105207.txt
+Screenshot storage path: D:\TradePlus_Automation\Capture_Data
+========================================================
+🎬 Screen recording started. Saving to session_2026-06-29_105207.avi
+Application Started
+DEBUG: Attempting login with Username: 'JATIN' (Length: 5)
+Clicking and focusing Username field...
+Typing username...
+Clicking and focusing Password field...
+Typing password...
+Clicking Login Button...
+Login Completed
+Starting Configured Workflows Sequence...
+
+======== Entering Parent Menu Block [1]: UTILITIES ========
+
+   [SUB-STEP 1] Processing Menu: CONTROL_CENTER
+   [PRE-FLIGHT CC] No report viewer windows detected. Continuing ✓
+ 🖲️ Accessing Application Menu: Utilities -> Control Center
+ ✓ Menu accessed successfully via selection engine path.
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=395700
+Setting Control Center date to: '11/02/2026'
+Clicking primary 'Proceed' button...
+[DYNAMIC ROUTER] Computed task sequence pipeline order: ['file_imports', 'others', 'processes']
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=395700
+
+--- Executing File Imports Suite ---
+Clicking sidebar 'File Imports' navigation button...
+Waiting for File Imports workspace view to fully render and open...
+  ✓ File Imports workspace active and verified (cmbProduct visible)
+Setting Imports Workspace Product to: 'Equity'
+Setting Imports Workspace Type to: 'UDIFF'
+
+  [SEQUENCER PASS] Activating matrix segment grid targeting: chkBSECash...
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: True
+  chkBSECash set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkBSECash grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_BSE_CM_0_TM_6351_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Broker Query'
+    -> 'BSE_Cash_Broker Query' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+    -> Import complete for row 0. Continuing to next file...
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_P_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Provisional)'
+    -> 'BSE_Cash_Obligation File (Provisional)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'Obligation_ICCL_CM_EquityT1_TM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Obligation File (Final)'
+    -> 'BSE_Cash_Obligation File (Final)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+  Row 3: 'STT_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_STT Details File'
+    -> 'BSE_Cash_STT Details File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 4 at (934, 377)
+  Row 4: 'StampDuty_ICCL_CM_0_CM_6351_20260211_F_0000.CSV' parsed as mapping key: 'BSE_Cash_Stamp Duty File'
+    -> 'BSE_Cash_Stamp Duty File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 5 at (934, 397)
+  Row 5: 'BhavCopy_BSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'BSE_Cash_Bhavcopy'
+    -> 'BSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 6 at (934, 417)
+  Row 6: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 7 at (934, 437)
+  Row 7: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+    -> 'BSE_Cash_Offer For Sale Trade File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 8 at (934, 457)
+  Row 8: 'AN110226.6351' parsed as mapping key: 'BSE_Cash_Offer For Sale Trade File'
+  [GRID BREAK] Detected duplicate dynamic values ('BSE_Cash_Offer For Sale Trade File'). Breaking loop.
+  [SEQUENCER PASS] Clearing chkBSECash selection state...
+Configuring Matrix Checkbox Identifier [chkBSECash] -> Target State: False
+  chkBSECash set to UNCHECKED ✓
+  [SEQUENCER PASS] Holding thread for interface refresh synchronization...
+
+  [SEQUENCER PASS] Activating matrix segment grid targeting: chkNSECash...
+Configuring Matrix Checkbox Identifier [chkNSECash] -> Target State: True
+  chkNSECash set to CHECKED ✓
+  [TIMER] Waiting 10 seconds for chkNSECash grid data to load...
+
+Starting File Imports grid scan...
+  [GRID] Clicking filename cell row 0 at (934, 297)
+  Row 0: 'Trade_NSE_CM_0_TM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Trade File'
+    -> 'NSE_Cash_Trade File' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 0...
+    -> Waiting for import pipeline...
+    -> Import complete for row 0. Continuing to next file...
+  [GRID] Clicking filename cell row 1 at (934, 317)
+  Row 1: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_P_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Provisional)'
+    -> 'NSE_Cash_Obligation File (Provisional)' is TRUE — checking import status...
+    -> [PENDING] Triggering import for row 1...
+    -> Waiting for import pipeline...
+  [ALERT INTERCEPT] Modal target dialog identified. Extracting text strings...
+  [ALERT INTERCEPT] Inspected Text Content: ''
+  WARNING: Dynamic click vector missed. Delivering direct keyboard ENTER stroke sequence...
+    -> Import complete for row 1. Continuing to next file...
+  [GRID] Clicking filename cell row 2 at (934, 337)
+  Row 2: 'Obligation_NCL_CM_EquityT1_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Obligation File (Final)'
+    -> 'NSE_Cash_Obligation File (Final)' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 3 at (934, 357)
+  Row 3: 'STT_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_STT Details File'
+    -> 'NSE_Cash_STT Details File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 4 at (934, 377)
+  Row 4: 'StampDuty_NCL_CM_0_CM_08854_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Stamp Duty File'
+    -> 'NSE_Cash_Stamp Duty File' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 5 at (934, 397)
+  Row 5: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 6 at (934, 417)
+  Row 6: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+    -> 'NSE_Cash_Bhavcopy' is FALSE in JSON. Skipping.
+  [GRID] Clicking filename cell row 7 at (934, 437)
+  Row 7: 'BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv' parsed as mapping key: 'NSE_Cash_Bhavcopy'
+  [GRID BREAK] Detected duplicate dynamic values ('NSE_Cash_Bhavcopy'). Breaking loop.
+  [SEQUENCER PASS] Clearing chkNSECash selection state...
+Configuring Matrix Checkbox Identifier [chkNSECash] -> Target State: False
+  chkNSECash set to UNCHECKED ✓
+  [SEQUENCER PASS] Holding thread for interface refresh synchronization...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=395700
+
+--- Executing Others Suite ---
+Clicking sidebar 'Others' navigation button...
+Waiting for Others workspace layout to render...
+  ✓ Others workspace verified active (cmbExch visible)
+Setting Others Tab Exchange to: 'NSE'
+Setting Others Tab Segment to: 'CASH'
+Selecting Settlement option via target tracking: 'NQ'
+  [WIN32 CB] Prefix match found at index: 2
+Selecting Operational Radio Identifier Node: [optPrOblComp] for option: exchange_obligation_reconciliation
+Clicking workspace final execution 'Proceed' button...
+  [OTHERS PROCEED] Waiting for post-Proceed dialog box (up to 10 s)...
+  [OTHERS PROCEED] Dialog found: 'Information' handle=199400
+  [OTHERS PROCEED] Dialog content: 'information information &ok'
+  [OTHERS PROCEED] Normal confirmation dialog — dismissing and continuing.
+  [OTHERS PROCEED] Dismissed via BM_CLICK ✓
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=395700
+
+--- Executing Processes Suite ---
+Clicking sidebar 'Processes' navigation button...
+Waiting for Processes workspace view to fully render...
+  ✓ Processes workspace active and verified.
+Setting Product Selection Dropdown to: 'Equity'
+Setting Processes workspace 'For :' date to: '11/02/2026'
+Configuring Processes Checkbox [chkBillGenerate] -> Target State: True
+  chkBillGenerate is already in the desired state.
+Configuring Processes Checkbox [chkProcAccumulate] -> Target State: True
+  chkProcAccumulate is already in the desired state.
+Configuring Processes Checkbox [chkAGTS] -> Target State: True
+  chkAGTS is already in the desired state.
+Configuring Processes Checkbox [chkRemShare] -> Target State: True
+  chkRemShare is already in the desired state.
+Configuring Processes Checkbox [chkLockBill] -> Target State: False
+  chkLockBill is already in the desired state.
+Clicking workspace 'Fetch' button...
+
+[PROCESSES GRID] Scanning for settlement prefix: 'nq' (from 'NQ2026013')...
+  [PROCESSES GRID] Anchoring focus at Settlement (447, anchor_y)
+  [PROCESSES GRID] Row 0: ''
+  [PROCESSES GRID] Empty cell — end of data.
+  [PROCESSES GRID] CRITICAL: 'nq' not found in 12 rows.
+ControlCenterPage dynamic sequencing suite processing completed successfully.
+Finishing Control Center Suite. Closing context safely...
+Closing Control Center window...
+Waiting for Control Center window to initialize and render (Timeout: 10 min)...
+  ✓ Control Center window located on attempt 1: handle=395700
+  Control Center window closed successfully ✓
+   [POST-STEP CC] No report viewer windows detected. Continuing ✓
+   ⚠ Main TradePlusX handle not found. Cannot capture screenshot for 'Control_Center_SubStep_1'.
+
+   [SUB-STEP 2] Processing Menu: DEMAT_PROCESSES
+Executing Demat Processes -> Target UI Menu Text: 'Demat Auto Entries'...
+ 🖲️ Accessing Application Menu: Utilities -> Demat Processes
