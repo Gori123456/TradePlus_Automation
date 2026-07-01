@@ -1,0 +1,806 @@
+{
+  "schema_version": "2.0.0",
+  "description": "Fully generic automation configuration. No application name or control IDs are hard-coded in the runner; everything is defined below.",
+
+  "project": {
+    "name": "Generic TradePlusX Automation",
+    "output_dir": "Capture_Data",
+    "log_dir": "log",
+    "auto_close_app": true,
+    "record_screen": true,
+    "recording_fps": 6,
+    "send_email_report": true
+  },
+
+  "mail_config": {
+    "from_email": "jatingori72@gmail.com",
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "jatingori72@gmail.com",
+    "password": "ytwdxepjhldmudte",
+    "use_ssl": false,
+    "to": ["jatingori72@gmail.com"],
+    "cc": [],
+    "bcc": []
+  },
+
+  "applications": {
+    "tradeplusx": {
+      "executable_path": "D:\\TradePlus\\TradePlusX.exe",
+      "backend": "uia",
+      "window_class": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "window_title": "TradePlusX",
+      "launch_timeout_seconds": 60,
+      "login_workflow": "login",
+      "main_window_focus_timeout": 10
+    }
+  },
+
+  "global_variables": {
+    "business_date": "11/02/2026",
+    "settlement_nse": "NQ2026013",
+    "settlement_nse_others": "NQ2026112"
+  },
+
+  "locators": {
+    "main_window": {
+      "strategy": "win32_window",
+      "class_name": "${applications.tradeplusx.window_class}",
+      "title": "${applications.tradeplusx.window_title}"
+    },
+    "username_field": {
+      "strategy": "uia_child",
+      "control_type": "Edit",
+      "found_index": 0,
+      "parent": "main_window"
+    },
+    "password_field": {
+      "strategy": "uia_child",
+      "control_type": "Edit",
+      "found_index": 1,
+      "parent": "main_window"
+    },
+    "login_button": {
+      "strategy": "uia_child",
+      "control_type": "Button",
+      "title": "Login",
+      "parent": "main_window"
+    },
+    "control_center_window": {
+      "strategy": "child_window_by_title",
+      "parent": "main_window",
+      "title_substring": "Control Center",
+      "visible": true,
+      "timeout_seconds": 600,
+      "poll_interval_seconds": 0.2
+    },
+    "cc_date_picker": {
+      "strategy": "uia_child",
+      "auto_id": "dtMain",
+      "parent": "control_center_window"
+    },
+    "cc_tab_file_imports": {
+      "strategy": "uia_child",
+      "auto_id": "btnImports",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_tab_others": {
+      "strategy": "uia_child",
+      "auto_id": "btnOthers",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_tab_processes": {
+      "strategy": "uia_child",
+      "auto_id": "btnProcess",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_product_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbProduct",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_type_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbType",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_fetch_button": {
+      "strategy": "uia_child",
+      "auto_id": "btnFetch",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_imports_grid": {
+      "strategy": "uia_child",
+      "auto_id": "dgvImports",
+      "control_type": "Table",
+      "parent": "control_center_window"
+    },
+    "cc_others_exchange_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbExchange",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_others_segment_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbSegment",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_others_settlement_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbSettlement",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_others_proceed_button": {
+      "strategy": "uia_child",
+      "auto_id": "btnProceed",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_processes_product_combo": {
+      "strategy": "uia_child",
+      "auto_id": "cmbProcessProduct",
+      "control_type": "ComboBox",
+      "parent": "control_center_window"
+    },
+    "cc_processes_date_picker": {
+      "strategy": "uia_child",
+      "auto_id": "dtProcess",
+      "parent": "control_center_window"
+    },
+    "cc_processes_fetch_button": {
+      "strategy": "uia_child",
+      "auto_id": "btnProcFetch",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    },
+    "cc_processes_settlement_grid": {
+      "strategy": "uia_child",
+      "auto_id": "dgvStlmnt",
+      "control_type": "Table",
+      "parent": "control_center_window"
+    },
+    "cc_processes_proceed_button": {
+      "strategy": "uia_child",
+      "auto_id": "btnProcessProceed",
+      "control_type": "Button",
+      "parent": "control_center_window"
+    }
+  },
+
+  "workflows": {
+    "login": {
+      "description": "Generic login workflow. Fills the first two Edit controls and clicks Login.",
+      "steps": [
+        {
+          "name": "focus_main_window",
+          "action": "focus_window",
+          "target": "main_window",
+          "post_delay": 1
+        },
+        {
+          "name": "enter_username",
+          "action": "type",
+          "target": "username_field",
+          "value": "${app_config.username}",
+          "clear_before_type": true,
+          "typing_pause_seconds": 0.08,
+          "post_delay": 1
+        },
+        {
+          "name": "enter_password",
+          "action": "type",
+          "target": "password_field",
+          "value": "${app_config.password}",
+          "clear_before_type": true,
+          "typing_pause_seconds": 0.08,
+          "post_delay": 1
+        },
+        {
+          "name": "click_login",
+          "action": "click",
+          "target": "login_button",
+          "post_delay": 3
+        }
+      ]
+    },
+
+    "control_center": {
+      "description": "Control Center: file imports, others, processes.",
+      "steps": [
+        {
+          "name": "open_menu",
+          "action": "menu_select",
+          "target": {
+            "strategy": "menu_path",
+            "path": ["Utilities", "Control Center"]
+          },
+          "post_delay": 3
+        },
+        {
+          "name": "wait_for_window",
+          "action": "wait_for_window",
+          "target": "control_center_window",
+          "post_delay": 1
+        },
+        {
+          "name": "set_control_center_date",
+          "action": "set_date",
+          "target": "cc_date_picker",
+          "value": "${global_variables.business_date}",
+          "date_format": "DD/MM/YYYY",
+          "post_delay": 1
+        },
+
+        {
+          "name": "file_imports_section",
+          "action": "group",
+          "condition": "${step.file_imports.enabled}",
+          "steps": [
+            {
+              "name": "open_file_imports_tab",
+              "action": "click",
+              "target": "cc_tab_file_imports",
+              "post_delay": 1
+            },
+            {
+              "name": "select_product",
+              "action": "select",
+              "target": "cc_product_combo",
+              "value": "${step.file_imports.product}",
+              "select_strategy": "keyboard_home_down",
+              "value_to_down_count": {
+                "Equity": 0,
+                "Commodity": 1
+              },
+              "post_delay": 0.5
+            },
+            {
+              "name": "select_type",
+              "action": "select",
+              "target": "cc_type_combo",
+              "value": "${step.file_imports.type}",
+              "select_strategy": "keyboard_home_down",
+              "value_to_down_count": {
+                "UDIFF": 1
+              },
+              "post_delay": 0.5
+            },
+            {
+              "name": "toggle_matrix_checkboxes",
+              "action": "foreach",
+              "source": "${step.file_imports.matrix_checkboxes}",
+              "item_name": "checkbox",
+              "steps": [
+                {
+                  "name": "toggle_checkbox",
+                  "action": "toggle_checkbox",
+                  "target": {
+                    "strategy": "uia_child",
+                    "auto_id": "${checkbox.key}",
+                    "control_type": "CheckBox",
+                    "parent": "control_center_window"
+                  },
+                  "desired_state": "${checkbox.value}",
+                  "post_delay": 10
+                },
+                {
+                  "name": "click_fetch",
+                  "action": "click",
+                  "target": "cc_fetch_button",
+                  "post_delay": 3
+                },
+                {
+                  "name": "scan_and_import_grid",
+                  "action": "grid_scan_and_act",
+                  "target": "cc_imports_grid",
+                  "match_strategy": "filename_map",
+                  "filename_map_bse": "${step.file_imports.bse_files_workflow}",
+                  "filename_map_nse": "${step.file_imports.nse_files_workflow}",
+                  "action_per_matched_row": {
+                    "action": "send_keys",
+                    "value": "{ENTER}"
+                  },
+                  "post_action_wait_seconds": 7.5,
+                  "dismiss_dialog_after_row": {
+                    "strategy": "title_contains",
+                    "keywords": ["information", "report", "file import"],
+                    "click_button": "OK"
+                  },
+                  "post_delay": 1.5
+                },
+                {
+                  "name": "uncheck_checkbox",
+                  "action": "toggle_checkbox",
+                  "target": {
+                    "strategy": "uia_child",
+                    "auto_id": "${checkbox.key}",
+                    "control_type": "CheckBox",
+                    "parent": "control_center_window"
+                  },
+                  "desired_state": false,
+                  "post_delay": 1.5
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "name": "others_section",
+          "action": "group",
+          "condition": "${step.others.enabled}",
+          "steps": [
+            {
+              "name": "open_others_tab",
+              "action": "click",
+              "target": "cc_tab_others",
+              "post_delay": 1
+            },
+            {
+              "name": "select_exchange",
+              "action": "select",
+              "target": "cc_others_exchange_combo",
+              "value": "${step.others.exchange}",
+              "select_strategy": "keyboard_home_down",
+              "value_to_down_count": {
+                "BSE": 0,
+                "NSE": 1
+              },
+              "post_delay": 0.5
+            },
+            {
+              "name": "select_segment",
+              "action": "select",
+              "target": "cc_others_segment_combo",
+              "value": "${step.others.segment}",
+              "select_strategy": "keyboard_home_down",
+              "value_to_down_count": {
+                "Cash": 0,
+                "F&O": 1,
+                "FX": 2,
+                "MF": 3
+              },
+              "post_delay": 0.5
+            },
+            {
+              "name": "select_settlement",
+              "action": "select",
+              "target": "cc_others_settlement_combo",
+              "value": "${step.others.settlement}",
+              "select_strategy": "find_string_and_select",
+              "post_delay": 0.5
+            },
+            {
+              "name": "toggle_exchange_obligation_reconciliation",
+              "action": "toggle_radio",
+              "target": {
+                "strategy": "uia_child",
+                "auto_id": "optPrOblComp",
+                "control_type": "RadioButton",
+                "parent": "control_center_window"
+              },
+              "desired_state": "${step.others.exchange_obligation_reconciliation}",
+              "post_delay": 0.5
+            },
+            {
+              "name": "click_others_proceed",
+              "action": "click",
+              "target": "cc_others_proceed_button",
+              "post_delay": 2
+            },
+            {
+              "name": "handle_others_popup",
+              "action": "dismiss_dialog",
+              "target": {
+                "strategy": "top_level_by_keywords",
+                "keywords": ["information", "are you sure", "mismatch", "reconcil"],
+                "class_hint": "#32770"
+              },
+              "click_button": "OK",
+              "timeout_seconds": 10,
+              "on_text_contains": {
+                "mis match found": {
+                  "action": "raise_error",
+                  "message": "Mismatch found during Others reconciliation"
+                },
+                "settlement": {
+                  "action": "return",
+                  "value": "RESTART"
+                }
+              }
+            }
+          ]
+        },
+
+        {
+          "name": "processes_section",
+          "action": "group",
+          "condition": "${step.processes.enabled}",
+          "steps": [
+            {
+              "name": "open_processes_tab",
+              "action": "click",
+              "target": "cc_tab_processes",
+              "post_delay": 1
+            },
+            {
+              "name": "select_process_product",
+              "action": "select",
+              "target": "cc_processes_product_combo",
+              "value": "${step.processes.product}",
+              "select_strategy": "keyboard_home_down",
+              "value_to_down_count": {
+                "Equity": 0,
+                "Commodity": 1
+              },
+              "post_delay": 0.5
+            },
+            {
+              "name": "set_processes_date",
+              "action": "set_date",
+              "target": "cc_processes_date_picker",
+              "value": "${step.processes.date}",
+              "date_format": "DD/MM/YYYY",
+              "post_delay": 1
+            },
+            {
+              "name": "click_processes_fetch",
+              "action": "click",
+              "target": "cc_processes_fetch_button",
+              "post_delay": 3
+            },
+            {
+              "name": "select_target_settlement",
+              "action": "grid_select_row",
+              "target": "cc_processes_settlement_grid",
+              "column_index": 0,
+              "match_strategy": "starts_with",
+              "match_value": "${step.processes.target_settlement}",
+              "select_by": "checkbox",
+              "post_delay": 1
+            },
+            {
+              "name": "click_processes_proceed",
+              "action": "click",
+              "target": "cc_processes_proceed_button",
+              "post_delay": 2
+            },
+            {
+              "name": "wait_for_process_completion",
+              "action": "monitor_clipboard",
+              "target": "cc_processes_settlement_grid",
+              "trigger_text": "process completed",
+              "poll_interval_seconds": 4,
+              "timeout_seconds": 300,
+              "post_delay": 2
+            }
+          ]
+        },
+
+        {
+          "name": "close_control_center",
+          "action": "close_window",
+          "target": "control_center_window",
+          "method": "wm_close",
+          "post_delay": 2
+        },
+        {
+          "name": "close_any_report_tabs",
+          "action": "close_matching_windows",
+          "target": {
+            "strategy": "top_level_by_keywords",
+            "keywords": ["file import report", "obligation", "comparison", "money sheet", "reconciliation", "mismatch", "accumulation", "bill reconcil", "slip printing"]
+          },
+          "method": "close_button_then_wm_close",
+          "post_delay": 2
+        }
+      ]
+    },
+
+    "demat_auto_entries": {
+      "description": "Generic Demat / Share Pay-In/Out workflow.",
+      "steps": [
+        {
+          "name": "open_demat_menu",
+          "action": "menu_select",
+          "target": {
+            "strategy": "menu_path",
+            "path": ["Utilities", "Demat Processes"]
+          },
+          "post_delay": 2.5
+        },
+        {
+          "name": "set_demat_date",
+          "action": "set_date",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "dtMain",
+            "parent": "demat_window"
+          },
+          "value": "${step.date}",
+          "date_format": "DD/MM/YYYY",
+          "post_delay": 1
+        },
+        {
+          "name": "select_settlement",
+          "action": "select",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "cmbSettlement",
+            "control_type": "ComboBox",
+            "parent": "demat_window"
+          },
+          "value": "${step.settlement_name}",
+          "select_strategy": "find_string_and_select",
+          "post_delay": 1
+        },
+        {
+          "name": "click_fetch",
+          "action": "click",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "cmdFetch",
+            "control_type": "Button",
+            "parent": "demat_window"
+          },
+          "fallback": {
+            "strategy": "win32_button_by_title",
+            "title": "Fetch"
+          },
+          "post_delay": 3
+        },
+        {
+          "name": "select_target_process_row",
+          "action": "grid_select_row",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "dgvDemat",
+            "control_type": "Table",
+            "parent": "demat_window"
+          },
+          "column_index": 0,
+          "match_strategy": "exact",
+          "match_value": "${step.target_process_name}",
+          "select_by": "row_click_then_enter",
+          "post_delay": 2
+        },
+        {
+          "name": "close_demat_window",
+          "action": "close_window",
+          "target": "demat_window",
+          "method": "wm_close",
+          "post_delay": 2
+        }
+      ]
+    },
+
+    "pledge_management": {
+      "description": "Generic pledge/unpledge workflow.",
+      "steps": [
+        {
+          "name": "open_pledge_menu",
+          "action": "menu_select",
+          "target": {
+            "strategy": "menu_path",
+            "path": ["Utilities", "Pledge Management"]
+          },
+          "post_delay": 2.5
+        },
+        {
+          "name": "switch_to_manage_tab",
+          "action": "click_tab",
+          "target": {
+            "strategy": "tab_by_title",
+            "parent": "pledge_window",
+            "title": "${step.tab_name}"
+          },
+          "post_delay": 1
+        },
+        {
+          "name": "select_manage_action",
+          "action": "select",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "cmbAction",
+            "control_type": "ComboBox",
+            "parent": "pledge_window"
+          },
+          "value": "${step.manage_action}",
+          "select_strategy": "find_string_and_select",
+          "value_synonyms": {
+            "unpledge": "Un Pledge",
+            "un-pledge": "Un Pledge",
+            "un pledge": "Un Pledge",
+            "pledge": "Pledge"
+          },
+          "post_delay": 1
+        },
+        {
+          "name": "set_manage_date",
+          "action": "set_date",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "dtManageDate",
+            "parent": "pledge_window"
+          },
+          "value": "${step.date}",
+          "date_format": "DD/MM/YYYY",
+          "post_delay": 1
+        },
+        {
+          "name": "toggle_items_sold_by_client",
+          "action": "toggle_checkbox",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "chkItemsSoldByClient",
+            "control_type": "CheckBox",
+            "parent": "pledge_window"
+          },
+          "desired_state": "${step.items_sold_by_client}",
+          "post_delay": 0.5
+        },
+        {
+          "name": "toggle_with_epn_blk",
+          "action": "toggle_checkbox",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "chkWithEPNBLK",
+            "control_type": "CheckBox",
+            "parent": "pledge_window"
+          },
+          "desired_state": "${step.with_epn_blk}",
+          "post_delay": 0.5
+        },
+        {
+          "name": "click_fetch",
+          "action": "click",
+          "target": {
+            "strategy": "uia_child",
+            "auto_id": "btnFetch",
+            "control_type": "Button",
+            "parent": "pledge_window"
+          },
+          "post_delay": 3
+        },
+        {
+          "name": "click_save",
+          "action": "click",
+          "target": {
+            "strategy": "win32_button_by_title",
+            "parent": "pledge_window",
+            "title": "Save"
+          },
+          "post_delay": 3
+        },
+        {
+          "name": "close_slip_printing_window",
+          "action": "close_matching_windows",
+          "target": {
+            "strategy": "top_level_by_keywords",
+            "keywords": ["slip", "printing"]
+          },
+          "method": "wm_close",
+          "post_delay": 2
+        },
+        {
+          "name": "close_pledge_window",
+          "action": "close_window",
+          "target": "pledge_window",
+          "method": "wm_close",
+          "post_delay": 2
+        }
+      ]
+    }
+  },
+
+  "execution_pipeline": [
+    {
+      "Parent_Menu": "Utilities",
+      "enabled": true,
+      "sub_pipeline": [
+        {
+          "enabled": true,
+          "Menu": "control_center",
+          "date": "20260211",
+          "file_imports": {
+            "enabled": true,
+            "product": "Equity",
+            "type": "UDIFF",
+            "matrix_checkboxes": {
+              "chkBSECash": true,
+              "chkNSECash": true,
+              "chkBSEFO": false,
+              "chkNSEFO": false,
+              "chkMCXCash": false,
+              "chkFX": false,
+              "chkSLBM": false,
+              "chkMF": false
+            },
+            "bse_files_workflow": {
+              "BSE_Cash_Broker Query": true,
+              "BSE_Cash_Obligation File (Provisional)": false,
+              "BSE_Cash_Obligation File (Final)": false,
+              "BSE_Cash_STT Details File": false,
+              "BSE_Cash_Stamp Duty File": false,
+              "BSE_Cash_Bhavcopy": false,
+              "BSE_Cash_Offer For Sale Trade File": false
+            },
+            "nse_files_workflow": {
+              "NSE_Cash_Trade File": true,
+              "NSE_Cash_Obligation File (Provisional)": true,
+              "NSE_Cash_Obligation File (Final)": false,
+              "NSE_Cash_STT Details File": false,
+              "NSE_Cash_Stamp Duty File": false,
+              "NSE_Cash_Bhavcopy": false
+            }
+          },
+          "others": {
+            "enabled": true,
+            "exchange": "NSE",
+            "segment": "Cash",
+            "settlement": "NQ2026112",
+            "exchange_obligation_reconciliation": true,
+            "unprocess_bills": false,
+            "display_obligation_money_sheet": false,
+            "accumulation_difference": false,
+            "stt_mismatch": false,
+            "bill_reconciliation": false
+          },
+          "processes": {
+            "enabled": true,
+            "product": "Equity",
+            "date": "20260211",
+            "bill_generation": true,
+            "accumulation": true,
+            "agts": true,
+            "revenue_sharing": true,
+            "lock_bill_prior": false,
+            "click_fetch": true,
+            "target_settlement": "NQ2026013"
+          }
+        },
+        {
+          "Menu": "demat_processes",
+          "enabled": true,
+          "date": "20260211",
+          "settlement_name": "NQ2026013",
+          "target_process_name": "Demat Auto Entries",
+          "show_detail_before_process": true,
+          "one_by_one_processing": true,
+          "pay_in": true,
+          "pay_out": false
+        },
+        {
+          "Menu": "pledge_management",
+          "enabled": true,
+          "tab_name": "Manage",
+          "manage_action": "Un Pledge",
+          "date": "20260211",
+          "items_sold_by_client": true,
+          "with_epn_blk": true,
+          "click_fetch": true
+        },
+        {
+          "Menu": "demat_processes",
+          "enabled": true,
+          "date": "20260211",
+          "settlement_name": "NQ2026013",
+          "target_process_name": "Pay-In(POA)",
+          "show_detail_before_process": true,
+          "one_by_one_processing": true,
+          "pay_in": true,
+          "pay_out": true
+        }
+      ]
+    }
+  ]
+}
